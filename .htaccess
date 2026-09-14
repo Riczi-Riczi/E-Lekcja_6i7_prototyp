@@ -1,0 +1,13 @@
+# Hostinger (Apache/LiteSpeed) wdraża cały katalog główny repozytorium, a strona lekcji leży w docs/.
+# Adres główny i wszystkie ścieżki kierujemy wewnętrznie do docs/ — adres w przeglądarce się nie zmienia.
+# GitHub Pages ignoruje ten plik (tam ustawienie: main → /docs).
+DirectoryIndex index.html
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # Pliki repozytorium (.git, README.md itp.) nie są udostępniane.
+  RewriteRule ^\.git(/|$) - [F,L]
+  RewriteCond %{REQUEST_URI} !^/docs(/|$)
+  RewriteRule ^(.*)$ docs/$1 [L]
+</IfModule>
