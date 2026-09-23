@@ -27,5 +27,5 @@ window.GOZ_Z3 = {
   ],
   // wykonawca — scenariusz: „pomoc wskazuje odpowiednie objaśnienie z Z3-P1”.
   help: 'Wróć do przykładu z lampką: co już się wydarzyło, a co trzeba zrobić dopiero w każdym wariancie?',
-  conclusionHelp: 'Przeczytaj jeszcze raz drugi akapit wiadomości: co naprawa zmienia, a czego nie wymazuje?'
+  conclusionHelp: 'Przeczytaj jeszcze raz część „Co zmienia naprawa?”: co naprawa zmienia, a czego nie wymazuje?'
 };

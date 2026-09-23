@@ -122,6 +122,28 @@
       raw.order.every(function (c) { return M.cards.indexOf(c) !== -1; }) ? raw.order.slice() : null;
     return { order: order, matched: pickList(raw.matched, M.pairs), revealed: raw.revealed === true };
   }
+  // I52 START walidator-3d
+  // Projekt buta 3D (integracja 52, polecenie 55 §4): pole optional.shoeDesign3D, osobne od projektu 2D.
+  // Zwykły obiekt wersji 1; wyłącznie siedem znanych części. Wadliwe wartości znanych części → domyślne;
+  // nieznane pola pomijamy. Brak, null, tablica lub inna wersja → brak projektu (null). Bez obrazów i modelu.
+  var SHOE3D_PARTS = ['toe', 'side', 'heel', 'tongue', 'laces', 'badge', 'sole'];
+  var SHOE3D_TYPES = ['none', 'circles', 'squares', 'stars', 'organic', 'rectangles', 'hearts', 'zigzag'];
+  function hex6(v, fallback) { return typeof v === 'string' && /^#[0-9a-fA-F]{6}$/.test(v) ? v.toUpperCase() : fallback; }
+  function sanitizeShoe3D(raw) {
+    if (!isObject(raw) || raw.version !== 1) return null;
+    var colors = isObject(raw.colors) ? raw.colors : {}, patterns = isObject(raw.patterns) ? raw.patterns : {};
+    var out = { version: 1, colors: {}, patterns: {}, finished: raw.finished === true };
+    SHOE3D_PARTS.forEach(function (p) {
+      out.colors[p] = hex6(colors[p], '#FFFFFF');
+      var pt = isObject(patterns[p]) ? patterns[p] : {};
+      var size = typeof pt.size === 'number' && pt.size % 1 === 0 && pt.size >= 1 && pt.size <= 5 ? pt.size : 3;
+      out.patterns[p] = { type: pickValue(pt.type, SHOE3D_TYPES) || 'none', color: hex6(pt.color, '#123E6B'), size: size };
+    });
+    return out;
+  }
+  // Ten sam walidator dla hosta pracowni: rodzic sprawdza projekt przed zapisem, zanim cokolwiek nadpisze.
+  window.GOZShoe3D = { sanitize: sanitizeShoe3D, parts: SHOE3D_PARTS.slice(), types: SHOE3D_TYPES.slice() };
+  // I52 END walidator-3d
 
   function sanitize(raw) {
     var out = clone(INITIAL);
@@ -139,6 +161,11 @@
     out.tasks.Z6 = sanitizeZ6(tasks.Z6);
     var optional = isObject(raw.optional) ? raw.optional : {};
     out.optional = { shoeDesign: sanitizeShoe(optional.shoeDesign), memoryState: sanitizeMemory(optional.memoryState) };
+    // I52 START sanitize-3d
+    // Pole dodajemy tylko przy poprawnym projekcie; stan początkowy i reset go nie zawierają.
+    var design3D = sanitizeShoe3D(optional.shoeDesign3D);
+    if (design3D) out.optional.shoeDesign3D = design3D;
+    // I52 END sanitize-3d
     out.finale = sanitizeFinale(raw.finale, out);
     return out;
   }
@@ -260,6 +287,10 @@
     flush: function () { if (saveTimer) writeNow(); },
     hasProgress: function () {
       if (state.updatedAt === null) return false;
+      // I52 START hasProgress-3d
+      // Poprawny projekt 3D jest postępem nawet jako jedyny element zapisu.
+      if (sanitizeShoe3D(state.optional.shoeDesign3D)) return true;
+      // I52 END hasProgress-3d
       return state.lastAnchor !== 'entry' || K.order.some(function (id) { return JSON.stringify(state.tasks[id]) !== JSON.stringify(INITIAL.tasks[id]); }) ||
         state.optional.shoeDesign !== null || state.optional.memoryState !== null;
     },

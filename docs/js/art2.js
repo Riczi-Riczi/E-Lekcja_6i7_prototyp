@@ -60,7 +60,7 @@
     var icon = function (x, body, name) {
       return '<g transform="translate(' + x + ' 70)"><circle cx="70" cy="70" r="66" fill="#24594A"/>' + body + '<text x="70" y="176" text-anchor="middle" font-family="system-ui" font-size="20" fill="' + PAPER + '">' + name + '</text></g>';
     };
-    return svg('0 0 680 300', 'Wcześniejsze etapy: surowce, produkcja, transport — ikony tej samej wielkości',
+    return svg('0 0 680 300', 'Wcześniejsze etapy: surowce, produkcja, transport - ikony tej samej wielkości',
       '<rect width="680" height="300" rx="22" fill="#163B31"/>' +
       icon(20, '<path d="M30 100L60 50L80 70L110 100Z" fill="' + SAGE + '"/><circle cx="96" cy="60" r="12" fill="' + LIME + '"/>', 'Surowce') +
       icon(250, '<path d="M30 110V60L55 45V60L80 45V60L105 45V110Z" fill="' + SAND + '"/><rect x="45" y="80" width="14" height="14" fill="#163B31"/><rect x="75" y="80" width="14" height="14" fill="#163B31"/>', 'Produkcja') +
@@ -83,7 +83,7 @@
 
   // --- Ocean -----------------------------------------------------------------
   function oceanSurface() {
-    return svg('0 0 680 360', 'Powierzchnia oceanu widziana z pokładu — wygląda na czystą',
+    return svg('0 0 680 360', 'Powierzchnia oceanu widziana z pokładu - wygląda na czystą',
       '<defs><linearGradient id="sky" x2="0" y2="1"><stop stop-color="#CFE8F2"/><stop offset="1" stop-color="#EAF5F7"/></linearGradient><linearGradient id="sea" x2="0" y2="1"><stop stop-color="#2E8BA8"/><stop offset="1" stop-color="#0F4D63"/></linearGradient></defs>' +
       '<rect width="680" height="360" fill="url(#sky)"/><rect y="140" width="680" height="220" fill="url(#sea)"/>' +
       '<g stroke="#FFFFFF66" stroke-width="3" fill="none"><path d="M40 190q30-10 60 0t60 0"/><path d="M300 230q30-10 60 0t60 0"/><path d="M500 180q30-10 60 0t60 0"/><path d="M140 290q30-10 60 0t60 0"/><path d="M420 310q30-10 60 0t60 0"/></g>');
@@ -95,7 +95,7 @@
       dots += i % 3 === 0 ? '<rect x="' + p[0] + '" y="' + p[1] + '" width="' + p[2] * 2 + '" height="' + p[2] + '" rx="1" fill="' + ['#F8C945', '#F06A55', '#FFFFFF'][i % 3] + '" transform="rotate(' + (i * 23) + ' ' + p[0] + ' ' + p[1] + ')"/>'
         : '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="' + p[2] + '" fill="' + ['#F8C945', '#F06A55', '#FFFFFF'][i % 3] + '"/>';
     });
-    return svg('0 0 680 360', 'Umowne powiększenie tej samej wody z drobnymi fragmentami — ilustracja, nie pomiar',
+    return svg('0 0 680 360', 'Umowne powiększenie tej samej wody z drobnymi fragmentami - ilustracja, nie pomiar',
       '<rect width="680" height="360" fill="#0F4D63"/><rect y="0" width="680" height="140" fill="#1B6781"/>' + dots +
       '<path d="M60 130q40-12 80 0t80 0" stroke="#FFFFFF55" stroke-width="3" fill="none"/>');
   }
@@ -112,7 +112,7 @@
       '<rect x="28" y="' + yStart + '" width="36" height="' + (590 - yStart) + '" rx="6" fill="' + LIME + '" opacity=".85"/>' + marks);
   }
   function amphipod() {
-    return svg('0 0 320 180', 'Schemat drobnego skorupiaka z głębin — rysunek objaśniający, nie fotografia z badania',
+    return svg('0 0 320 180', 'Schemat drobnego skorupiaka z głębin - rysunek objaśniający, nie fotografia z badania',
       '<rect width="320" height="180" rx="18" fill="#0A2C38"/>' +
       '<path d="M60 110C80 60 170 44 240 70C270 80 280 100 262 112C220 138 120 142 60 110Z" fill="#E8D9C0"/>' +
       '<path d="M100 72v48M140 62v62M180 60v64M220 66v54" stroke="#C9B89C" stroke-width="3"/>' +
@@ -171,20 +171,64 @@
     var frame = i < 3 ? '<rect x="32" y="40" width="256" height="138" rx="6" fill="none" stroke="#7B5A36" stroke-width="6"/>' : '';
     return deco('0 0 320 200', '<rect width="320" height="200" rx="18" fill="#EEF2E7"/>' + inner + frame);
   }
+  // Z5 — pokaz wilgoci (pakiet 26, 24 §5): zbliżenie tej samej mieszanki w trzech stanach, viewBox 0 0 800 400.
+  // Warstwa „skladniki” (liście, obierki, gałązki: kształty i położenia) jest identyczna we wszystkich stanach.
+  // Zmieniają się wyłącznie warstwy wody i widocznej przestrzeni z powietrzem. Bez tekstu w obrazie, bez organizmów i dojrzewania.
+  // Opis dostępności: GOZ_Z5.moisture[].alt (redakcja_26/propozycja.json).
+  var MIX_PARTS = [
+    ['leaf', 70, 70, -20, '#A8743F', 1.5], ['peel', 230, 62, 10, 0, 1.45], ['twig', 395, 78, -8, 0, 1.4], ['leaf', 545, 72, 35, '#6E9A3F', 1.5], ['peel', 705, 70, -15, 0, 1.4],
+    ['leaf', 250, 150, 80, '#6E9A3F', 0.95], ['peel', 540, 150, -70, 0, 0.9], ['twig', 735, 150, 40, 0, 0.9], ['leaf', 45, 165, 15, '#A8743F', 0.9],
+    ['twig', 105, 212, 20, 0, 1.3], ['leaf', 290, 208, -40, '#6E9A3F', 1.45], ['peel', 455, 212, 25, 0, 1.4], ['leaf', 630, 210, 10, '#A8743F', 1.45], ['twig', 760, 222, 70, 0, 1.1],
+    ['peel', 290, 278, -60, 0, 0.9], ['leaf', 455, 285, 40, '#A8743F', 0.9], ['twig', 625, 285, -40, 0, 0.9], ['leaf', 85, 280, -10, '#6E9A3F', 0.9],
+    ['peel', 95, 345, -5, 0, 1.45], ['leaf', 250, 340, 60, '#A8743F', 1.45], ['twig', 420, 350, 5, 0, 1.4], ['leaf', 580, 338, -25, '#6E9A3F', 1.45], ['peel', 725, 350, 20, 0, 1.4]
+  ];
+  // Wolne przestrzenie między składnikami: [cx, cy, rx, ry]. W stanie „wet” sześć pierwszych wypełnia woda.
+  var MIX_GAPS = [[160, 140, 46, 30], [375, 145, 44, 28], [645, 145, 46, 29], [195, 275, 44, 28], [375, 278, 48, 30], [705, 285, 42, 27], [470, 142, 32, 22], [540, 278, 34, 24]];
+  var MIX_SHAPES = {
+    leaf: 'M0 -34C22 -31 35 -9 31 13C27 30 9 38 0 40C-8 37 -27 29 -31 12C-35 -6 -24 -29 -6 -33Z',
+    peel: 'M-46 -8C-20 -27 24 -26 48 -10C53 -6 50 1 44 0C22 -13 -18 -12 -40 4C-46 7 -51 -2 -46 -8Z',
+    twig: 'M-48 6L44 -8'
+  };
+  function mixPart(p, film) {
+    var t = 'translate(' + p[1] + ' ' + p[2] + ') rotate(' + p[3] + ') scale(' + (p[5] || 1) + ')';
+    if (p[0] === 'twig') {
+      if (film) return '<g transform="' + t + '" stroke="#3E86B5" stroke-width="3" fill="none" opacity=".85"><path d="M-44 11L46 -3"/></g>';
+      return '<g transform="' + t + '" stroke="#6B4A2F" stroke-linecap="round" fill="none"><path d="' + MIX_SHAPES.twig + '" stroke-width="8"/><path d="M8 -2L24 -22" stroke-width="5"/><path d="M-22 2L-34 -14" stroke-width="4"/></g>';
+    }
+    if (film) return '<path transform="' + t + '" d="' + MIX_SHAPES[p[0]] + '" fill="none" stroke="#3E86B5" stroke-width="3.5" opacity=".85"/>';
+    if (p[0] === 'leaf') return '<g transform="' + t + '"><path d="' + MIX_SHAPES.leaf + '" fill="' + p[4] + '" stroke="#4E3A22" stroke-width="1.5"/><path d="M0 -30L1 36M1 -8L14 -18M1 6L-14 -4M1 18L13 10" stroke="#3D2B18" stroke-width="1.6" fill="none" opacity=".55"/></g>';
+    return '<g transform="' + t + '"><path d="' + MIX_SHAPES.peel + '" fill="#D8893A" stroke="#8A4F1E" stroke-width="1.5"/><path d="M-36 -6C-12 -19 18 -19 40 -8" stroke="#F2C27E" stroke-width="3" fill="none" stroke-linecap="round"/></g>';
+  }
+  function mixGap(g) {
+    var cx = g[0], cy = g[1], rx = g[2], ry = g[3];
+    return 'M' + (cx - rx) + ' ' + cy + 'C' + (cx - rx) + ' ' + (cy - ry * 1.2) + ' ' + (cx + rx * 0.6) + ' ' + (cy - ry * 1.1) + ' ' + (cx + rx) + ' ' + (cy - ry * 0.2) +
+      'C' + (cx + rx * 1.1) + ' ' + (cy + ry * 0.8) + ' ' + (cx - rx * 0.2) + ' ' + (cy + ry * 1.2) + ' ' + (cx - rx) + ' ' + cy + 'Z';
+  }
   function moistureState(state) {
-    var base = '<rect width="400" height="260" rx="18" fill="#EEF2E7"/><rect x="40" y="40" width="320" height="190" rx="8" fill="none" stroke="#7B5A36" stroke-width="6"/>';
-    var pieces = '';
-    var coords = [[70, 76], [140, 70], [210, 88], [280, 74], [90, 136], [170, 128], [240, 148], [290, 132], [64, 184], [140, 188], [215, 180], [284, 190]];
-    coords.forEach(function (c, i) {
-      pieces += '<rect x="' + c[0] + '" y="' + c[1] + '" width="' + (state === 'wet' ? 50 : 40) + '" height="' + (state === 'wet' ? 28 : 20) + '" rx="6" fill="' + (i % 2 ? '#B98B4E' : '#8FB25A') + '"/>';
+    var flooded = state === 'wet' ? 6 : 0;
+    var air = '', water = '', films = '', parts = '';
+    MIX_GAPS.forEach(function (g, i) {
+      if (i < flooded) water += '<path d="' + mixGap(g) + '" fill="#6FB3DE" fill-opacity=".8" stroke="#2F6F99" stroke-width="2.5"/>';
+      else air += '<path d="' + mixGap(g) + '" fill="#FFFDF6" stroke="#7E8E7A" stroke-width="2" stroke-dasharray="6 5"/>';
     });
-    var extra = '';
-    if (state === 'dry') extra = '<g fill="#C9B38A" opacity=".9"><circle cx="130" cy="112" r="3"/><circle cx="210" cy="176" r="3"/><circle cx="290" cy="118" r="3"/></g><text x="200" y="30" text-anchor="middle" font-family="system-ui" font-size="18" fill="' + INK + '">Bardzo sucho</text>';
-    if (state === 'moist') extra = '<g fill="#5B8FB0"><path d="M140 104c0 6-8 6-8 0l4-8z"/><path d="M250 172c0 6-8 6-8 0l4-8z"/><path d="M310 120c0 6-8 6-8 0l4-8z"/></g><g stroke="#FFFFFF" stroke-width="3" fill="none" opacity=".9"><path d="M60 120c20-10 20 10 40 0"/><path d="M200 116c20-10 20 10 40 0"/></g><text x="200" y="30" text-anchor="middle" font-family="system-ui" font-size="18" fill="' + INK + '">Wilgotno</text>';
-    if (state === 'wet') extra = '<rect x="44" y="120" width="312" height="106" fill="#5B8FB0" opacity=".55"/><text x="200" y="30" text-anchor="middle" font-family="system-ui" font-size="18" fill="' + INK + '">Zalane</text>';
-    var orgs = state === 'dry' ? 2 : state === 'moist' ? 6 : 3;
-    var dots = ''; for (var k = 0; k < orgs; k++) dots += '<circle class="organism" cx="' + (90 + k * 45) + '" cy="' + (110 + (k % 2) * 60) + '" r="5" fill="#F8C945"/>';
-    return deco('0 0 400 260', base + pieces + extra + dots, 'moisture-' + state);
+    MIX_PARTS.forEach(function (p) {
+      parts += mixPart(p, false);
+      if (state !== 'dry') films += mixPart(p, true);
+    });
+    if (state !== 'dry') {
+      // Krople przy powierzchni kilku składników (ta sama pozycja w stanach wilgotnym i zalanym).
+      [[262, 78], [566, 104], [306, 240], [648, 240], [262, 372], [596, 366]].forEach(function (d) {
+        films += '<path d="M' + d[0] + ' ' + (d[1] - 9) + 'C' + (d[0] + 6) + ' ' + (d[1] - 1) + ' ' + (d[0] + 6) + ' ' + (d[1] + 5) + ' ' + d[0] + ' ' + (d[1] + 5) + 'C' + (d[0] - 6) + ' ' + (d[1] + 5) + ' ' + (d[0] - 6) + ' ' + (d[1] - 1) + ' ' + d[0] + ' ' + (d[1] - 9) + 'Z" fill="#6FB3DE" stroke="#2F6F99" stroke-width="1.5"/>';
+      });
+    }
+    var body = '<rect width="800" height="400" rx="24" fill="#E9E1CF"/>' +
+      '<g data-layer="powietrze">' + air + '</g>' +
+      '<g data-layer="woda">' + water + '</g>' +
+      '<g data-layer="skladniki">' + parts + '</g>' +
+      '<g data-layer="woda-przy-skladnikach">' + films + '</g>';
+    var info = window.GOZ_Z5 && window.GOZ_Z5.moisture.filter(function (m) { return m.id === state; })[0];
+    var label = info && info.alt ? info.alt.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;') : '';
+    return label ? svg('0 0 800 400', label, body, 'moisture-' + state) : deco('0 0 800 400', body, 'moisture-' + state);
   }
   function wetCompost(fixed) {
     var body = '<rect width="400" height="240" rx="18" fill="#EEF2E7"/><rect x="40" y="30" width="320" height="190" rx="8" fill="none" stroke="#7B5A36" stroke-width="6"/>';
@@ -197,7 +241,7 @@
   }
   function wormBin(active) {
     var worms = '<g stroke="#C46A6A" stroke-width="6" fill="none" stroke-linecap="round" class="worms"><path d="M90 150c10-10 20 10 30 0s20 10 30 0"/><path d="M200 170c10-10 20 10 30 0s20 10 30 0"/><path d="M150 120c10-10 20 10 30 0"/></g>';
-    return svg('0 0 400 240', 'Oddzielny pojemnik do wermikompostowania z dżdżownicami — schemat, inny niż ogrodowy kompostownik',
+    return svg('0 0 400 240', 'Oddzielny pojemnik do wermikompostowania z dżdżownicami - schemat, inny niż ogrodowy kompostownik',
       '<rect width="400" height="240" rx="18" fill="#F2F6EA"/><rect x="50" y="60" width="300" height="150" rx="12" fill="#6B5A48"/><rect x="40" y="46" width="320" height="22" rx="8" fill="#4E4034"/><g fill="#FFFFFF"><circle cx="80" cy="190" r="4"/><circle cx="110" cy="190" r="4"/><circle cx="140" cy="190" r="4"/></g>' +
       '<rect x="62" y="96" width="276" height="100" rx="6" fill="#4E3522"/>' + (active ? worms : '<path d="M160 146c10-10 20 10 30 0" stroke="#C46A6A" stroke-width="6" fill="none" stroke-linecap="round"/>'));
   }

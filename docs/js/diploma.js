@@ -122,7 +122,7 @@
       doc.addFont('NotoSans-Regular.ttf', 'NotoSans', 'normal');
       doc.addFileToVFS('NotoSans-Bold.ttf', A.bold);
       doc.addFont('NotoSans-Bold.ttf', 'NotoSans', 'bold');
-      doc.setProperties({ title: 'Dyplom — Eksperci GOZ (wersja robocza)', subject: 'Pamiątka ukończenia e-lekcji', creator: 'Eksperci GOZ — wersja robocza' });
+      doc.setProperties({ title: 'Dyplom - Eksperci GOZ (wersja robocza)', subject: 'Pamiątka ukończenia e-lekcji', creator: 'Eksperci GOZ - wersja robocza' });
       var W = 297, H = 210, M = 12, cx = W / 2;
       var ink = [18, 62, 52], sage = [57, 115, 84];
 
@@ -190,7 +190,7 @@
 
       doc.setFont('NotoSans', 'normal'); doc.setFontSize(8.5); doc.setTextColor(78, 101, 88);
       doc.text(F.footer, M + 10, H - M - 12);
-      doc.text(F.draftMark + ' — dyplom nie zawiera jeszcze oryginalnych oznaczeń funduszu.', M + 10, H - M - 7.5);
+      doc.text(F.draftMark + ' - dyplom nie zawiera jeszcze oryginalnych oznaczeń funduszu.', M + 10, H - M - 7.5);
       return doc;
     });
   }
@@ -223,7 +223,7 @@
       var input = $('diploma-name');
       input.addEventListener('input', function () {
         var n = normalize(input.value);
-        $('diploma-preview').textContent = n || '—';
+        $('diploma-preview').textContent = n || '-';
         if (chars(n) > F.nameMax) msg(F.messages.tooLong); else if ($('diploma-msg').textContent === F.messages.tooLong) msg('');
       });
       $('diploma-make').addEventListener('click', function () {
@@ -249,7 +249,7 @@
       if (animTimer) { clearTimeout(animTimer); animTimer = null; }
       currentName = null;
       $('diploma-name').value = '';
-      $('diploma-preview').textContent = '—';
+      $('diploma-preview').textContent = '-';
       $('diploma-card-name').textContent = '';
       $('diploma-stage').hidden = true;
       msg(''); pdfStatus('');

@@ -1,0 +1,19 @@
+{
+  "blender": "5.2.1 LTS",
+  "triangles": 28066,
+  "vertices_in_exported_primitives": 14516,
+  "glb_bytes": 564272,
+  "materials": [
+    "fixed_lining",
+    "fixed_eyelets",
+    "side",
+    "fixed_stitch",
+    "laces",
+    "badge",
+    "sole",
+    "sole_edge",
+    "tongue",
+    "toe",
+    "heel"
+  ]
+}

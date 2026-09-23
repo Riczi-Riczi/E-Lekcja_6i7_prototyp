@@ -1,6 +1,6 @@
-// Plik wygenerowany przez tools/build-data.cjs z pakiet_wykonawczy_v1. Nie edytować ręcznie.
+// Plik wygenerowany przez tools/build-data.cjs z pakiet_wykonawczy_v1/audio_manifest.json. Nie edytować ręcznie.
 window.GOZ_AUDIO_MANIFEST = {
- "version": "1.3",
+ "version": "1.5",
  "contentVersion": "3.2-handoff1",
  "recordingStatus": "texts_prepared_audio_not_generated",
  "clips": [
@@ -9,12 +9,12 @@ window.GOZ_AUDIO_MANIFEST = {
    "domId": "audio-e00_t1",
    "screen": "entry",
    "scope": "main",
-   "text": "Eksperci GOZ\n\nRzeczy mają dalszy ciąg.\n\nCo zrobić z przedmiotem, którego już nie używasz? Czy jedna usterka oznacza koniec całej rzeczy? I jak obierki mogą wrócić do ogrodu? Sprawdzisz to w sześciu zadaniach.",
-   "source": "18_REDAKCJA_A_SPECYFIKACJA.md / redakcja_17/propozycja.json / e00_t1",
+   "text": "Eksperci GOZ\n\nRzeczy mają dalszy ciąg.\n\nCo zrobić z przedmiotem, którego już nie używasz? Czy jedna usterka oznacza koniec całej rzeczy? I jak obierki mogą wrócić do ogrodu? Sprawdzisz to w sześciu zadaniach.\n\nGOZ to gospodarka o obiegu zamkniętym: rzeczy i materiały służą dłużej, zamiast szybko stawać się odpadem.",
+   "source": "26_DECYZJE_I_SPECYFIKACJA_FINAL.md / redakcja_26/propozycja.json / e00_t1",
    "expectedFile": "assets/audio/e00_t1.mp3",
    "src": null,
    "status": "awaiting_recording",
-   "textSha256": "bd5c07e12d0cfc34e99d3ae85657f0cd3eece447c4e98c9c30f3b6ff493cf179"
+   "textSha256": "f4c20f02d51e91f7a3ec5e0e0b58903136d5a1159eb0bcb4c6959c51da5701cc"
   },
   {
    "id": "mission_t1",
@@ -33,36 +33,36 @@ window.GOZ_AUDIO_MANIFEST = {
    "domId": "audio-z1_t1",
    "screen": "z1-knowledge",
    "scope": "main",
-   "text": "Recykling oznacza przetworzenie materiału odpadu, aby można go było ponownie wykorzystać. To inna droga niż przekazanie komuś sprawnej hulajnogi. Podczas przekazania zachowujemy przedmiot. Podczas recyklingu odzyskujemy materiał.",
-   "source": "18_REDAKCJA_A_SPECYFIKACJA.md / redakcja_17/propozycja.json / z1_t1",
+   "text": "Rzecz, której już nie używasz, może pójść różnymi drogami.\n\nRecykling oznacza przetworzenie materiału odpadu, aby można go było ponownie wykorzystać. To inna droga niż przekazanie komuś sprawnej hulajnogi. Podczas przekazania zachowujemy przedmiot. Podczas recyklingu odzyskujemy materiał.",
+   "source": "26_DECYZJE_I_SPECYFIKACJA_FINAL.md / redakcja_26/propozycja.json / z1_t1",
    "expectedFile": "assets/audio/z1_t1.mp3",
    "src": null,
    "status": "awaiting_recording",
-   "textSha256": "5674ed7628e328064858df6d78e64e075a691baaf8601c95367841f391a36775"
+   "textSha256": "c625e80f1d264f7cd0047571fc0d84f87b4f3013791dcdeff1c37874ebdc17c3"
   },
   {
    "id": "z1_t2",
    "domId": "audio-z1_t2",
    "screen": "z1-knowledge",
    "scope": "main",
-   "text": "Gospodarka o obiegu zamkniętym to projektowanie, produkowanie i używanie rzeczy tak, aby dłużej wykorzystywać produkty i materiały oraz ograniczać odpady.\n\nDzielenie się to korzystanie z jednej rzeczy wspólnie albo na zmianę. Znajomi mogą pożyczać sobie jedną grę planszową — każdy nie musi mieć własnej.",
-   "source": "18_REDAKCJA_A_SPECYFIKACJA.md / redakcja_17/propozycja.json / z1_t2",
+   "text": "Gospodarka o obiegu zamkniętym to projektowanie, produkowanie i używanie rzeczy tak, aby dłużej wykorzystywać produkty i materiały oraz ograniczać odpady.\n\nDzielenie się to korzystanie z jednej rzeczy wspólnie albo na zmianę. Znajomi mogą pożyczać sobie jedną grę planszową - każdy nie musi mieć własnej.",
+   "source": "34_DECYZJE_PO_RECENZJI_Z1.md / redakcja_34/propozycja.json / z1_t2",
    "expectedFile": "assets/audio/z1_t2.mp3",
    "src": null,
    "status": "awaiting_recording",
-   "textSha256": "4b0ab9bde675c158728bd8c00ec68158c1a8b764b3d4b8e17cb8b92e45bee0d7"
+   "textSha256": "7759cd8212eb5d0a32e8186c63ac2185708151473171ec5adb228945b6ff181d"
   },
   {
    "id": "z2_t1",
    "domId": "audio-z2_t1",
    "screen": "z2-knowledge",
    "scope": "main",
-   "text": "Brudny, niemodny i uszkodzony nie znaczą tego samego. Czyszczenie usuwa zabrudzenie. Naprawa przywraca sprawność. Personalizacja zmienia wygląd — na przykład kolor wybranych paneli buta. Farba nie zastępuje naprawy rozklejonej podeszwy.\n\nNajpierw ustal, co jest nie tak. W tym przykładzie pomoże Ci ocena warsztatu.",
-   "source": "18_REDAKCJA_A_SPECYFIKACJA.md / redakcja_17/propozycja.json / z2_t1",
+   "text": "Brudny, niemodny i uszkodzony nie znaczą tego samego. Czyszczenie usuwa zabrudzenie. Naprawa przywraca sprawność. Personalizacja zmienia wygląd - na przykład kolor wybranych paneli buta. Farba nie zastępuje naprawy rozklejonej podeszwy.\n\nNajpierw ustal, co jest nie tak. W tym przykładzie pomoże Ci ocena warsztatu.",
+   "source": "34_DECYZJE_PO_RECENZJI_Z1.md / redakcja_34/propozycja.json / z2_t1",
    "expectedFile": "assets/audio/z2_t1.mp3",
    "src": null,
    "status": "awaiting_recording",
-   "textSha256": "fe6dfc54d36913964a98ae4a4e3faf641ab8c720fd735dfd4d40499bf8d8edc4"
+   "textSha256": "ef241ff351072d01c2eaf58dc18d244b7a9c8d8036789d6ee67f5dd8579e91b9"
   },
   {
    "id": "z2_t2",
@@ -93,24 +93,24 @@ window.GOZ_AUDIO_MANIFEST = {
    "domId": "audio-z3_t1",
    "screen": "z3-knowledge",
    "scope": "main",
-   "text": "Hulajnoga bez silnika porusza się dzięki sile użytkownika. To nie znaczy, że jej powstanie nie wiązało się z emisjami gazów cieplarnianych. Wytwarzanie materiałów, produkcja części i transport mogą wymagać energii i powodować emisje.\n\nŚlad węglowy produktu opisuje emisje gazów cieplarnianych związane z jego cyklem życia. Ważne jest pytanie: jakie etapy uwzględniono?",
-   "source": "18_REDAKCJA_A_SPECYFIKACJA.md / redakcja_17/propozycja.json / z3_t1",
+   "text": "Hulajnoga bez silnika nie zużywa prądu podczas jazdy. Wytwarzanie jej materiałów i części oraz transport mogą jednak wymagać energii i powodować emisje gazów cieplarnianych.\n\nEmisje gazów to ich uwalnianie do atmosfery. Gazy cieplarniane, na przykład dwutlenek węgla, zatrzymują część ciepła uciekającego z Ziemi.\n\nŚlad węglowy produktu opisuje takie emisje w jego cyklu życia: od pozyskania surowców, przez produkcję i używanie, po postępowanie z odpadami. Dlatego sprawdzamy, jakie etapy uwzględniono w porównaniu.",
+   "source": "26_DECYZJE_I_SPECYFIKACJA_FINAL.md / redakcja_26/propozycja.json / z3_t1",
    "expectedFile": "assets/audio/z3_t1.mp3",
    "src": null,
    "status": "awaiting_recording",
-   "textSha256": "10b2143c8f72144d3d9a9dbabb65ef36a9fe70cca596f6147349e9d651016c3a"
+   "textSha256": "3878f13ae8be4c50d3df93f12071bea358dc5c964a58ac16ffb33dd2cc3cf1fa"
   },
   {
    "id": "z3_t2",
    "domId": "audio-z3_t2",
    "screen": "z3-knowledge",
    "scope": "main",
-   "text": "Wyprodukowanie używanej już rzeczy wydarzyło się wcześniej. Naprawa nie wymazuje tych emisji. Może jednak pozwolić dalej korzystać z produktu i ograniczyć potrzebę produkcji jego zamiennika. Sama część zamienna i naprawa również mają swój wpływ.\n\nDokładne porównanie wymaga danych o obu drogach przy podobnym czasie i sposobie używania.",
-   "source": "18_REDAKCJA_A_SPECYFIKACJA.md / redakcja_17/propozycja.json / z3_t2",
+   "text": "Wyprodukowanie używanej już rzeczy wydarzyło się wcześniej. Naprawa nie wymazuje tych emisji. Może jednak pozwolić dalej korzystać z tej rzeczy i ograniczyć potrzebę kupienia nowej. Sama część zamienna i naprawa również mają swój wpływ.\n\nDokładne porównanie wymaga danych o obu drogach przy podobnym czasie i sposobie używania.",
+   "source": "26_DECYZJE_I_SPECYFIKACJA_FINAL.md / redakcja_26/propozycja.json / z3_t2",
    "expectedFile": "assets/audio/z3_t2.mp3",
    "src": null,
    "status": "awaiting_recording",
-   "textSha256": "6ae34531c29122ba530d1363584b875d1eb6d6f7368ded45ce6840145d76a3da"
+   "textSha256": "e7ee766983d721bed24e461ff7ded43c938b326a54d68b1747daebb70c47c267"
   },
   {
    "id": "o_t1",
@@ -153,48 +153,48 @@ window.GOZ_AUDIO_MANIFEST = {
    "domId": "audio-z4_t1",
    "screen": "z4-knowledge",
    "scope": "main",
-   "text": "Korzystamy z zasad systemu organizowanego przez Związek Międzygminny SELEKT. Odpady spod domów odbierają firmy działające na jego zlecenie. W innym miejscu sprawdź zasady tamtejszej zbiórki.\n\nW tej lekcji wybrane bioodpady oddajemy luzem, bez opakowań. Zawartość brązowego pojemnika trafia do dalszego zagospodarowania — nie jest jeszcze gotowym kompostem.",
-   "source": "18_REDAKCJA_A_SPECYFIKACJA.md / redakcja_17/propozycja.json / z4_t1",
+   "text": "Korzystamy z zasad systemu organizowanego przez Związek Międzygminny SELEKT. Odpady spod domów odbierają firmy działające na jego zlecenie. W innym miejscu sprawdź zasady tamtejszej zbiórki.\n\nW tej lekcji wybrane bioodpady oddajemy luzem, bez opakowań. Zawartość brązowego pojemnika trafia do dalszego zagospodarowania - nie jest jeszcze gotowym kompostem.",
+   "source": "34_DECYZJE_PO_RECENZJI_Z1.md / redakcja_34/propozycja.json / z4_t1",
    "expectedFile": "assets/audio/z4_t1.mp3",
    "src": null,
    "status": "awaiting_recording",
-   "textSha256": "59b781131fe223890b5cb2f839a82a9dcdf243ced93e6eb5a2e3e2ca3c8682b9"
+   "textSha256": "69a1f9c9e7080fc28793433c96d0c4f6a4c7788d38f34f81379590aaf39aa139"
   },
   {
    "id": "z5_t1",
    "domId": "audio-z5_t1",
    "screen": "z5-knowledge",
    "scope": "main",
-   "text": "Brązowy pojemnik i domowy kompostownik to dwa różne miejsca. Osoba prowadząca kompostownik dobiera składniki i dba o warunki. Nie przenoś automatycznie listy odpadów BIO do kompostownika.\n\nKompostowanie to rozkład materii organicznej z udziałem organizmów, przede wszystkim mikroorganizmów. W naszym kompostowniku potrzebne są odpowiednie składniki, tlen i wilgoć. Kompost może wzbogacać glebę w materię organiczną.",
-   "source": "18_REDAKCJA_A_SPECYFIKACJA.md / redakcja_17/propozycja.json / z5_t1",
+   "text": "Brązowy pojemnik i domowy kompostownik to dwa różne miejsca. Osoba prowadząca kompostownik dobiera składniki i dba o warunki. Nie przenoś automatycznie listy odpadów BIO do kompostownika.\n\nObierki i liście są przykładami materii organicznej. W kompostowniku rozkładają ją organizmy, przede wszystkim mikroorganizmy, niewidoczne gołym okiem. Ten proces nazywamy kompostowaniem.\n\nW naszym kompostowniku potrzebne są odpowiednie składniki, tlen i wilgoć. Kompost może wzbogacać glebę w materię organiczną.",
+   "source": "26_DECYZJE_I_SPECYFIKACJA_FINAL.md / redakcja_26/propozycja.json / z5_t1",
    "expectedFile": "assets/audio/z5_t1.mp3",
    "src": null,
    "status": "awaiting_recording",
-   "textSha256": "5bedec9d0f67ee5f425cda57797976850a60d5c611041b4671b1f0e0fc406807"
+   "textSha256": "b96dffb6d891dd3bca44b5d40a18424de306b807ccf903b081848fc90fb80a38"
   },
   {
    "id": "z5_t2",
    "domId": "audio-z5_t2",
    "screen": "z5-process",
    "scope": "main",
-   "text": "Zobacz, jak zmieniają się składniki. Pokaz przyspiesza czas — kompost nie powstaje po kilku ruchach.",
-   "source": "18_REDAKCJA_A_SPECYFIKACJA.md / redakcja_17/propozycja.json / z5_t2",
+   "text": "Zobacz, jak zmieniają się składniki. Pokaz przyspiesza czas - kompost nie powstaje po kilku ruchach.",
+   "source": "34_DECYZJE_PO_RECENZJI_Z1.md / redakcja_34/propozycja.json / z5_t2",
    "expectedFile": "assets/audio/z5_t2.mp3",
    "src": null,
    "status": "awaiting_recording",
-   "textSha256": "c9ec3242fb60c2c0549bd3ff18e2cce424c12b86cb548438981b1f45932a72d9"
+   "textSha256": "88784a5b7db5fbc26a143b01f9398820248ef14633b70701cb02d1bf742e1cf5"
   },
   {
    "id": "z5_t3",
    "domId": "audio-z5_t3",
    "screen": "z5-moisture",
    "scope": "main",
-   "text": "Bardzo suchy materiał utrudnia aktywność organizmów. Można go umiarkowanie zwilżyć i przemieszać, zamiast zalewać wodą. Nadmiar wody może z kolei wypełniać przestrzenie potrzebne dla powietrza. W praktyce materiał powinien być wilgotny, ale nie zalany. Zbicie i nadmierna wilgoć mogą wymagać dodania suchego materiału oraz rozluźnienia zawartości.",
-   "source": "### Z5-T3",
+   "text": "Suchy materiał potrzebuje wilgoci. Umiarkowanie go zwilż i przemieszaj. Nie zalewaj wodą.\n\nGdy materiał jest nadmiernie wilgotny i zbity, powietrze ma utrudniony dostęp. Dodaj suchy materiał, na przykład suche liście, oraz delikatnie rozluźnij i przemieszaj zawartość. Nie dodawaj kolejnych mokrych resztek.\n\nWilgoć i powietrze to dwa z warunków kompostowania. Ważne są też składniki.",
+   "source": "26_DECYZJE_I_SPECYFIKACJA_FINAL.md / redakcja_26/propozycja.json / z5_t3",
    "expectedFile": "assets/audio/z5_t3.mp3",
    "src": null,
    "status": "awaiting_recording",
-   "textSha256": "b46aab4f77eb12ee92976fdf9b2df990d750eb1304c96d04e0c5a4238276f223"
+   "textSha256": "88bcae595aba63af791001e95ff04ab2f0870b51c241a0d455793daf3b03726c"
   },
   {
    "id": "z5_t4",
@@ -309,12 +309,12 @@ window.GOZ_AUDIO_MANIFEST = {
    "domId": "audio-z2_customize",
    "screen": "z2-customize",
    "scope": "main",
-   "text": "But jest już sprawny. Możesz zostawić go w obecnym kolorze albo zaprojektować nowy wygląd. Wybierz panel, potem kolor. Jeśli chcesz, dodaj wzór. To Twoja decyzja — nie ma jednego poprawnego projektu.",
-   "source": "### Z2-I2",
+   "text": "But jest już sprawny. Możesz zostawić go w obecnym kolorze albo zaprojektować nowy wygląd. Wybierz panel, potem kolor. Jeśli chcesz, dodaj wzór. To Twoja decyzja - nie ma jednego poprawnego projektu.",
+   "source": "34_DECYZJE_PO_RECENZJI_Z1.md / redakcja_34/propozycja.json / z2_customize",
    "expectedFile": "assets/audio/z2_customize.mp3",
    "src": null,
    "status": "awaiting_recording",
-   "textSha256": "a354469d7b99e001815a24da32d84ba61e404dc6a9e0b5d7fdda005f55a32e3c"
+   "textSha256": "7c011dcee38cc189aa47df529d7e2b63181e09be9e48def44154857a9ce29d68"
   },
   {
    "id": "z2_w",
@@ -357,12 +357,12 @@ window.GOZ_AUDIO_MANIFEST = {
    "domId": "audio-z3_w",
    "screen": "z3-result",
    "scope": "main",
-   "text": "Patrz na całą historię produktu. Brak prądu podczas używania nie oznacza braku śladu jego produkcji.",
-   "source": "**Z3-W",
+   "text": "Patrz na całą historię produktu. Podczas jazdy hulajnoga nie zużywa prądu, ale emisje gazów cieplarnianych powstały wcześniej - podczas jej produkcji.",
+   "source": "34_DECYZJE_PO_RECENZJI_Z1.md / redakcja_34/propozycja.json / z3_w",
    "expectedFile": "assets/audio/z3_w.mp3",
    "src": null,
    "status": "awaiting_recording",
-   "textSha256": "0def62915742889b4b38b976651dd9473cbbb391d198e573c1b9aa270c580a7a"
+   "textSha256": "2ecb14a48e6edbb86c1684c06e6957363a6e30756cddac54f6cdf00f4f5e492f"
   },
   {
    "id": "o_w",
@@ -405,12 +405,12 @@ window.GOZ_AUDIO_MANIFEST = {
    "domId": "audio-z4_command",
    "screen": "z4-task",
    "scope": "main",
-   "text": "Przygotuj odpady do odbioru. Przeciągnij elementy do „BIO” albo do „Poza BIO — dalsza segregacja”. Przy woreczku z obierkami najpierw wybierz „Oddziel opakowanie”. Korzystaj z widocznej karty zasad.",
-   "source": "### Z4-Z",
+   "text": "Przygotuj odpady do odbioru. Przeciągnij elementy do „BIO” albo do „Poza BIO - dalsza segregacja”. Przy woreczku z obierkami najpierw wybierz „Oddziel opakowanie”. Korzystaj z widocznej karty zasad.",
+   "source": "34_DECYZJE_PO_RECENZJI_Z1.md / redakcja_34/propozycja.json / z4_command",
    "expectedFile": "assets/audio/z4_command.mp3",
    "src": null,
    "status": "awaiting_recording",
-   "textSha256": "e40ee21ece76aa0a8eb5f304ccf61df38e417fee064036efffca84957474cae0"
+   "textSha256": "2bf470b8fa0236d88041f6d5cce2b7cc03b28213ea097d38d88c615cb6765075"
   },
   {
    "id": "z4_w",
@@ -501,12 +501,12 @@ window.GOZ_AUDIO_MANIFEST = {
    "domId": "audio-z1_case_3",
    "screen": "z1-task",
    "scope": "case",
-   "text": "Jedno koło ma zużyty bieżnik. Według serwisu rama i hamulec są sprawne, pasująca część jest dostępna, a po jej zamontowaniu i kontroli sprzęt może wrócić do jazdy. Użytkownik nadal go potrzebuje.",
-   "source": "Z1-Z / H3",
+   "text": "Przednia opona jest przebita i nie trzyma powietrza. Według serwisu rama i hamulec są sprawne, pasująca część jest dostępna, a po jej zamontowaniu i kontroli sprzęt może wrócić do jazdy. Użytkownik nadal go potrzebuje.",
+   "source": "34_DECYZJE_PO_RECENZJI_Z1.md / redakcja_34/propozycja.json / z1_case_3",
    "expectedFile": "assets/audio/z1_case_3.mp3",
    "src": null,
    "status": "awaiting_recording",
-   "textSha256": "02a8e6f442aef8f49388d50e3147419528ad5675d27e8fbe5c85ddfeecb5fa01"
+   "textSha256": "50c237aa6eb958335b1601f6f53043dccab24a230dd932dae39a6caeafee11cd"
   },
   {
    "id": "z1_case_4",
@@ -705,48 +705,48 @@ window.GOZ_AUDIO_MANIFEST = {
    "domId": "audio-z5_moisture_command",
    "screen": "z5-moisture",
    "scope": "main",
-   "text": "Przesuń suwak wilgoci. Zobacz, co zmienia się między składnikami.",
-   "source": "Z5-P1 / polecenie",
+   "text": "Przesuń suwak lub wybierz stan. Zobacz, jak woda zmienia warunki między składnikami.",
+   "source": "26_DECYZJE_I_SPECYFIKACJA_FINAL.md / redakcja_26/propozycja.json / z5_moisture_command",
    "expectedFile": "assets/audio/z5_moisture_command.mp3",
    "src": null,
    "status": "awaiting_recording",
-   "textSha256": "1377537a3452a9aedaafb0933f50c7c51604a2a3881bc6e87ea77efb57aff762"
+   "textSha256": "00f04360f26e997117f41c3e525c90f1d511e5b362a9f3801802606c612a3ab0"
   },
   {
    "id": "z5_moisture_dry",
    "domId": "audio-z5_moisture_dry",
    "screen": "z5-moisture",
    "scope": "main",
-   "text": "Brakuje wilgoci potrzebnej do rozkładu.",
-   "source": "Z5-P1 / bardzo sucho",
+   "text": "Składniki są bardzo suche. Brakuje wilgoci potrzebnej mikroorganizmom do rozkładu materii.",
+   "source": "26_DECYZJE_I_SPECYFIKACJA_FINAL.md / redakcja_26/propozycja.json / z5_moisture_dry",
    "expectedFile": "assets/audio/z5_moisture_dry.mp3",
    "src": null,
    "status": "awaiting_recording",
-   "textSha256": "f184e4071dcccc68371569c22856d52130f380da2c94e08c34be857afbb46a7a"
+   "textSha256": "0c7f641f4b4ee5a2bbeb6ffbbbe28cdc75bd2d47530acac3259847e1e08d8382"
   },
   {
    "id": "z5_moisture_moist",
    "domId": "audio-z5_moisture_moist",
    "screen": "z5-moisture",
    "scope": "main",
-   "text": "Materiał jest wilgotny, a między składnikami pozostaje miejsce na powietrze.",
-   "source": "Z5-P1 / wilgotno",
+   "text": "Składniki są wilgotne. Między nimi pozostaje miejsce na powietrze potrzebne do kompostowania.",
+   "source": "26_DECYZJE_I_SPECYFIKACJA_FINAL.md / redakcja_26/propozycja.json / z5_moisture_moist",
    "expectedFile": "assets/audio/z5_moisture_moist.mp3",
    "src": null,
    "status": "awaiting_recording",
-   "textSha256": "226007a9e6c6702cb480015b1a1946dd47d45cda101a834a4f3d47ab6925cefc"
+   "textSha256": "da8681abb0728e0e8eee98113709f2526255fcd653477c67bf556c6e6960e7e1"
   },
   {
    "id": "z5_moisture_wet",
    "domId": "audio-z5_moisture_wet",
    "screen": "z5-moisture",
    "scope": "main",
-   "text": "Nadmiar wody utrudnia dostęp powietrza.",
-   "source": "Z5-P1 / zalane",
+   "text": "Nadmiar wody wypełnia przestrzenie między składnikami i utrudnia dostęp powietrza.",
+   "source": "26_DECYZJE_I_SPECYFIKACJA_FINAL.md / redakcja_26/propozycja.json / z5_moisture_wet",
    "expectedFile": "assets/audio/z5_moisture_wet.mp3",
    "src": null,
    "status": "awaiting_recording",
-   "textSha256": "96e682faa13778df54052d16c7622867f7dbf05dfd97ea7fb6cc0e6a96863e78"
+   "textSha256": "76c269365b01ee0daa61e8e5069a861573ca0ee19c1bab95c08f3ded4b11d538"
   },
   {
    "id": "z5_wet_case",

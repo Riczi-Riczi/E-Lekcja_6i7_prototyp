@@ -18,7 +18,9 @@ window.GOZ_SOURCES = {
   S15: { title: 'MEN — komunikat z 12.03.2026 o podpisanych rozporządzeniach', url: 'https://www.gov.pl/web/edukacja/nowe-podstawy-programowe-wychowania-przedszkolnego-i-ksztalcenia-ogolnego-dla-szkoly-podstawowej-wraz-ze-zmianami-w-ramowych-planach-nauczania-dla-publicznych-szkol-podstawowych--rozporzadzenia-podpisane', design: true },
   S16: { title: 'Iowa State University Extension — Do I need to add an activator to my compost pile?', url: 'https://yardandgarden.extension.iastate.edu/faq/do-i-need-add-activator-my-compost-pile', note: 'Przekrój kompostownika: możliwość dodania dojrzałego kompostu; to, że w tym przykładzie jest opcjonalny, wynika z zestawienia instrukcji [S10, S16].' },
   S17: { title: 'Oklahoma State University Extension — Vermicomposting: Composting with Worms', url: 'https://extension.okstate.edu/fact-sheets/vermicomposting-composting-with-worms' },
-  S18: { title: 'SELEKT — Jak segregować?', url: 'https://selekt.czempin.pl/asp/pl_start.asp?menu=7&strona=1&typ=14' }
+  S18: { title: 'SELEKT — Jak segregować?', url: 'https://selekt.czempin.pl/asp/pl_start.asp?menu=7&strona=1&typ=14' },
+  // Pakiet 26 (R24-K1): wyjaśnienie gazów cieplarnianych w Z3-T1. Odsyłacz, bez pobierania treści.
+  S19: { title: 'NASA Science — Causes of Climate Change', url: 'https://science.nasa.gov/climate-change/causes/' }
 };
-// Źródła faktów przywoływanych w rozdziałach (kolejność w stopce). Pełny rejestr S1–S18 w zakończeniu (#closing); S13–S15 to podstawy projektu dydaktycznego.
-window.GOZ_SOURCES_USED = ['S1', 'S2', 'S3', 'S4', 'S5', 'S6', 'S7', 'S8', 'S9', 'S18', 'S10', 'S11', 'S16', 'S12', 'S17'];
+// Źródła faktów przywoływanych w rozdziałach (kolejność w stopce). Pełny rejestr S1–S19 w zakończeniu (#closing); S13–S15 to podstawy projektu dydaktycznego.
+window.GOZ_SOURCES_USED = ['S1', 'S2', 'S3', 'S4', 'S5', 'S19', 'S6', 'S7', 'S8', 'S9', 'S18', 'S10', 'S11', 'S16', 'S12', 'S17'];

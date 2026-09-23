@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f4f5ef"><title>Wyczyść but 3D | Eksperci GOZ</title>
+  <link rel="icon" href="data:,"><link rel="stylesheet" href="style.css">
+  <script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script>
+</head>
+<body>
+  <header><span class="brand">SELEKT<span> / </span>pracownia</span><span>Eksperci GOZ</span></header>
+  <main>
+    <div class="intro"><p class="eyebrow">DRUGIE ŻYCIE ZACZYNA SIĘ OD PIELĘGNACJI</p><h1>Mały gest. Czysty but.</h1><p>Ten but jest cały i sprawny. Usuń zaschnięte błoto, a potem przetrzyj powierzchnię. W tym przykładzie instrukcja pielęgnacji dopuszcza te czynności.</p></div>
+    <div class="workbench">
+      <section class="preview" aria-label="But do wyczyszczenia">
+        <div class="mode-bar" role="group" aria-label="Sposób pracy"><button data-mode="rotate" aria-pressed="true">Obróć but</button><button data-mode="clean" aria-pressed="false">Czyść</button><span id="surface-label">Zaschnięte błoto</span></div>
+        <div id="viewport"><canvas id="shoe" tabindex="0" aria-label="But 3D. Strzałki obracają w trybie Obróć but. Czyszczenie bez przeciągania jest dostępne pod narzędziami." aria-describedby="gesture-hint"></canvas><p id="loading" role="status">Przygotowuję but 3D...</p><div id="brush-cursor" aria-hidden="true"></div><span class="scene-tag" aria-hidden="true">X / BUT PO SPACERZE</span></div>
+        <p id="gesture-hint" class="hint">Przeciągnij, aby obejrzeć but. Do czyszczenia wybierz „Czyść”.</p>
+        <div class="views" role="group" aria-label="Widoki buta"><button data-view="toe">Przód</button><button data-view="outer">Bok zewnętrzny</button><button data-view="inner">Bok wewnętrzny</button><button data-view="heel">Pięta</button></div>
+        <p class="scroll-hint">Na telefonie przewijaj stronę poza oknem buta. Możesz też czyścić przyciskami.</p>
+      </section>
+      <aside class="controls" aria-label="Kroki czyszczenia">
+        <div class="step-head"><p id="step-count" class="eyebrow">KROK 1 Z 3</p><span id="step-state">Przygotuj szczotkę</span></div>
+        <h2 id="step-title">Najpierw suche błoto.</h2><p id="step-description">Szczotką wykonuj delikatne ruchy. Usuń większe, zaschnięte grudki. Cienkie smugi zostaną na następny krok.</p>
+        <div class="tools" role="group" aria-label="Wybierz narzędzie">
+          <button data-tool="0" aria-pressed="true"><img src="assets/narzedzia/01-szczotka.webp" width="96" height="72" alt="" draggable="false"><span>Szczotka</span></button>
+          <button data-tool="1" aria-pressed="false"><img src="assets/narzedzia/02-szmatka-wilgotna.webp" width="96" height="72" alt="" draggable="false"><span>Lekko wilgotna szmatka</span></button>
+          <button data-tool="2" aria-pressed="false"><img src="assets/narzedzia/03-szmatka-sucha.webp" width="96" height="72" alt="" draggable="false"><span>Sucha szmatka</span></button>
+        </div>
+        <p id="status" role="status" aria-live="polite">Wybrano szczotkę. Obróć but lub włącz czyszczenie.</p>
+        <div class="progress-track" role="progressbar" aria-label="Postęp bieżącego kroku" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="progress-fill"></span></div>
+        <p id="progress-text" class="small">Obejmij czyszczeniem cztery obszary buta.</p>
+        <div id="step-result" hidden><p id="summary"></p><button id="next" class="primary">Przejdź do wilgotnej szmatki</button></div>
+        <div id="alternative"><h3>Bez przeciągania</h3><label for="area">Wybierz obszar buta</label><div class="area-row"><select id="area"><option value="toe">Przód</option><option value="outer" selected>Bok zewnętrzny</option><option value="inner">Bok wewnętrzny</option><option value="heel">Pięta</option></select></div><button id="clean-area" class="wide">Wyczyść wybrany obszar</button><p id="area-state" class="small"></p><details><summary>Potrzebujesz pokazu?</summary><p class="small">Pokaz wykona bieżący krok za Ciebie, po kolei na czterech obszarach. Potem możesz przejść dalej.</p><button id="demo">Pokaż wykonanie kroku</button></details></div>
+        <div id="finish" hidden><p>Brud usunięty. Sucha szmatka zebrała nadmiar wilgoci. Pozostaw but do wyschnięcia zgodnie z instrukcją pielęgnacji.</p><div class="compare" role="group" aria-label="Porównanie przed i po"><button data-compare="before" aria-pressed="false">Przed czyszczeniem</button><button data-compare="after" aria-pressed="true">Po wytarciu</button></div></div>
+        <button id="reset" class="reset">Zacznij od nowa</button>
+      </aside>
+    </div>
+    <section id="fallback" hidden aria-label="Tekstowy opis pielęgnacji"><h2>Możesz poznać kroki bez modelu 3D</h2><ol><li>Szczotka usuwa większe, zaschnięte grudki błota.</li><li>Lekko wilgotna szmatka usuwa pozostałe smugi.</li><li>Sucha szmatka zbiera nadmiar wilgoci z powierzchni. Pozostaw but do wyschnięcia zgodnie z instrukcją pielęgnacji.</li></ol><p>W tym przykładzie instrukcja pielęgnacji dopuszcza te czynności.</p></section>
+    <noscript><p>Włącz JavaScript, aby otworzyć model. Kroki: usuń zaschnięte błoto szczotką, przetrzyj lekko wilgotną szmatką, zbierz nadmiar wilgoci suchą szmatką. Pozostaw but do wyschnięcia zgodnie z instrukcją pielęgnacji.</p></noscript>
+  </main><footer>Eksperci GOZ <span>Dbaj. Używaj dłużej.</span></footer>
+  <script type="module" src="app.js"></script>
+</body></html>

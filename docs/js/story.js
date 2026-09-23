@@ -38,26 +38,12 @@
       art.id = st.id;
       art.dataset.stage = String(i);
       art.setAttribute('aria-labelledby', st.id + '-title');
+      // Wszystkie pięć stacji buduje jedna ścieżka renderowania z modułu mapowania
+      // (js/art.js → js/z1-assets.js). Stacje 1-4 to pełne kadry ilustracji autora,
+      // stacja 5 ma własną kompozycję z §8 i nie dziedziczy sztywnego pola.
       var visual = el('div', 'station-visual');
-      if (st.art === 'product' || st.art === 'use') {
-        var img = document.createElement('img');
-        img.src = 'assets/images/hulajnoga-bez-tla.webp';
-        img.width = 1200; img.height = 868;
-        img.loading = 'lazy';
-        img.alt = st.art === 'product' ? 'Gotowa hulajnoga bez silnika' : 'Hulajnoga podczas używania — przegląd i konserwacja';
-        visual.appendChild(img);
-        if (st.art === 'use') {
-          visual.classList.add('station-use');
-          var care = el('div', 'care-marks');
-          care.setAttribute('aria-hidden', 'true');
-          care.innerHTML = '<span class="care-mark care-brake">✓</span><span class="care-mark care-wheel">✓</span><span class="care-tool">🔧</span>';
-          visual.appendChild(care);
-        } else {
-          visual.classList.add('station-product');
-        }
-      } else {
-        visual.setAttribute('data-art', st.art);
-      }
+      visual.setAttribute('data-art', st.art);
+      if (st.art === 'paths') visual.classList.add('station-composition');
       var copy = el('div', 'station-copy');
       copy.appendChild(el('p', 'eyebrow', st.eyebrow));
       var h = el('h3', 'station-title', st.title);
@@ -77,7 +63,8 @@
           var btn = el('button', 'branch-button');
           btn.type = 'button';
           btn.setAttribute('aria-pressed', bi === 0 ? 'true' : 'false');
-          btn.innerHTML = '<span class="branch-art" data-art="' + b.art + '"></span>';
+          // Kompozycja obok pokazuje już te obrazy — przycisk zostaje tekstowy,
+          // bez duplikowanej miniatury (polecenie 39 §8).
           btn.appendChild(el('span', 'branch-name', b.title));
           btn.addEventListener('click', function () {
             Array.prototype.forEach.call(group.children, function (x) { x.setAttribute('aria-pressed', String(x === btn)); });
@@ -107,14 +94,42 @@
   }
   function available() { return window.innerHeight - headerHeight(); }
 
-  function contentFits() {
-    // Treść każdej stacji musi zmieścić się w przyklejonym polu pod nazwami etapów.
+  // Treść każdej stacji musi zmieścić się w przyklejonym polu pod nazwami etapów.
+  // Od zakresu B mierzymy nie tylko kolumnę tekstu, ale też pole wizualizacji oraz
+  // etykiety kompozycji stacji 5 — sama .station-copy była niewystarczająca.
+  function stationRoom() {
     var head = story.querySelector('.story-head').getBoundingClientRect().height;
-    var room = available() - head - 24;
-    return stations.every(function (s) {
-      var copy = s.querySelector('.station-copy');
-      return copy.scrollHeight <= room;
-    });
+    return available() - head - 24;
+  }
+
+  // Budżet pola wizualizacji to całe przyklejone pole pod nazwami etapów; kolumna
+  // tekstu ma własny, mniejszy budżet (room) uwzględniający odstęp wewnętrzny.
+  function viewportRoom() {
+    var vp = story.querySelector('.story-viewport');
+    return vp ? vp.clientHeight : stationRoom();
+  }
+
+  function stationOverflow(s, room) {
+    var copy = s.querySelector('.station-copy');
+    if (copy && copy.scrollHeight > room) return 'copy';
+    var pole = viewportRoom();
+    var visual = s.querySelector('.station-visual');
+    if (visual && pole && visual.scrollHeight > pole + 2) return 'visual';
+    var paths = s.querySelector('.z1-paths');
+    if (paths) {
+      if (paths.scrollHeight > paths.clientHeight + 1) return 'composition-height';
+      if (paths.scrollWidth > paths.clientWidth + 1) return 'composition-width';
+      var zaWaskie = Array.prototype.some.call(paths.querySelectorAll('.z1-path-label'), function (lbl) {
+        return lbl.scrollWidth > lbl.clientWidth + 1;
+      });
+      if (zaWaskie) return 'composition-label';
+    }
+    return '';
+  }
+
+  function contentFits() {
+    var room = stationRoom();
+    return stations.every(function (s) { return !stationOverflow(s, room); });
   }
 
   function wantHorizontal() {
@@ -140,7 +155,7 @@
     }
   }
 
-  function chooseMode(keepStage) {
+  function chooseMode(keepStage, opcje) {
     var keep = typeof keepStage === 'number' ? keepStage : active;
     var inView = storyInView();
     var target = 'vertical';
@@ -151,7 +166,35 @@
     applyMode(target);
     update(true);
     // Przełączenie wariantu w środku rozdziału nie gubi bieżącej stacji.
-    if (inView) scrollToStage(keep, 'instant');
+    // Ponowny pomiar po doładowaniu obrazów nie przewija i nie przejmuje fokusu.
+    if (inView && !(opcje && opcje.bezPrzewijania)) scrollToStage(keep, 'instant');
+  }
+
+  // --- Ponowny pomiar po doładowaniu obrazów lazy ---------------------------
+  // Proporcje pól są zarezerwowane w CSS, więc pomiar nie skacze; to tylko
+  // domknięcie na wypadek zmiany wysokości tekstu przy fontach i obrazach.
+  // Twardy limit przebiegów chroni przed pętlą odświeżeń, gdy obraz się nie dekoduje.
+  var LIMIT_ODSWIEZEN = 12;
+  var odswiezen = 0;
+  var odswiezTimer = null;
+  function odswiezPoObrazie() {
+    if (odswiezen >= LIMIT_ODSWIEZEN) return;
+    odswiezen++;
+    if (odswiezTimer) clearTimeout(odswiezTimer);
+    odswiezTimer = setTimeout(function () {
+      odswiezTimer = null;
+      chooseMode(active, { bezPrzewijania: true });
+    }, 80);
+  }
+
+  function obserwujObrazy() {
+    Array.prototype.forEach.call(track.querySelectorAll('img'), function (img) {
+      if (img.dataset.storyWatched) return;
+      img.dataset.storyWatched = '1';
+      if (img.complete) return;
+      img.addEventListener('load', odswiezPoObrazie, { once: true });
+      img.addEventListener('error', odswiezPoObrazie, { once: true });
+    });
   }
 
   function storyInView() {
@@ -175,12 +218,22 @@
   }
 
   function verticalActive() {
+    // Linia odniesienia jest ta sama, w którą prowadzi stageScrollY: tuż pod paskiem.
+    // Stacja, która ją zawiera, jest bieżąca. Po integracji grafik stacje bywają niższe
+    // niż dawne pole 10:7 i sama odległość od środka ekranu wskazywała już sąsiednią,
+    // przez co zmiana szerokości gubiła etap. Gdy żadna stacja nie obejmuje linii
+    // (przewijanie między stacjami), zostaje dotychczasowa reguła najbliższego środka.
+    var linia = headerHeight() + 24;
+    for (var i = 0; i < stations.length; i++) {
+      var r = stations[i].getBoundingClientRect();
+      if (r.top <= linia && r.bottom > linia) return i;
+    }
     var center = window.innerHeight * 0.45;
     var best = 0, dist = Infinity;
-    stations.forEach(function (s, i) {
-      var r = s.getBoundingClientRect();
-      var d = Math.abs(r.top + Math.min(r.height / 2, 200) - center);
-      if (d < dist) { dist = d; best = i; }
+    stations.forEach(function (s, j) {
+      var rr = s.getBoundingClientRect();
+      var d = Math.abs(rr.top + Math.min(rr.height / 2, 200) - center);
+      if (d < dist) { dist = d; best = j; }
     });
     return best;
   }
@@ -264,32 +317,60 @@
   }
 
   var resizeTimer = null;
+  var stacjaPrzedZmiana = null;
   function onResize() {
+    // Stację zapamiętujemy w chwili rozpoczęcia zmiany rozmiaru. Po przebudowie
+    // układu wysokości stacji są inne i zdarzenia scroll zdążyłyby wskazać sąsiednią.
+    if (stacjaPrzedZmiana === null) stacjaPrzedZmiana = active;
     if (resizeTimer) clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(function () { chooseMode(active); }, 150);
+    resizeTimer = setTimeout(function () {
+      var keep = stacjaPrzedZmiana;
+      stacjaPrzedZmiana = null;
+      resizeTimer = null;
+      chooseMode(keep);
+    }, 150);
   }
 
   window.GOZStory = {
     init: function (options) {
       reducedMotion = options.reducedMotion;
       build();
+      obserwujObrazy();
       chooseMode(0);
       window.addEventListener('scroll', onScroll, { passive: true });
       window.addEventListener('resize', onResize);
       window.addEventListener('hashchange', onHash);
       story.addEventListener('click', onLinkClick);
       // Obrazy i fonty mogą zmienić wysokość treści — mierzymy ponownie.
-      window.addEventListener('load', function () { chooseMode(active); onHash(); });
+      // Obrazy lazy potrafią doładować się po window.load, więc obserwujemy je nadal.
+      window.addEventListener('load', function () { obserwujObrazy(); chooseMode(active); onHash(); });
       onHash();
     },
     refreshMode: function () { chooseMode(active); },
     state: function () { return { mode: mode, active: active }; },
-    // Diagnostyka dla testów: wysokości treści stacji w wariancie poziomym.
+    // Diagnostyka dla testów: wysokości treści stacji w wariancie poziomym oraz
+    // faktyczny wymiar i przepełnienie wizualizacji i etykiet kompozycji stacji 5.
     measure: function () {
       var prevMode = mode;
       applyMode('horizontal');
       var head = story.querySelector('.story-head').getBoundingClientRect().height;
-      var out = { available: available(), head: head, copies: stations.map(function (s) { return s.querySelector('.station-copy').scrollHeight; }) };
+      var room = stationRoom();
+      var out = {
+        available: available(), head: head, room: room,
+        copies: stations.map(function (s) { return s.querySelector('.station-copy').scrollHeight; }),
+        viewportRoom: viewportRoom(),
+        visuals: stations.map(function (s) {
+          var v = s.querySelector('.station-visual');
+          return v ? { height: v.scrollHeight, width: v.scrollWidth, clientWidth: v.clientWidth } : null;
+        }),
+        overflow: stations.map(function (s) { return stationOverflow(s, room); }),
+        images: stations.map(function (s) {
+          return Array.prototype.map.call(s.querySelectorAll('img'), function (img) {
+            return { key: img.dataset.z1Key || null, currentSrc: img.currentSrc || img.src, error: img.dataset.z1Error === '1' };
+          });
+        }),
+        refreshes: odswiezen
+      };
       applyMode(prevMode);
       update(true);
       return out;

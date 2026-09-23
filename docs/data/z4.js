@@ -15,7 +15,7 @@ window.GOZ_Z4 = {
   },
   zones: [
     { id: 'bio', label: 'BIO', note: 'Brązowy pojemnik' },
-    { id: 'outside', label: 'Poza BIO — dalsza segregacja', note: 'To nie jest pojemnik na odpady zmieszane.' }
+    { id: 'outside', label: 'Poza BIO - dalsza segregacja', note: 'To nie jest pojemnik na odpady zmieszane.' }
   ],
   // Informacja zwrotna — scenariusz 3.2, Z4-Z (dosłownie; kropki końcowe i cudzysłowy „” w miejsce »« w zdaniu bez cudzysłowu zewnętrznego).
   messages: {

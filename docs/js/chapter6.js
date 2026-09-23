@@ -32,7 +32,7 @@
         }
         var body = el('div', 'dict-body');
         body.appendChild(el('strong', null, entry.name));
-        body.appendChild(el('span', null, ' — ' + entry.text));
+        body.appendChild(el('span', null, ' - ' + entry.text));
         li.appendChild(body);
         list.appendChild(li);
       });
@@ -119,7 +119,7 @@
       P.update(function (d) { d.tasks.Z6.assisted = true; }, { kind: 'z6' });
       var box = $('z6-hint-text');
       box.hidden = false;
-      if (wordsReady()) { box.textContent = 'Słowa są już znalezione. Przejdź do dopasowania znaczeń — tam też jest pomoc.'; return; }
+      if (wordsReady()) { box.textContent = 'Słowa są już znalezione. Przejdź do dopasowania znaczeń - tam też jest pomoc.'; return; }
       var h = ws.hint();
       if (!h) return;
       var text = fill(D.messages.hintStart, { w: h.word, r: h.r, c: h.c });

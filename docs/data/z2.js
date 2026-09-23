@@ -11,18 +11,18 @@ window.GOZ_Z2 = {
   ],
   // Oględziny Z2-I1: dwa przypadki, po dwa punkty. Współrzędne w układzie ilustracji 1671 × 941.
   inspect: [
-    { id: 'X', title: 'X — but po spacerze', state: 'mud', points: [
+    { id: 'X', title: 'X - but po spacerze', state: 'mud', points: [
       { id: 'x1', audio: 'z2_x_observation_1', place: 'Bok', text: 'Na całym materiale zaschło błoto.', x: 1010, y: 470 },
       { id: 'x2', audio: 'z2_x_observation_2', place: 'Połączenie podeszwy', text: 'Podeszwa przylega, połączenie jest całe. W tym przykładzie potwierdzono sprawność buta.', x: 760, y: 700 }
     ] },
-    { id: 'Y', title: 'Y — but ze szczeliną', state: 'gap', points: [
+    { id: 'Y', title: 'Y - but ze szczeliną', state: 'gap', points: [
       { id: 'y1', audio: 'z2_y_observation_1', place: 'Bok', text: 'Materiał jest cały i czysty.', x: 1010, y: 470 },
       { id: 'y2', audio: 'z2_y_observation_2', place: 'Połączenie przy nosku', text: 'Podeszwa miejscowo odchodzi od reszty buta.', x: 520, y: 590 }
     ] }
   ],
   cases: [
     {
-      id: 'X', audio: null, title: 'X — but po spacerze', image: 'mud', solvedImage: 'clean',
+      id: 'X', audio: null, title: 'X - but po spacerze', image: 'mud', solvedImage: 'clean',
       text: 'Cały i sprawny, z zaschniętym błotem.',
       decisive: 'z zaschniętym błotem',
       explanation: 'Problemem jest zabrudzenie. Czyszczenie odpowiada na ten problem; w opisie nie ma usterki połączenia ani potrzeby wymiany buta.',
@@ -35,7 +35,7 @@ window.GOZ_Z2 = {
       }
     },
     {
-      id: 'Y', audio: null, title: 'Y — but ze szczeliną', image: 'gap', solvedImage: 'repaired',
+      id: 'Y', audio: null, title: 'Y - but ze szczeliną', image: 'gap', solvedImage: 'repaired',
       text: 'Czysty, z odchodzącą podeszwą; naprawa potwierdzona przez warsztat.',
       decisive: 'naprawa potwierdzona przez warsztat',
       explanation: 'Problemem jest połączenie części. Kolor ani samo czyszczenie nie przywrócą jego sprawności. O możliwości naprawy wiemy z oceny warsztatu.',

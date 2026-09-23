@@ -72,7 +72,7 @@
         b.setAttribute('aria-pressed', String(b.dataset.action === selected));
       });
       $('selection').textContent = selected
-        ? 'Wybrano: ' + action(selected).label + '. Teraz wybierz miejsce — przycisk na karcie.'
+        ? 'Wybrano: ' + action(selected).label + '. Teraz wybierz miejsce - przycisk na karcie.'
         : 'Wybierz działanie. Możesz użyć go na kilku kartach.';
       $('cancel').hidden = !selected;
       $('task').classList.toggle('has-selection', !!selected);
@@ -94,7 +94,7 @@
         var btn = card.querySelector('.assign');
         var label = answer ? action(answer).label : 'Przypisz działanie';
         btn.textContent = confirmed ? '✓ ' + label : label;
-        btn.setAttribute('aria-label', (answer ? 'Przypisane działanie: ' + label : 'Przypisz działanie') + ' — ' + c.title);
+        btn.setAttribute('aria-label', (answer ? 'Przypisane działanie: ' + label : 'Przypisz działanie') + ' - ' + c.title);
         btn.disabled = confirmed;
         btn.classList.toggle('filled', !!answer);
         card.querySelector('.remove').hidden = confirmed || !answer;
@@ -127,7 +127,7 @@
         } else if (feedback[c.id]) {
           fb.hidden = false;
           fb.className = 'case-feedback ' + (feedback[c.id].kind === 'missing' ? 'missing' : 'bad');
-          appendLine(fb, 'feedback-state', feedback[c.id].kind === 'missing' ? 'Brakuje działania' : 'Jeszcze nie — przeczytaj wskazówkę');
+          appendLine(fb, 'feedback-state', feedback[c.id].kind === 'missing' ? 'Brakuje działania' : 'Jeszcze nie - przeczytaj wskazówkę');
           appendLine(fb, null, feedback[c.id].text);
         } else {
           fb.hidden = true;
@@ -237,7 +237,7 @@
       render();
       var box = $('hint-text');
       box.hidden = false;
-      box.textContent = (cfg.guidePrefix ? cfg.guidePrefix(c, caseIndex(next)) : 'Karta ' + (caseIndex(next) + 1)) + ' — „' + c.title + '”: ' + c.guidedQuestion + ' Zaznaczyliśmy ważny fragment opisu. Wybierz działanie i przypisz je do tej karty, a potem „Sprawdź”.';
+      box.textContent = (cfg.guidePrefix ? cfg.guidePrefix(c, caseIndex(next)) : 'Karta ' + (caseIndex(next) + 1)) + ' - „' + c.title + '”: ' + c.guidedQuestion + ' Zaznaczyliśmy ważny fragment opisu. Wybierz działanie i przypisz je do tej karty, a potem „Sprawdź”.';
       $('case-' + next).scrollIntoView({ behavior: reduced() ? 'instant' : 'smooth', block: 'center' });
       if (cfg.onGuide) cfg.onGuide(c);
     }

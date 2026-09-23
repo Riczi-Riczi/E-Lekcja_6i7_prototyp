@@ -129,7 +129,7 @@
         li.appendChild(good);
       } else if (fb) {
         var bad = el('div', 'item-fb ' + (fb.kind === 'error' ? 'bad' : 'missing'));
-        bad.appendChild(el('p', 'feedback-state', fb.kind === 'error' ? 'Jeszcze nie — przeczytaj wskazówkę' : 'Do uzupełnienia'));
+        bad.appendChild(el('p', 'feedback-state', fb.kind === 'error' ? 'Jeszcze nie - przeczytaj wskazówkę' : 'Do uzupełnienia'));
         bad.appendChild(el('p', null, fb.text));
         li.appendChild(bad);
       }
@@ -154,7 +154,7 @@
       checkBtn.disabled = cfg.isDone();
       undoBtn.disabled = history.length === 0;
       selectionBox.textContent = selected
-        ? 'Wybrano: ' + label(selected) + '. Teraz wybierz miejsce — przycisk „Umieść tutaj” w polu.'
+        ? 'Wybrano: ' + label(selected) + '. Teraz wybierz miejsce - przycisk „Umieść tutaj” w polu.'
         : (cfg.isDone() ? '' : 'Wybierz kartę, a potem pole. Możesz też przeciągnąć kartę do pola.');
       cancelBtn.hidden = !selected;
       host.classList.toggle('has-selection', !!selected);
@@ -259,6 +259,20 @@
         var back = e.target.closest('[data-back]');
         if (back && host.contains(back)) { place(back.dataset.back, null); return; }
       });
+      // I52 START adapter-z4
+      // Integracja 52: zadanie z adapterem gestów (Z4) nie rejestruje czterech dotychczasowych handlerów pointer.
+      // Adapter dostaje wąskie API: planszę, place() tej samej ścieżki co kliknięcie, confirmed, zoneAt i jednorazowe suppressClick.
+      // Dotychczasowy blok handlerów poniżej pozostaje bajtowo bez zmian (celowo bez ponownego wcięcia).
+      if (cfg.dragAdapter) {
+        cfg.dragAdapter({
+          host: host,
+          place: function (id, zone) { place(id, zone); },
+          confirmed: confirmed,
+          zoneAt: zoneAt,
+          suppressNextClick: function () { suppressClick = true; setTimeout(function () { suppressClick = false; }, 0); }
+        });
+      } else {
+      // I52 END adapter-z4
       host.addEventListener('pointerdown', function (e) {
         var pick = e.target.closest('[data-pick]');
         if (!pick || e.button !== 0 || pick.disabled) return;
@@ -295,6 +309,9 @@
         cleanDrag();
       });
       host.addEventListener('pointercancel', cleanDrag);
+      // I52 START adapter-z4-koniec
+      }
+      // I52 END adapter-z4-koniec
       cancelBtn.addEventListener('click', function () { selected = null; render(); });
       document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape' && selected && !document.querySelector('dialog[open]')) { selected = null; render(); announce('Anulowano wybór karty.'); }

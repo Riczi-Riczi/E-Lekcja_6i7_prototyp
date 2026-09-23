@@ -193,23 +193,33 @@ a.chapter-title { padding-block: 4px; }
 .is-done .chapter-status::before { content: "✓ "; }
 .chapter-go { font-weight: 650; font-size: 16px; padding-block: 6px; }
 
-/* Z1 — wejście */
-.z1-entry { position: relative; min-height: min(92vh, 900px); display: flex; flex-direction: column; justify-content: center; overflow: clip; background: #DCE3D2; }
-.z1-entry-bg { position: absolute; inset: -3% 0 auto 0; width: 100%; height: 106%; object-fit: cover; object-position: 62% center; will-change: transform; }
-.z1-entry-wash { position: absolute; inset: 0; background: linear-gradient(90deg, #FAFAF1F2 0%, #FAFAF1C8 36%, #FAFAF100 64%); }
-.z1-entry-content { position: relative; padding-block: var(--space-2xl) var(--space-xl); }
+/* Wspólne pole ilustracji Z1: proporcje zarezerwowane przed ładowaniem obrazu,
+   pełny kadr (contain), brak przycinania. Gdy obrazu nie ma, pole nie zapada się. */
+.z1-figure { position: relative; display: block; width: 100%; aspect-ratio: var(--z1-ratio, 16 / 9); overflow: hidden; }
+.z1-figure > img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.z1-figure.z1-img-missing { background: #E9EFE1; }
+
+/* Z1 — wejście. Scena ma własny kontener do 1672 px: lokalny wyjątek od --layout-max.
+   Pełne proporcje 1672:941, bez cover i bez przycinania hulajnogi. Sceny nie przesuwamy. */
+.z1-entry { position: relative; background: #DCE3D2; }
+.z1-entry-stage { position: relative; max-width: 1672px; margin-inline: auto; }
+.z1-entry-media { display: block; width: 100%; }
+.z1-entry-content { position: relative; z-index: 1; padding: 32px 22px; }
 .z1-entry-content > * { max-width: 560px; }
 .display { font-size: clamp(36px, 5.2vw, 76px); line-height: 1.06; font-weight: 760; overflow-wrap: break-word; }
 .display em { display: block; }
 .z1-question { font-size: 18px; margin-top: var(--space-md); }
 .z1-entry-content .button { margin-top: var(--space-md); }
-.z1-entry-caption { position: relative; font-size: 14px; color: #33463D; padding-bottom: var(--space-md); margin: 0; }
-@media (max-width: 800px) {
-  .z1-entry { min-height: 0; background: var(--color-surface); }
-  .z1-entry-bg { position: relative; inset: auto; height: auto; order: 2; transform: none !important; }
-  .z1-entry-wash { display: none; }
-  .z1-entry-content { order: 1; padding-block: var(--space-xl) var(--space-md); }
-  .z1-entry-caption { order: 3; padding-top: var(--space-xs); }
+@media (min-width: 901px) {
+  /* Nakładka tylko wtedy, gdy skrypt potwierdzi, że tekst mieści się na jasnej lewej części. */
+  .z1-entry-stage[data-layout="overlay"] { display: grid; }
+  .z1-entry-stage[data-layout="overlay"] > .z1-entry-media { grid-area: 1 / 1; }
+  .z1-entry-stage[data-layout="overlay"] > .z1-entry-content {
+    grid-area: 1 / 1; align-self: center; max-width: 44%; padding: clamp(28px, 4vw, 64px); margin-inline: 0;
+  }
+  .z1-entry-stage[data-layout="overlay"] .z1-entry-content > * { max-width: none; }
+  .z1-entry-stage[data-layout="overlay"] .display { font-size: clamp(34px, 4.4vw, 64px); }
+  .z1-entry-stage[data-layout="stacked"] > .z1-entry-content { max-width: 560px; margin-inline: auto; }
 }
 
 .chapter-parts { display: flex; flex-wrap: wrap; gap: var(--space-xs); padding-block: var(--space-md); }
@@ -229,6 +239,15 @@ a.chapter-title { padding-block: 4px; }
 .game-figure { margin: var(--space-md) 0 0; max-width: 360px; }
 .game-figure figcaption { font-size: 15px; color: #C8D6C4; }
 @media (max-width: 900px) { .knowledge-columns { grid-template-columns: 1fr; } }
+/* Pakiet 26: Z1 w jednej kolumnie — kolejność widoku = DOM = czytanie. */
+.knowledge-flow { max-width: 72ch; margin-top: var(--space-lg); }
+.knowledge-flow .text-block p { color: #E4EDDF; }
+.knowledge-flow h3 { color: var(--color-accent); margin-top: var(--space-xl); }
+.knowledge-flow h3:first-child { margin-top: 0; }
+.knowledge-flow .game-figure { margin-bottom: 0; }
+/* Nagłówek historii jako rodzeństwo przed #z1-story: zwykły przepływ, nie zmienia wysokości sceny. */
+.story-intro { margin-top: var(--space-2xl); }
+.story-intro h3 { margin: 0; color: var(--color-accent); font-size: clamp(24px, 2.4vw, 32px); }
 
 /* Nagrania */
 .audio-controls { display: flex; flex-wrap: wrap; gap: var(--space-xs); align-items: center; margin-bottom: var(--space-sm); }
@@ -255,33 +274,52 @@ a.chapter-title { padding-block: 4px; }
 .story-skip { padding: 10px 6px; font-weight: 650; }
 .story-track { display: flex; flex-direction: column; gap: var(--space-xl); }
 .station { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-xl); align-items: center; max-width: var(--layout-max); margin-inline: auto; padding-inline: var(--content-padding); width: 100%; }
-.station-visual { position: relative; border-radius: 28px; overflow: hidden; aspect-ratio: 10 / 7; background: #1E4A3D; display: grid; place-items: center; }
-.station-visual .art-svg { width: 100%; height: 100%; display: block; }
-.station-visual img { width: 88%; filter: drop-shadow(0 22px 18px #03140E55); }
-.station-product { background: radial-gradient(ellipse at 50% 40%, #3A6A55, #1E4A3D 70%); }
-.station-use { background: radial-gradient(ellipse at 40% 60%, #E3EFC5, #C9DDA0 70%); }
-.station-use img { width: 76%; transform: translateX(-6%); }
-.care-marks { position: absolute; inset: 0; pointer-events: none; }
-.care-mark { position: absolute; width: 44px; height: 44px; border-radius: 50%; background: var(--color-ink); color: var(--color-accent); display: grid; place-items: center; font-weight: 800; font-size: 22px; box-shadow: 0 6px 14px #03140E33; }
-.care-brake { right: 20%; bottom: 26%; }
-.care-wheel { left: 12%; bottom: 14%; }
-.care-tool { position: absolute; right: 8%; top: 10%; font-size: 44px; }
+/* Stacje 1-4: pole przyjmuje proporcje obrazu z danych, bez dawnych ciemnych pasów 10:7
+   i bez cieni oraz przesunięć dla wyciętej sylwetki. */
+.station-visual { position: relative; display: grid; place-items: center; }
+.station-visual .z1-figure { border-radius: 28px; }
+
+/* Stacja 5: własna kompozycja - jedna hulajnoga i trzy alternatywne dalsze drogi.
+   Nie dziedziczy sztywnego pola stacji 1-4. */
+.station-composition { display: block; }
+.z1-paths { display: grid; gap: var(--space-sm); width: 100%; align-content: center; }
+.z1-paths[data-uklad="obok"] { grid-template-columns: minmax(0, 32%) minmax(0, 1fr); align-items: center; }
+.z1-paths[data-uklad="pod"] { grid-template-columns: minmax(0, 1fr); justify-items: center; }
+.z1-paths[data-uklad="pod"] .z1-paths-source { width: min(52%, 320px); }
+.z1-paths-source .z1-figure { border-radius: 20px; }
+.z1-paths-branches { display: grid; gap: var(--space-sm); min-width: 0; width: 100%; }
+.z1-paths[data-uklad="pod"] .z1-paths-branches { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+/* Miniatury muszą pozwalać odróżnić przekazanie, serwis i oddzielone elementy. */
+.z1-path { display: grid; grid-template-columns: 20px minmax(0, 1fr) minmax(0, 42%); align-items: center; gap: var(--space-xs); min-width: 0; }
+.z1-path .z1-figure { border-radius: 12px; }
+/* Łącznik od jednej hulajnogi do każdej z dróg. Trzy osobne łączniki, nie ciąg. */
+.z1-path-link { display: block; height: 2px; background: var(--color-accent); position: relative; }
+.z1-path-link::after { content: ""; position: absolute; right: -1px; top: -3px; border: 4px solid transparent; border-left-color: var(--color-accent); }
+.z1-path-label { font-size: 15px; line-height: 1.25; color: #E4EDDF; min-width: 0; }
+.z1-paths[data-uklad="pod"] .z1-path { grid-template-columns: minmax(0, 1fr); justify-items: center; text-align: center; }
+/* W układzie „pod” łącznik prowadzi z hulajnogi w dół, do każdej z trzech dróg. */
+.z1-paths[data-uklad="pod"] .z1-path-link { width: 2px; height: 20px; justify-self: center; }
+.z1-paths[data-uklad="pod"] .z1-path-link::after { right: -3px; top: auto; bottom: -1px; border-left-color: transparent; border-top-color: var(--color-accent); }
 .station-copy { max-width: 60ch; }
 .station-copy p { color: #E4EDDF; }
 .station-title { font-size: clamp(26px, 2.4vw, 34px); color: #fff; }
 .station-title:focus { outline: 3px solid var(--color-focus-dark); outline-offset: 4px; }
 .branches { margin-top: var(--space-md); }
 .branch-buttons { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-xs); }
-.branch-button { flex-direction: column; padding: 8px; background: #F4F6EB; align-items: stretch; gap: 6px; font-size: 15px; }
-.branch-button[aria-pressed="true"] { outline: 3px solid var(--color-accent); outline-offset: 2px; background: #fff; }
-.branch-art .art-svg { display: block; width: 100%; height: auto; }
+/* Przyciski dróg są tekstowe: miniatury pokazuje kompozycja obok, więc się nie dublują.
+   Wybrany przycisk ma obramowanie i stan programowy, nie tylko kolor. */
+.branch-button { flex-direction: column; justify-content: center; padding: 8px 10px; background: #F4F6EB; align-items: center; text-align: center; gap: 6px; font-size: 15px; min-height: 48px; }
+.branch-button[aria-pressed="true"] { outline: 3px solid var(--color-accent); outline-offset: 2px; background: #fff; border: 2px solid var(--color-ink); }
 .branch-detail { margin-top: var(--space-sm); background: #24594A; border-radius: var(--radius-control); padding: var(--space-sm) var(--space-md); color: #fff; min-height: 72px; }
 @media (max-width: 800px) {
   .station { grid-template-columns: 1fr; gap: var(--space-md); }
   .story-arrows { display: none; }
   .branch-buttons { grid-template-columns: 1fr; }
-  .branch-button { flex-direction: row; align-items: center; }
-  .branch-art { width: 120px; flex: 0 0 120px; }
+  .branch-button { flex-direction: row; align-items: center; justify-content: flex-start; text-align: left; }
+  /* W wąskiej stacji kafle dróg jeden pod drugim. */
+  .z1-paths[data-uklad="obok"] { grid-template-columns: minmax(0, 1fr); }
+  .z1-paths[data-uklad="pod"] .z1-paths-branches { grid-template-columns: minmax(0, 1fr); }
+  .z1-paths[data-uklad="pod"] .z1-path { grid-template-columns: 18px minmax(0, 96px) minmax(0, 1fr); justify-items: start; text-align: left; }
 }
 
 /* Wariant poziomy (duży ekran, bez ograniczenia ruchu). Wysokość sekcji ustawia skrypt. */
@@ -291,7 +329,12 @@ a.chapter-title { padding-block: 4px; }
 .story[data-mode="horizontal"] .story-viewport { flex: 1; overflow: clip; display: flex; align-items: center; }
 .story[data-mode="horizontal"] .story-track { flex: 0 0 auto; flex-direction: row; gap: 0; width: 500%; will-change: transform; }
 .story[data-mode="horizontal"] .station { flex: 0 0 20%; max-width: none; padding-inline: max(var(--content-padding), calc((100vw - var(--layout-max)) / 2 + var(--content-padding))); }
+/* Rozmiar całego pola ograniczony do dostępnej przestrzeni, z zachowaniem proporcji
+   i pełnego kadru: wysokość wiedzie, szerokość jest capem, więc obraz się nie przycina. */
 .story[data-mode="horizontal"] .station-visual { max-height: calc(var(--story-seg) - 170px); }
+.story[data-mode="horizontal"] .station-visual .z1-figure { width: auto; height: calc(var(--story-seg) - 170px); max-width: 100%; max-height: 100%; }
+.story[data-mode="horizontal"] .station-composition .z1-paths { max-height: calc(var(--story-seg) - 170px); }
+.story[data-mode="horizontal"] .station-composition .z1-figure { width: 100%; height: auto; }
 .story[data-mode="vertical"] .story-viewport { padding-top: var(--space-md); }
 
 /* Z1 — przykład */
@@ -301,7 +344,9 @@ a.chapter-title { padding-block: 4px; }
 .segmented { display: inline-flex; border: 1px solid var(--color-control-line); border-radius: var(--radius-control); overflow: hidden; margin-bottom: var(--space-md); }
 .segmented button { border: 0; border-radius: 0; }
 .segmented button[aria-pressed="true"] { background: var(--color-ink); color: #fff; }
-.book-art .art-svg { display: block; width: 100%; height: auto; border-radius: 22px; box-shadow: 0 16px 36px #12302522; }
+/* Przykład książki: stałe pole 4:3 dla obu scen, pełny kadr, bez skoku wysokości strony. */
+.book-art { aspect-ratio: 4 / 3; border-radius: 22px; overflow: hidden; box-shadow: 0 16px 36px #12302522; background: #F2F6EA; }
+.book-art .z1-figure { width: 100%; height: 100%; aspect-ratio: auto; }
 .book-caption { margin-top: var(--space-md); background: var(--color-correct); border-radius: var(--radius-control); padding: var(--space-sm) var(--space-md); font-weight: 600; }
 @media (max-width: 900px) { .example-layout { grid-template-columns: 1fr; } }
 
@@ -328,10 +373,12 @@ a.chapter-title { padding-block: 4px; }
 .case-number { width: 34px; height: 34px; flex: 0 0 34px; border-radius: 50%; border: 1px solid #9FB594; display: grid; place-items: center; font-size: 15px; }
 .case-art { position: relative; background: #F2F6EA; border-radius: 14px; aspect-ratio: 5 / 2; display: grid; place-items: center; overflow: hidden; }
 .case-art img { position: absolute; left: 0; top: 3%; width: 100%; height: 94%; object-fit: contain; }
-.case-mark { position: absolute; border: 3px dashed #B4603A; border-radius: 50%; aspect-ratio: 1; transform: translate(-50%, -50%); }
-.mark-wheel { height: 30%; left: 41.5%; top: 83%; }
-.mark-frame { height: 22%; left: 45%; top: 66%; }
 .case-tag { position: absolute; top: 10px; left: 10px; background: #fff; border: 1px solid #B4603A; color: var(--color-error-ink); border-radius: 30px; padding: 2px 10px; font-size: 14px; font-weight: 650; }
+/* Karty Z1: pole obrazu 4:3 zamiast 5:2, etykieta w osobnym wierszu pod obrazem,
+   żeby nie zasłaniała koła ani pęknięcia. Proporcje kart Z2 pozostają bez zmian. */
+.case-art-z1 { aspect-ratio: auto; background: transparent; overflow: visible; display: block; }
+.case-art-z1 .z1-figure { aspect-ratio: 4 / 3; background: #F2F6EA; border-radius: 14px; }
+.case-art-z1 .case-tag { position: static; display: inline-block; margin-top: var(--space-xs); }
 .case-text p { margin: 0; font-size: 17px; }
 .case-answer { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-xs); margin-top: auto; }
 .assign { flex: 1 1 100%; border-style: dashed; border-width: 2px; background: #FAFBF6; min-height: 56px; }
@@ -430,7 +477,9 @@ dialog::backdrop { background: #0A1C18AA; }
 .chapter-entry { position: relative; overflow: clip; background: #E6EFD8; }
 .chapter-entry.dark { background: radial-gradient(ellipse at 75% 40%, #335D49, #163B31 60%, #102D27); color: var(--color-on-dark); }
 .chapter-entry-content { position: relative; padding-block: var(--space-2xl); }
-.chapter-entry-caption { position: relative; font-size: 14px; color: #33463D; padding-bottom: var(--space-md); margin: 0; }
+/* Podpisy pozostałych rozdziałów zostają. `margin: 0` kasowało też margin-inline z .wrap
+   i podpis przestawał być wyśrodkowany — zerujemy wyłącznie marginesy pionowe. */
+.chapter-entry-caption { position: relative; font-size: 14px; color: #33463D; padding-bottom: var(--space-md); margin-block: 0; margin-inline: auto; }
 .entry-split { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: var(--space-xl); align-items: center; }
 .entry-object { width: 100%; filter: drop-shadow(0 22px 18px #03140E55); }
 .entry-figure .art-svg { width: 100%; height: auto; display: block; border-radius: 24px; }
@@ -614,6 +663,30 @@ dialog::backdrop { background: #0A1C18AA; }
 .moisture-controls .depth-buttons button[aria-pressed="true"] { background: var(--color-ink); color: #fff; }
 .moisture-caption { background: #EEF4E2; border-radius: var(--radius-control); padding: var(--space-sm) var(--space-md); margin-top: var(--space-sm); font-weight: 600; }
 .moisture-caption p { margin: 0; }
+/* Pakiet 26: pokaz wilgoci — obraz i bieżący podpis obok siebie (>800 px, ok. 3:2), pod sobą na wąskim ekranie. */
+.moisture-wrap { max-width: calc(1040px + 2 * var(--content-padding)); }
+.moisture-wrap > .text-block .command { max-width: 65ch; }
+.moisture-scene { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: var(--space-md); align-items: center; background: var(--color-card); border: 1px solid var(--color-line); border-radius: var(--radius-card); padding: var(--space-md); margin-top: var(--space-md); }
+.moisture-scene .moisture-figure { margin: 0; max-width: 560px; aspect-ratio: 2 / 1; }
+.moisture-scene .moisture-figure .art-svg { width: 100%; height: 100%; border-radius: 16px; }
+.moisture-figure.is-changing .art-svg { animation: moisture-fade 200ms ease-out; }
+@keyframes moisture-fade { from { opacity: .35; } to { opacity: 1; } }
+.moisture-state { font-size: 14px; font-weight: 750; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-secondary); margin: 0 0 var(--space-xs); }
+.moisture-current .moisture-caption { margin-top: 0; font-size: var(--font-body); }
+.moisture-wrap .moisture-controls { margin-top: var(--space-sm); max-width: 560px; }
+.moisture-wrap .moisture-controls .depth-buttons button { min-height: 48px; }
+.moisture-wrap .moisture-controls .depth-buttons button[aria-pressed="true"] { box-shadow: 0 0 0 2px var(--color-card), 0 0 0 4px var(--color-ink); }
+.moisture-legend { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; margin-top: var(--space-sm); }
+.legend-item { display: inline-flex; align-items: center; gap: 6px; }
+.legend-swatch { display: inline-block; width: 18px; height: 14px; border-radius: 4px; }
+.legend-parts { background: linear-gradient(90deg, #A8743F 0 34%, #6E9A3F 34% 67%, #D8893A 67%); }
+.legend-water { background: #6FB3DE; border: 2px solid #2F6F99; }
+.legend-air { background: #FFFDF6; border: 2px dashed #7E8E7A; }
+.moisture-wrap > h3 { margin-top: var(--space-lg); }
+.moisture-help { max-width: 65ch; }
+.moisture-help p:nth-child(-n+2) { border-left: 4px solid var(--color-line); padding-left: var(--space-sm); }
+.moisture-wrap > .button.primary { margin-top: var(--space-sm); }
+@media (max-width: 800px) { .moisture-scene { grid-template-columns: minmax(0, 1fr); padding: var(--space-sm); } .moisture-scene .moisture-figure { max-width: none; } }
 .wet-figure { margin: 0 0 var(--space-xs); }
 .wet-figure .art-svg { width: 100%; height: auto; display: block; }
 .figure-card.is-animating .worms path { animation: wiggle 1.2s ease-in-out infinite alternate; }
@@ -622,7 +695,6 @@ dialog::backdrop { background: #0A1C18AA; }
 
 /* Ograniczenie ruchu: stan świadomego wyboru i ustawienie systemowe */
 .reduced-motion *, .reduced-motion *::before, .reduced-motion *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
-.reduced-motion .z1-entry-bg { transform: none !important; will-change: auto; }
 @media (prefers-reduced-motion: reduce) { html:not(.full-motion) { scroll-behavior: auto; } }
 
 
@@ -853,3 +925,21 @@ dialog::backdrop { background: #0A1C18AA; }
   html.print-diploma .diploma-name, html.print-diploma .diploma-seal { animation: none !important; }
 }
 @page diploma { size: A4 landscape; margin: 12mm; }
+
+/* P45 START */
+/* Karty H1-H4: pole obrazu bez odziedziczonej wstawki 3% z .case-art oraz niewielkie wspólne */
+/* powiększenie 6%. Obiekty zostają w całości - nadmiar to wyłącznie przezroczysty margines. */
+#z1-task .case-art-z1 .z1-figure { display: grid; align-items: center; justify-items: center; overflow: hidden; }
+#z1-task .case-art-z1 .z1-figure > img { position: static; width: 106%; height: 106%; object-fit: contain; }
+/* Stacja 5: trzy równe pola 16:9, wspólny poziom strzałek i początków podpisów. */
+/* Zdjęcia 3:2 dostają puste pasy po bokach; bez rozciągania i bez zmiany kolumn telefonu. */
+/* align-content: start pakuje wiersze kafla do góry, więc podpis dwuwierszowy nie zsuwa */
+/* strzałki ani początku podpisu w pozostałych kaflach. */
+@media (min-width: 801px) {
+#z1-stage-5 .z1-path { align-content: start; }
+#z1-stage-5 .z1-path .z1-figure { aspect-ratio: 16 / 9; }
+}
+@media (max-width: 800px) {
+#z1-stage-5 .z1-path .z1-figure { aspect-ratio: 16 / 9; }
+}
+/* P45 END */

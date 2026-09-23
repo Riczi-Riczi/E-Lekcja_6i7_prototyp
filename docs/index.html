@@ -5,9 +5,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#123E34">
-<title>Eksperci GOZ — Rzeczy mają dalszy ciąg</title>
+<title>Eksperci GOZ - Rzeczy mają dalszy ciąg</title>
 <link rel="icon" href="data:,">
 <link rel="stylesheet" href="css/style.css">
+<!-- I52 START css-52 -->
+<link rel="stylesheet" href="css/integracja-52.css">
+<!-- I52 END css-52 -->
 </head>
 <body>
 <a class="skip-link" href="#main">Przejdź do treści</a>
@@ -53,6 +56,7 @@
         <h1 id="lesson-title">Eksperci GOZ</h1>
         <p class="entry-subtitle">Rzeczy mają dalszy ciąg.</p>
         <p class="lead">Co zrobić z przedmiotem, którego już nie używasz? Czy jedna usterka oznacza koniec całej rzeczy? I jak obierki mogą wrócić do ogrodu? Sprawdzisz to w sześciu zadaniach.</p>
+        <p>GOZ to gospodarka o obiegu zamkniętym: rzeczy i materiały służą dłużej, zamiast szybko stawać się odpadem. <span class="fn" hidden>[<a href="#sources-list" data-source="S1">S1</a>, <a href="#sources-list" data-source="S2">S2</a>]</span></p>
       </div>
       <div class="entry-actions" id="entry-actions">
         <a class="button primary" id="start-button" href="#intro-film">Rozpocznij sprawę <span aria-hidden="true">↓</span></a>
@@ -66,7 +70,7 @@
       <div class="entry-scene-stage">
         <div class="entry-ring" aria-hidden="true"></div>
         <div class="entry-wave" data-art="wave"></div>
-        <img class="entry-scooter" src="assets/images/hulajnoga-bez-tla.webp" width="1200" height="868" alt="Hulajnoga bez silnika — zapowiedź pierwszego rozdziału">
+        <img class="entry-scooter" src="assets/images/hulajnoga-bez-tla.webp" width="1200" height="868" alt="Hulajnoga bez silnika - zapowiedź pierwszego rozdziału">
         <div class="entry-sneaker" data-art="sneaker"></div>
         <div class="entry-leaf" data-art="leaf"></div>
       </div>
@@ -101,16 +105,18 @@
 
 <!-- Z1 — wejście -->
 <section class="z1-entry" id="z1-entry" data-anchor="z1-entry" data-chapter="Z1" aria-labelledby="z1-title">
-  <img class="z1-entry-bg" src="assets/images/z1-scena-dziedziniec.webp" width="1672" height="941" alt="" loading="lazy">
-  <div class="z1-entry-wash" aria-hidden="true"></div>
-  <div class="z1-entry-content wrap">
-    <p class="eyebrow eyebrow-dot">Rozdział 1 z 6 · Historia przedmiotu</p>
-    <h2 id="z1-title" class="display">Czy to już koniec <em>hulajnogi?</em></h2>
-    <p class="lead">Jedna rzecz. Cztery sytuacje.<br>Każda zasługuje na uważną decyzję.</p>
-    <p class="z1-question"><strong>Pytanie rozdziału:</strong> co możemy zachować — cały produkt czy materiał?</p>
-    <a class="button primary" href="#z1-knowledge">Poznaj historię <span aria-hidden="true">↓</span></a>
+  <!-- Scena ma własny kontener do 1672 px (lokalny wyjątek od --layout-max), tekst nie używa .wrap.
+       Układ nakładkowy tylko wtedy, gdy tekst mieści się na jasnej lewej części obrazu; inaczej pionowy. -->
+  <div class="z1-entry-stage" data-layout="stacked">
+    <div class="z1-entry-content">
+      <p class="eyebrow eyebrow-dot">Rozdział 1 z 6 · Historia przedmiotu</p>
+      <h2 id="z1-title" class="display">Czy to już koniec <em>hulajnogi?</em></h2>
+      <p class="lead">Jedna rzecz. Cztery sytuacje.<br>Każda zasługuje na uważną decyzję.</p>
+      <p class="z1-question"><strong>Pytanie rozdziału:</strong> co możemy zachować - cały produkt czy materiał?</p>
+      <a class="button primary" href="#z1-knowledge">Poznaj historię <span aria-hidden="true">↓</span></a>
+    </div>
+    <div class="z1-entry-media" data-z1-image="entry" data-z1-sizes="(min-width: 1672px) 1672px, 100vw" data-z1-loading="eager"></div>
   </div>
-  <p class="z1-entry-caption wrap">Ilustracja przykładowej hulajnogi bez silnika. Nie przedstawia konkretnego modelu.</p>
 </section>
 
 <nav class="chapter-parts wrap" aria-label="Części rozdziału 1">
@@ -124,26 +130,30 @@
 <section class="z1-knowledge dark" id="z1-knowledge" data-anchor="z1-knowledge" data-chapter="Z1" aria-labelledby="z1-knowledge-title">
   <div class="wrap">
     <p class="eyebrow">01 / Dowiedz się</p>
-    <h2 id="z1-knowledge-title">Historia zaczyna się <em>przed sklepem.</em></h2>
-    <div class="knowledge-columns">
-      <div class="knowledge-t1">
-      <div class="text-block" id="audio-z1_t1">
-        <p>Recykling oznacza przetworzenie materiału odpadu, aby można go było ponownie wykorzystać. To inna droga niż przekazanie komuś sprawnej hulajnogi. Podczas przekazania zachowujemy przedmiot. Podczas recyklingu odzyskujemy materiał. <span class="fn" hidden>[<a href="#sources-list" data-source="S1">S1</a>, <a href="#sources-list" data-source="S2">S2</a>]</span></p>
-      </div>
-      </div>
-      <div>
+    <h2 id="z1-knowledge-title">Jak rzeczy i materiały <em>mogą służyć dłużej?</em></h2>
+    <!-- Pakiet 26: jedna kolumna — kolejność widoku, DOM i czytania: GOZ i dzielenie się → zachować przedmiot czy odzyskać materiał. -->
+    <div class="knowledge-flow">
       <h3>Co oznacza GOZ?</h3>
       <div class="text-block" id="audio-z1_t2">
         <p>Gospodarka o obiegu zamkniętym to projektowanie, produkowanie i używanie rzeczy tak, aby dłużej wykorzystywać produkty i materiały oraz ograniczać odpady.</p>
-        <p>Dzielenie się to korzystanie z jednej rzeczy wspólnie albo na zmianę. Znajomi mogą pożyczać sobie jedną grę planszową — każdy nie musi mieć własnej. <span class="fn" hidden>[<a href="#sources-list" data-source="S1">S1</a>, <a href="#sources-list" data-source="S2">S2</a>]</span></p>
+        <p>Dzielenie się to korzystanie z jednej rzeczy wspólnie albo na zmianę. Znajomi mogą pożyczać sobie jedną grę planszową - każdy nie musi mieć własnej. <span class="fn" hidden>[<a href="#sources-list" data-source="S1">S1</a>, <a href="#sources-list" data-source="S2">S2</a>]</span></p>
       </div>
       <details class="more" data-more="z1_t2" id="more-z1_t2">
         <summary>Dowiedz się więcej: czy GOZ to tylko segregacja?</summary>
         <div class="more-body"><p>Segregowanie jest ważne, ale dotyczy tylko części historii rzeczy. GOZ obejmuje również projektowanie, produkcję i dalsze używanie produktów. <span class="fn" hidden>[<a href="#sources-list" data-source="S1">S1</a>, <a href="#sources-list" data-source="S2">S2</a>]</span></p></div>
       </details>
-      <figure class="game-figure"><div data-art="game"></div><figcaption>Jedna gra może służyć kilku osobom na zmianę.</figcaption></figure>
+      <figure class="game-figure" id="z1-game-figure"><div data-art="game"></div><figcaption>Jedna gra może służyć kilku osobom na zmianę.</figcaption></figure>
+      <h3 id="z1-reuse-title">Zachować przedmiot czy odzyskać materiał?</h3>
+      <div class="text-block" id="audio-z1_t1">
+        <p>Rzecz, której już nie używasz, może pójść różnymi drogami.</p>
+        <p>Recykling oznacza przetworzenie materiału odpadu, aby można go było ponownie wykorzystać. To inna droga niż przekazanie komuś sprawnej hulajnogi. Podczas przekazania zachowujemy przedmiot. Podczas recyklingu odzyskujemy materiał. <span class="fn" hidden>[<a href="#sources-list" data-source="S1">S1</a>, <a href="#sources-list" data-source="S2">S2</a>]</span></p>
       </div>
     </div>
+  </div>
+
+  <!-- Pakiet 26: nagłówek historii poza #z1-story i .story-sticky (story.js liczy przejścia od początku kontenera). -->
+  <div class="wrap story-intro">
+    <h3 id="z1-story-title">Historia zaczyna się <em>przed sklepem.</em></h3>
   </div>
 
   <!-- Droga produktu: pięć stacji. Na dużym ekranie przejścia poziome sterowane zwykłym przewijaniem. -->
@@ -176,7 +186,7 @@
       <div class="text-block" id="audio-z1_p1">
         <p>Książka jest kompletna i przeczytana. Oddanie jej kolejnej osobie to <strong>ponowne użycie</strong>. Zmienia się czytelnik, ale pozostaje książka. Przetworzenie zużytego papieru w papierni byłoby <strong>recyklingiem</strong>. To nie te same działania.</p>
       </div>
-      <p class="small-note">To pokaz z wyjaśnieniem. Możesz przełączać widoki — nie musisz niczego zaliczać.</p>
+      <p class="small-note">To pokaz z wyjaśnieniem. Możesz przełączać widoki - nie musisz niczego zaliczać.</p>
       <a class="text-link" href="#z1-task">Wróć do zadania ↓</a>
     </div>
     <div class="book-demo">
@@ -230,7 +240,7 @@
           <span class="solved-count" id="z1-count">Rozwiązane: 0 z 4</span>
         </div>
         <div class="feedback" id="z1-feedback" role="status">Dopasuj działania. Poprawne odpowiedzi zostaną po sprawdzeniu.</div>
-        <p class="small-note">Korzystaj z podanej oceny serwisu — nie oceniaj bezpieczeństwa ze zdjęcia.</p>
+        <p class="small-note">Korzystaj z podanej oceny serwisu - nie oceniaj bezpieczeństwa ze zdjęcia.</p>
       </div>
     </div>
   </div>
@@ -294,7 +304,7 @@
       <p class="eyebrow">01 / Dowiedz się</p>
       <h2 id="z2-knowledge-title">Czyszczenie, naprawa <em>i zmiana wyglądu</em></h2>
       <div class="text-block" id="audio-z2_t1">
-        <p>Brudny, niemodny i uszkodzony nie znaczą tego samego. <strong>Czyszczenie</strong> usuwa zabrudzenie. <strong>Naprawa</strong> przywraca sprawność. <strong>Personalizacja</strong> zmienia wygląd — na przykład kolor wybranych paneli buta. Farba nie zastępuje naprawy rozklejonej podeszwy.</p>
+        <p>Brudny, niemodny i uszkodzony nie znaczą tego samego. <strong>Czyszczenie</strong> usuwa zabrudzenie. <strong>Naprawa</strong> przywraca sprawność. <strong>Personalizacja</strong> zmienia wygląd - na przykład kolor wybranych paneli buta. Farba nie zastępuje naprawy rozklejonej podeszwy.</p>
         <p>Najpierw ustal, co jest nie tak. W tym przykładzie pomoże Ci ocena warsztatu.</p>
       </div>
       <details class="more" data-more="z2_t1" id="more-z2_t1">
@@ -308,19 +318,34 @@
       <div class="text-block" id="audio-z2_p1">
         <p>But jest sprawny, lecz ubrudzony błotem. W tym przypadku zaczynamy od czyszczenia zgodnego z instrukcją.</p>
       </div>
-      <div class="compare" data-compare>
-        <div class="compare-stage">
-          <div class="compare-layer compare-under" data-art2="shoe-clean"></div>
-          <div class="compare-layer compare-over" data-art2="shoe-mud"></div>
-          <div class="compare-handle" aria-hidden="true"></div>
+      <!-- I57 START przyklad-czyszczenie -->
+      <section id="clean3d-module" aria-labelledby="clean3d-heading">
+        <h4 id="clean3d-heading">Wyczyść but w 3D</h4>
+        <p id="clean3d-lead">W tym przykładzie instrukcja pielęgnacji dopuszcza szczotkę, lekko wilgotną szmatkę i suchą szmatkę.</p>
+        <p id="clean3d-caption" class="small-note">Pokazujemy czyszczenie, nie naprawę.</p>
+        <p id="clean3d-note">Ćwiczenie jest dobrowolne. Po odświeżeniu zacznie się od początku.</p>
+        <button type="button" id="clean3d-open" aria-expanded="false" aria-controls="clean3d-work">Wyczyść but</button>
+        <p id="clean3d-file" role="status" hidden>Ćwiczenie 3D jest niedostępne w tym sposobie otwarcia lekcji. Możesz kontynuować lekcję.</p>
+        <div id="clean3d-work" hidden>
+          <div id="clean3d-bar">
+            <h4 id="clean3d-title" tabindex="-1">Czyszczenie buta</h4>
+            <button type="button" id="clean3d-close">Zamknij ćwiczenie</button>
+          </div>
+          <p id="clean3d-status" role="status"></p>
+          <div id="clean3d-frame"></div>
+          <div id="clean3d-fail" hidden>
+            <p id="clean3d-fail-lead"></p>
+            <ol>
+              <li>Szczotka usuwa większe, zaschnięte grudki błota.</li>
+              <li>Lekko wilgotna szmatka usuwa pozostałe smugi.</li>
+              <li>Sucha szmatka zbiera nadmiar wilgoci z powierzchni. Pozostaw but do wyschnięcia zgodnie z instrukcją pielęgnacji.</li>
+            </ol>
+            <p>Ćwiczenie możesz uruchomić ponownie - zacznie się od początku.</p>
+            <button type="button" id="clean3d-retry">Zacznij ćwiczenie od początku</button>
+          </div>
         </div>
-        <div class="compare-controls">
-          <button type="button" data-compare-set="0">Przed czyszczeniem</button>
-          <input type="range" min="0" max="100" step="5" value="50" aria-label="Porównanie: przesuń, aby odsłonić but po czyszczeniu">
-          <button type="button" data-compare-set="100">Po czyszczeniu</button>
-        </div>
-        <p class="small-note">Pokazujemy czyszczenie, nie naprawę.</p>
-      </div>
+      </section>
+      <!-- I57 END przyklad-czyszczenie -->
     </div>
   </div>
 </section>
@@ -333,7 +358,7 @@
     <p class="small-note">To dwa osobne przypadki, nie para butów. Obserwacje możesz też przeczytać obok.</p>
     <div class="inspect-grid" id="z2-inspect-grid"></div>
     <aside class="workshop-card" aria-labelledby="z2-workshop-title">
-      <h3 id="z2-workshop-title">Ocena warsztatu — przypadek Y</h3>
+      <h3 id="z2-workshop-title">Ocena warsztatu - przypadek Y</h3>
       <div class="text-block" id="audio-z2_workshop"><p>Reszta buta jest w dobrym stanie. Warsztat potwierdził, że można naprawić połączenie i sprawdzić efekt przed dalszym noszeniem.</p></div>
     </aside>
   </div>
@@ -398,6 +423,8 @@
         <div class="feedback" id="z2-feedback" role="status">Dopasuj działania. Poprawne odpowiedzi zostaną po sprawdzeniu.</div>
       </div>
     </div>
+    <!-- I57 START usun-czyszczenie-zadanie -->
+    <!-- I57 END usun-czyszczenie-zadanie -->
   </div>
 </section>
 
@@ -435,7 +462,7 @@
         <h2 id="z2-customize-title">Pracownia <em>własnego wyglądu</em></h2>
       </div>
       <div>
-        <div class="text-block" id="audio-z2_customize"><p>But jest już sprawny. Możesz zostawić go w obecnym kolorze albo zaprojektować nowy wygląd. Wybierz panel, potem kolor. Jeśli chcesz, dodaj wzór. To Twoja decyzja — nie ma jednego poprawnego projektu.</p></div>
+        <div class="text-block" id="audio-z2_customize"><p>But jest już sprawny. Możesz zostawić go w obecnym kolorze albo zaprojektować nowy wygląd. Wybierz panel, potem kolor. Jeśli chcesz, dodaj wzór. To Twoja decyzja - nie ma jednego poprawnego projektu.</p></div>
         <p class="small-note">Personalizacja nie jest warunkiem ukończenia lekcji i nie daje punktów. <a class="text-link" href="#z2-repairability">Pomiń personalizację ↓</a></p>
       </div>
     </div>
@@ -444,58 +471,31 @@
       <a class="button" href="#z2-task">Wróć do zadania warsztatu ↑</a>
     </div>
     <div id="shoe-open" hidden>
-    <div class="editor" id="shoe-editor">
-      <div class="editor-main">
-        <div class="editor-stage" id="shoe-stage"></div>
-        <p class="draft-note">Wersja robocza: granice paneli pochodzą z roboczych masek i miejscami wychodzą poza szwy. Finalne maski dostarczy autor. Naszywka SELEKT pozostaje biała i nie jest zamalowywana.</p>
-        <div class="editor-actions">
-          <button type="button" id="shoe-undo">Cofnij</button>
-          <button type="button" id="shoe-clear">Usuń ozdoby</button>
-          <button type="button" id="shoe-white">Zostaw biały</button>
-        </div>
-        <p class="selection" id="shoe-status" role="status">Wybierz panel, potem kolor. Panel możesz też wskazać na ilustracji.</p>
+    <!-- I57 START pracownia-3d -->
+    <section id="shoe3d-module" aria-labelledby="shoe3d-heading">
+      <div id="shoe3d-intro">
+        <p id="shoe3d-heading">Obróć but, wybierz część i nadaj jej kolor. Możesz też dodać wzór.</p>
+        <button type="button" id="shoe3d-open">Zaprojektuj but</button>
+        <p id="shoe3d-file" role="status" hidden>Pracownia 3D jest niedostępna w tym sposobie otwarcia lekcji. Możesz kontynuować bez personalizacji.</p>
       </div>
-      <div class="editor-tools action-panel">
-        <fieldset class="tool-group">
-          <legend>1. Wybierz panel</legend>
-          <div class="tool-grid two" id="shoe-panels"></div>
-        </fieldset>
-        <fieldset class="tool-group">
-          <legend>2. Wybierz kolor panelu</legend>
-          <div class="swatches" id="shoe-colors"></div>
-        </fieldset>
-        <fieldset class="tool-group">
-          <legend>Gotowe zestawy</legend>
-          <div class="tool-grid two" id="shoe-sets"></div>
-        </fieldset>
-        <fieldset class="tool-group">
-          <legend>3. Jeśli chcesz, dodaj ozdobę</legend>
-          <div class="tool-grid three" id="shoe-shapes"></div>
-          <p class="tool-label" id="shoe-ornament-color-label">Kolor ozdoby</p>
-          <div class="swatches small" id="shoe-ornament-colors" role="group" aria-labelledby="shoe-ornament-color-label"></div>
-          <div class="tool-grid two">
-            <button type="button" id="shoe-add">Dodaj ozdobę</button>
-            <button type="button" id="shoe-pattern">Rozmieść wzór</button>
+      <div id="shoe3d-work" hidden>
+        <div id="shoe3d-bar">
+          <h3 id="shoe3d-title" tabindex="-1">Projektowanie 3D</h3>
+          <div id="shoe3d-actions">
+            <button type="button" id="shoe3d-save" disabled>Zapisz projekt</button>
+            <button type="button" id="shoe3d-back">Zamknij pracownię</button>
           </div>
-          <p class="small-note" id="shoe-count">Ozdoby: 0 z 6</p>
-          <ul class="ornament-list" id="shoe-ornaments" aria-label="Dodane ozdoby"></ul>
-        </fieldset>
-        <button type="button" class="primary" id="shoe-done">Gotowe</button>
+        </div>
+        <p id="shoe3d-status" role="status"></p>
+        <div id="shoe3d-frame"></div>
+        <div id="shoe3d-fail" hidden>
+          <p id="shoe3d-fail-text"></p>
+          <p id="shoe3d-fail-saved" hidden>Twój zapisany projekt pozostaje bez zmian.</p>
+          <button type="button" id="shoe3d-retry">Spróbuj ponownie</button>
+        </div>
       </div>
-    </div>
-    <div class="compare shoe-compare" data-compare id="shoe-compare">
-      <div class="compare-stage">
-        <div class="compare-layer compare-under" id="shoe-compare-design"></div>
-        <div class="compare-layer compare-over" data-art2="shoe-clean"></div>
-        <div class="compare-handle" aria-hidden="true"></div>
-      </div>
-      <div class="compare-controls">
-        <button type="button" data-compare-set="0">Po naprawie — sprawny but</button>
-        <input type="range" min="0" max="100" step="5" value="50" aria-label="Porównanie: przesuń, aby odsłonić but po zmianie wyglądu">
-        <button type="button" data-compare-set="100">Po zmianie wyglądu — sprawny but</button>
-      </div>
-      <p class="small-note">Obie strony pokazują sprawny but. Porównanie nie przyznaje punktów i nie jest warunkiem ukończenia.</p>
-    </div>
+    </section>
+    <!-- I57 END pracownia-3d -->
     <p class="method practical">W realnym projekcie wybierz materiały przeznaczone do danego obuwia i pracuj zgodnie z instrukcją, w razie potrzeby z pomocą dorosłego. Nie musisz nic kupować, żeby ukończyć tę lekcję.</p>
     </div>
     <a class="button primary" href="#z2-repairability">Przejdź dalej <span aria-hidden="true">↓</span></a>
@@ -525,7 +525,7 @@
     <div>
       <p class="eyebrow eyebrow-dot">Rozdział 3 z 6 · Ślad produktu</p>
       <h2 id="z3-title" class="display">Ślad produktu: <em>co wydarzyło się przed zakupem?</em></h2>
-      <p class="chapter-question"><strong>Pytanie rozdziału:</strong> dlaczego przedmiot może mieć ślad klimatyczny, chociaż podczas używania nie zużywa prądu?</p>
+      <p class="chapter-question"><strong>Pytanie rozdziału:</strong> dlaczego przedmiot może mieć ślad węglowy, chociaż podczas używania nie zużywa prądu?</p>
       <a class="button accent" href="#z3-knowledge">Dowiedz się <span aria-hidden="true">↓</span></a>
     </div>
     <img class="entry-object" src="assets/images/hulajnoga-bez-tla.webp" width="1200" height="868" alt="Hulajnoga bez silnika" loading="lazy">
@@ -545,16 +545,17 @@
       <p class="eyebrow">01 / Dowiedz się</p>
       <h2 id="z3-knowledge-title">Ślad produktu <em>zaczyna się wcześniej</em></h2>
       <div class="text-block" id="audio-z3_t1">
-        <p>Hulajnoga bez silnika porusza się dzięki sile użytkownika. To nie znaczy, że jej powstanie nie wiązało się z emisjami gazów cieplarnianych. Wytwarzanie materiałów, produkcja części i transport mogą wymagać energii i powodować emisje.</p>
-        <p>Ślad węglowy produktu opisuje emisje gazów cieplarnianych związane z jego cyklem życia. Ważne jest pytanie: jakie etapy uwzględniono? <span class="fn" hidden>[<a href="#sources-list" data-source="S4">S4</a>, <a href="#sources-list" data-source="S5">S5</a>]</span></p>
+        <p>Hulajnoga bez silnika nie zużywa prądu podczas jazdy. Wytwarzanie jej materiałów i części oraz transport mogą jednak wymagać energii i powodować emisje gazów cieplarnianych.</p>
+        <p>Emisje gazów to ich uwalnianie do atmosfery. Gazy cieplarniane, na przykład dwutlenek węgla, zatrzymują część ciepła uciekającego z Ziemi. <span class="fn" hidden>[<a href="#sources-list" data-source="S19">S19</a>]</span></p>
+        <p>Ślad węglowy produktu opisuje takie emisje w jego cyklu życia: od pozyskania surowców, przez produkcję i używanie, po postępowanie z odpadami. Dlatego sprawdzamy, jakie etapy uwzględniono w porównaniu. <span class="fn" hidden>[<a href="#sources-list" data-source="S4">S4</a>, <a href="#sources-list" data-source="S5">S5</a>]</span></p>
       </div>
       <details class="more" data-more="z3_t1" id="more-z3_t1">
         <summary>Dowiedz się więcej: co oznacza CO₂e?</summary>
-        <div class="more-body"><p>Różne gazy cieplarniane przelicza się na wspólną miarę — ekwiwalent dwutlenku węgla, zapisywany jako CO₂e. W tej lekcji nie musisz go obliczać. <span class="fn" hidden>[<a href="#sources-list" data-source="S4">S4</a>, <a href="#sources-list" data-source="S5">S5</a>]</span></p></div>
+        <div class="more-body"><p>Różne gazy cieplarniane przelicza się na wspólną miarę - ekwiwalent dwutlenku węgla, zapisywany jako CO₂e. W tej lekcji nie musisz go obliczać. <span class="fn" hidden>[<a href="#sources-list" data-source="S4">S4</a>, <a href="#sources-list" data-source="S5">S5</a>]</span></p></div>
       </details>
       <h3>Co zmienia naprawa?</h3>
       <div class="text-block" id="audio-z3_t2">
-        <p>Wyprodukowanie używanej już rzeczy wydarzyło się wcześniej. Naprawa nie wymazuje tych emisji. Może jednak pozwolić dalej korzystać z produktu i ograniczyć potrzebę produkcji jego zamiennika. Sama część zamienna i naprawa również mają swój wpływ.</p>
+        <p>Wyprodukowanie używanej już rzeczy wydarzyło się wcześniej. Naprawa nie wymazuje tych emisji. Może jednak pozwolić dalej korzystać z tej rzeczy i ograniczyć potrzebę kupienia nowej. Sama część zamienna i naprawa również mają swój wpływ.</p>
         <p>Dokładne porównanie wymaga danych o obu drogach przy podobnym czasie i sposobie używania. <span class="fn" hidden>[<a href="#sources-list" data-source="S4">S4</a>, <a href="#sources-list" data-source="S5">S5</a>]</span></p>
       </div>
       <details class="more" data-more="z3_t2" id="more-z3_t2">
@@ -649,7 +650,7 @@
         <div class="letter-card reward-card" data-reward="Z3"></div>
         <div>
           <p class="reward-status" data-reward-status="Z3"></p>
-          <div class="text-block" id="audio-z3_w"><p class="lead">Patrz na całą historię produktu. Brak prądu podczas używania nie oznacza braku śladu jego produkcji.</p></div>
+          <div class="text-block" id="audio-z3_w"><p class="lead">Patrz na całą historię produktu. Podczas jazdy hulajnoga nie zużywa prądu, ale emisje gazów cieplarnianych powstały wcześniej - podczas jej produkcji.</p></div>
           
         </div>
       </div>
@@ -715,7 +716,7 @@
         </div>
         <details class="more" data-more="o_t3" id="more-o_t3">
           <summary>Dowiedz się więcej: co dokładnie pokazuje to badanie?</summary>
-          <div class="more-body"><p>Wynik pokazuje, że zanieczyszczenia związane z działalnością człowieka docierają do oceanicznych głębin. Dotyczy zbadanych organizmów — nie oznacza zbadania całego oceanu. <span class="fn" hidden>[<a href="#sources-list" data-source="S8">S8</a>]</span></p></div>
+          <div class="more-body"><p>Wynik pokazuje, że zanieczyszczenia związane z działalnością człowieka docierają do oceanicznych głębin. Dotyczy zbadanych organizmów - nie oznacza zbadania całego oceanu. <span class="fn" hidden>[<a href="#sources-list" data-source="S8">S8</a>]</span></p></div>
         </details>
         <figure class="amphipod" data-art2="amphipod"></figure>
         <p class="small-note">Schemat organizmu, nie fotografia z badania.</p>
@@ -743,7 +744,9 @@
       <p class="chapter-question"><strong>Pytanie rozdziału:</strong> co i w jakiej postaci oddajemy do brązowego pojemnika w systemie organizowanym przez SELEKT?</p>
       <a class="button primary" href="#z4-knowledge">Dowiedz się <span aria-hidden="true">↓</span></a>
     </div>
-    <div class="entry-figure" data-art2="kitchen-bio"></div>
+    <!-- I52 START z4-wejscie -->
+    <div class="entry-figure" id="z4-entry-art"></div>
+    <!-- I52 END z4-wejscie -->
   </div>
 </section>
 
@@ -761,7 +764,7 @@
       <h2 id="z4-knowledge-title">Oddzielna zbiórka <em>bioodpadów</em></h2>
       <div class="text-block" id="audio-z4_t1">
         <p>Korzystamy z zasad systemu organizowanego przez Związek Międzygminny SELEKT. Odpady spod domów odbierają firmy działające na jego zlecenie. W innym miejscu sprawdź zasady tamtejszej zbiórki.</p>
-        <p>W tej lekcji wybrane bioodpady oddajemy luzem, bez opakowań. Zawartość brązowego pojemnika trafia do dalszego zagospodarowania — nie jest jeszcze gotowym kompostem. <span class="fn" hidden>[<a href="#sources-list" data-source="S9">S9</a>]</span></p>
+        <p>W tej lekcji wybrane bioodpady oddajemy luzem, bez opakowań. Zawartość brązowego pojemnika trafia do dalszego zagospodarowania - nie jest jeszcze gotowym kompostem. <span class="fn" hidden>[<a href="#sources-list" data-source="S9">S9</a>]</span></p>
       </div>
     </div>
     <article class="rules-card" id="z4-rules" aria-labelledby="z4-rules-title">
@@ -774,7 +777,7 @@
       <p class="small-note">To wybór przykładów, nie pełna lista.<span class="fn" hidden> [S9]</span> Data sprawdzenia katalogu: 13.09.2026. Katalog jest podlinkowany w oficjalnym dziale „Jak segregować?”<span class="fn" hidden> [S18]</span>.</p>
       <p class="rules-links">
         <a class="button" data-source-link="S9" target="_blank" rel="noopener">Otwórz katalog SELEKT ↗</a>
-        <a class="text-link" data-source-link="S18" target="_blank" rel="noopener">Jak segregować? — SELEKT ↗</a>
+        <a class="text-link" data-source-link="S18" target="_blank" rel="noopener">Jak segregować? - SELEKT ↗</a>
       </p>
     </article>
   </div>
@@ -787,10 +790,14 @@
       <h2 id="z4-example-title">Obierki <em>i woreczek</em></h2>
       <div class="text-block" id="audio-z4_p1"><p>Obierki pasują do BIO. Woreczek foliowy nie powinien trafić tam razem z nimi. Oddzielamy obierki od opakowania i wrzucamy je luzem.</p></div>
       <button type="button" id="z4-example-play" aria-pressed="false">Zobacz pokaz</button>
-      <p class="selection" id="z4-example-status" role="status">Na stole: miseczka z obierkami i woreczek foliowy, w którym zostały przyniesione.</p>
+      <!-- I52 START z4-przyklad-status -->
+      <p class="selection" id="z4-example-status" role="status">Obierki są w otwartym woreczku foliowym.</p>
+      <!-- I52 END z4-przyklad-status -->
       <a class="text-link" href="#z4-task">Wróć do zadania ↓</a>
     </div>
-    <figure class="figure-card" id="z4-example-art" data-art2="z4-example-start"></figure>
+    <!-- I52 START z4-przyklad-kadr -->
+    <figure class="figure-card" id="z4-example-art"></figure>
+    <!-- I52 END z4-przyklad-kadr -->
   </div>
 </section>
 
@@ -802,7 +809,7 @@
         <h2 id="z4-task-title">Przygotuj zawartość <em>pojemnika.</em></h2>
       </div>
       <div>
-        <div class="text-block" id="audio-z4_command"><p class="command">Przygotuj odpady do odbioru. Przeciągnij elementy do „BIO” albo do „Poza BIO — dalsza segregacja”. Przy woreczku z obierkami najpierw wybierz „Oddziel opakowanie”. Korzystaj z widocznej karty zasad.</p></div>
+        <div class="text-block" id="audio-z4_command"><p class="command">Przygotuj odpady do odbioru. Przeciągnij elementy do „BIO” albo do „Poza BIO - dalsza segregacja”. Przy woreczku z obierkami najpierw wybierz „Oddziel opakowanie”. Korzystaj z widocznej karty zasad.</p></div>
         <details class="method-help" data-help="z4-task" id="z4-help-drag">
           <summary>Jak to zrobić bez przeciągania?</summary>
           <p>Wybierz odpad, a potem przycisk „Umieść tutaj” w polu.</p>
@@ -832,7 +839,7 @@
         </div>
       </aside>
       <div class="task-main">
-        <p class="small-note">To odpady już powstałe — zadanie nie zachęca do wyrzucania jadalnej żywności.</p>
+        <p class="small-note">To odpady już powstałe - zadanie nie zachęca do wyrzucania jadalnej żywności.</p>
         <div id="z4-board"></div>
         <div class="disposal-box" id="z4-disposal" hidden>
           <div class="text-block" id="audio-z4_disposal"><p>Poza BIO nie oznacza jednego wspólnego kosza. Woreczek jest opakowaniem, a resztki jedzenia to inne odpady. Sprawdź ich dalszą drogę w instrukcji SELEKT.</p></div>
@@ -895,7 +902,8 @@
     <h2 id="z5-knowledge-title">Dwa różne <em>miejsca</em></h2>
     <div class="text-block narrow" id="audio-z5_t1">
       <p>Brązowy pojemnik i domowy kompostownik to dwa różne miejsca. Osoba prowadząca kompostownik dobiera składniki i dba o warunki. Nie przenoś automatycznie listy odpadów BIO do kompostownika.</p>
-      <p>Kompostowanie to rozkład materii organicznej z udziałem organizmów, przede wszystkim mikroorganizmów. W naszym kompostowniku potrzebne są odpowiednie składniki, tlen i wilgoć. Kompost może wzbogacać glebę w materię organiczną. <span class="fn" hidden>[<a href="#sources-list" data-source="S10">S10</a>, <a href="#sources-list" data-source="S11">S11</a>]</span></p>
+      <p>Obierki i liście są przykładami materii organicznej. W kompostowniku rozkładają ją organizmy, przede wszystkim mikroorganizmy, niewidoczne gołym okiem. Ten proces nazywamy kompostowaniem.</p>
+      <p>W naszym kompostowniku potrzebne są odpowiednie składniki, tlen i wilgoć. Kompost może wzbogacać glebę w materię organiczną. <span class="fn" hidden>[<a href="#sources-list" data-source="S10">S10</a>, <a href="#sources-list" data-source="S11">S11</a>]</span></p>
     </div>
     <h3 class="subhead">Przekrój: z czego zaczynamy?</h3>
     <div class="two-col compost-layout">
@@ -912,7 +920,7 @@
     <p class="eyebrow">Co zachodzi dalej?</p>
     <h2 id="z5-process-title">Proces <em>w czasie</em></h2>
     <div class="text-block narrow" id="audio-z5_t2">
-      <p>Zobacz, jak zmieniają się składniki. Pokaz przyspiesza czas — kompost nie powstaje po kilku ruchach. <span class="fn" hidden>[<a href="#sources-list" data-source="S11">S11</a>, <a href="#sources-list" data-source="S10">S10</a>]</span></p>
+      <p>Zobacz, jak zmieniają się składniki. Pokaz przyspiesza czas - kompost nie powstaje po kilku ruchach. <span class="fn" hidden>[<a href="#sources-list" data-source="S11">S11</a>, <a href="#sources-list" data-source="S10">S10</a>]</span></p>
     </div>
     <details class="more narrow" data-more="z5_t2" id="more-z5_t2">
       <summary>Dowiedz się więcej: dlaczego materiału ubywa?</summary>
@@ -923,31 +931,40 @@
   </div>
 </section>
 
+<!-- Pakiet 26: pokaz wilgoci — polecenie, obraz i bieżący podpis obok siebie (wąski ekran: pod sobą), sterowanie, legenda, uwaga o modelu, stałe wskazówki, przejście do zadania. -->
 <section class="chapter-section" id="z5-moisture" data-anchor="z5-moisture" data-chapter="Z5" aria-labelledby="z5-moisture-title">
-  <div class="wrap two-col">
-    <div>
-      <p class="eyebrow">02 / Zobacz przykład</p>
-      <h2 id="z5-moisture-title">Wilgoć <em>i powietrze</em></h2>
-      <div class="text-block" id="audio-z5_t3"><p>Bardzo suchy materiał utrudnia aktywność organizmów. Można go umiarkowanie zwilżyć i przemieszać, zamiast zalewać wodą. Nadmiar wody może z kolei wypełniać przestrzenie potrzebne dla powietrza. W praktyce materiał powinien być wilgotny, ale nie zalany. Zbicie i nadmierna wilgoć mogą wymagać dodania suchego materiału oraz rozluźnienia zawartości. <span class="fn" hidden>[<a href="#sources-list" data-source="S10">S10</a>, <a href="#sources-list" data-source="S11">S11</a>]</span></p></div>
-    </div>
-    <div class="example-card">
-      <div class="text-block" id="audio-z5_moisture_command"><p class="command">Przesuń suwak wilgoci. Zobacz, co zmienia się między składnikami.</p></div>
+  <div class="wrap moisture-wrap">
+    <p class="eyebrow">02 / Zobacz przykład</p>
+    <h2 id="z5-moisture-title">Wilgoć <em>i powietrze</em></h2>
+    <div class="text-block" id="audio-z5_moisture_command"><p class="command">Przesuń suwak lub wybierz stan. Zobacz, jak woda zmienia warunki między składnikami.</p></div>
+    <div class="moisture-scene">
       <figure class="moisture-figure" id="z5-moisture-art" data-art2="moisture-moist"></figure>
-      <div class="moisture-controls">
-        <input type="range" id="z5-moisture-range" min="0" max="2" step="1" value="1" aria-label="Wilgotność w pokazie" aria-valuetext="Wilgotno">
-        <div class="depth-buttons" role="group" aria-label="Pozycje suwaka wilgoci">
-          <button type="button" data-moisture="0">Bardzo sucho</button>
-          <button type="button" data-moisture="1">Wilgotno</button>
-          <button type="button" data-moisture="2">Zalane</button>
+      <div class="moisture-current">
+        <p class="moisture-state" id="z5-moisture-state">Wilgotno</p>
+        <div class="moisture-captions">
+          <div class="text-block moisture-caption" id="audio-z5_moisture_dry" data-state="0" hidden><p>Składniki są bardzo suche. Brakuje wilgoci potrzebnej mikroorganizmom do rozkładu materii.</p></div>
+          <div class="text-block moisture-caption" id="audio-z5_moisture_moist" data-state="1"><p>Składniki są wilgotne. Między nimi pozostaje miejsce na powietrze potrzebne do kompostowania.</p></div>
+          <div class="text-block moisture-caption" id="audio-z5_moisture_wet" data-state="2" hidden><p>Nadmiar wody wypełnia przestrzenie między składnikami i utrudnia dostęp powietrza.</p></div>
         </div>
       </div>
-      <div class="moisture-captions">
-        <div class="text-block moisture-caption" id="audio-z5_moisture_dry" data-state="0" hidden><p>Brakuje wilgoci potrzebnej do rozkładu.</p></div>
-        <div class="text-block moisture-caption" id="audio-z5_moisture_moist" data-state="1"><p>Materiał jest wilgotny, a między składnikami pozostaje miejsce na powietrze.</p></div>
-        <div class="text-block moisture-caption" id="audio-z5_moisture_wet" data-state="2" hidden><p>Nadmiar wody utrudnia dostęp powietrza.</p></div>
-      </div>
-      <p class="small-note">Zmieniamy tylko wilgoć. Pokaz wyjaśnia zależność, nie mierzy wydajności.</p>
     </div>
+    <div class="moisture-controls">
+      <input type="range" id="z5-moisture-range" min="0" max="2" step="1" value="1" aria-label="Wilgotność w pokazie" aria-valuetext="Wilgotno">
+      <div class="depth-buttons" role="group" aria-label="Pozycje suwaka wilgoci">
+        <button type="button" data-moisture="0" aria-pressed="false">Bardzo sucho</button>
+        <button type="button" data-moisture="1" aria-pressed="true">Wilgotno</button>
+        <button type="button" data-moisture="2" aria-pressed="false">Zalane</button>
+      </div>
+    </div>
+    <p class="small-note moisture-legend" id="z5-moisture-legend"><span class="legend-item"><span class="legend-swatch legend-parts" aria-hidden="true"></span>Składniki</span> • <span class="legend-item"><span class="legend-swatch legend-water" aria-hidden="true"></span>Woda</span> • <span class="legend-item"><span class="legend-swatch legend-air" aria-hidden="true"></span>Przestrzenie z powietrzem</span></p>
+    <p class="small-note moisture-model-note" id="z5-moisture-note">Schemat: zmieniamy ilość wody, nie skład mieszanki. To nie jest pomiar wilgotności ani tempa rozkładu.</p>
+    <h3 id="z5-help-title">Jak pomóc, gdy warunki są niewłaściwe?</h3>
+    <div class="text-block moisture-help" id="audio-z5_t3">
+      <p>Suchy materiał potrzebuje wilgoci. Umiarkowanie go zwilż i przemieszaj. Nie zalewaj wodą.</p>
+      <p>Gdy materiał jest nadmiernie wilgotny i zbity, powietrze ma utrudniony dostęp. Dodaj suchy materiał, na przykład suche liście, oraz delikatnie rozluźnij i przemieszaj zawartość. Nie dodawaj kolejnych mokrych resztek.</p>
+      <p>Wilgoć i powietrze to dwa z warunków kompostowania. Ważne są też składniki. <span class="fn" hidden>[<a href="#sources-list" data-source="S10">S10</a>, <a href="#sources-list" data-source="S11">S11</a>]</span></p>
+    </div>
+    <a class="button primary" id="z5-to-task" href="#z5-task">Przejdź do zadania <span aria-hidden="true">↓</span></a>
   </div>
 </section>
 
@@ -1032,7 +1049,7 @@
           <button type="button" id="z5-worms-play" aria-pressed="false">Zobacz mieszkańców</button>
         </div>
         <figure class="figure-card" id="z5-worms-art" data-art2="worm-bin">
-          <figcaption class="small-note">Oddzielny pojemnik do wermikompostowania — inny niż ogrodowy kompostownik z przekroju.</figcaption>
+          <figcaption class="small-note">Oddzielny pojemnik do wermikompostowania - inny niż ogrodowy kompostownik z przekroju.</figcaption>
         </figure>
       </div>
     </details>
@@ -1128,7 +1145,7 @@
 
 <dialog class="zoom-dialog" id="z6-zoom" aria-labelledby="z6-zoom-title">
   <div class="dialog-head">
-    <h2 id="z6-zoom-title">Wykreślanka — widok powiększony</h2>
+    <h2 id="z6-zoom-title">Wykreślanka - widok powiększony</h2>
     <button type="button" id="z6-zoom-close">Zamknij</button>
   </div>
   <p class="small-note">Obszar siatki przewija się osobno. Wskaż pierwszą i ostatnią literę słowa.</p>
@@ -1196,7 +1213,7 @@
       </div>
       <div class="result-actions">
         <a class="button accent" href="#password"><span data-cards-text="goToCards"></span> <span aria-hidden="true">↓</span></a>
-        <a class="button ghost" href="#memory">Zagraj dodatkowo w memory — około 3–5 minut</a>
+        <a class="button ghost" href="#memory">Zagraj dodatkowo w memory - około 3–5 minut</a>
         <a class="button ghost" href="#z6-meanings">Przeczytaj wyjaśnienia ↑</a>
       </div>
     </div>
@@ -1221,7 +1238,7 @@
       <button type="button" id="memory-close" disabled>Zapamiętaj i zakryj</button>
       <span class="solved-count" id="memory-count">Znalezione pary: 0 z 8</span>
     </div>
-    <p class="memory-legend"><span aria-hidden="true">◆</span> Sytuacja — ilustracja z podpisem · <span aria-hidden="true">●</span> Działanie — karta z przypomnieniem</p>
+    <p class="memory-legend"><span aria-hidden="true">◆</span> Sytuacja - ilustracja z podpisem · <span aria-hidden="true">●</span> Działanie - karta z przypomnieniem</p>
     <p class="feedback" id="memory-status" role="status">Odkryj pierwszą kartę.</p>
     <ul class="memory-grid" id="memory-grid" aria-label="Karty memory"></ul>
     <div class="result-actions">
@@ -1305,7 +1322,7 @@
         <label for="diploma-name">Imię</label>
         <input type="text" id="diploma-name" autocomplete="off" spellcheck="false" maxlength="60" aria-describedby="diploma-name-note diploma-preview-line">
         <p class="small-note" id="diploma-name-note">Podaj tylko imię, bez nazwiska, do 40 znaków. Nie zapisujemy go ani nie wysyłamy.</p>
-        <p class="preview-line" id="diploma-preview-line">Podgląd zapisu: <span id="diploma-preview">—</span></p>
+        <p class="preview-line" id="diploma-preview-line">Podgląd zapisu: <span id="diploma-preview">-</span></p>
         <div class="diploma-buttons">
           <button type="button" class="primary" id="diploma-make">Przygotuj dyplom</button>
           <button type="button" id="diploma-noname">Dyplom bez imienia</button>
@@ -1400,7 +1417,7 @@
     <a href="#entry" data-map-link>Otwarcie</a>
     <a href="#intro-film" data-map-link>Film wprowadzający</a>
     <a href="#mission" data-map-link>Instrukcja misji</a>
-    <a href="#memory" data-map-link>Memory — dodatek</a>
+    <a href="#memory" data-map-link>Memory - dodatek</a>
     <a href="#password" data-map-link data-cards-text="map"></a>
     <a href="#closing" data-map-link>Zakończenie</a>
     <button type="button" id="map-restart">Zacznij od nowa</button>
@@ -1435,7 +1452,9 @@
 <script src="data/audio-manifest.js"></script>
 <script src="data/films-manifest.js"></script>
 <script src="data/media-config.js"></script>
+<script src="data/z1-assets.js"></script>
 <script src="js/progress.js"></script>
+<script src="js/z1-assets.js"></script>
 <script src="js/art.js"></script>
 <script src="js/art2.js"></script>
 <script src="js/art3.js"></script>
@@ -1443,14 +1462,25 @@
 <script src="js/story.js"></script>
 <script src="js/task-match.js"></script>
 <script src="js/task-sort.js"></script>
+<!-- I52 START skrypty-z3-z4 -->
+<script src="js/z3-layout.js"></script>
+<script src="js/z4-assets.js"></script>
+<script src="js/z4-drag.js"></script>
+<!-- I52 END skrypty-z3-z4 -->
 <script src="js/chapters.js"></script>
 <script src="js/wordsearch.js"></script>
 <script src="js/chapter6.js"></script>
 <script src="js/rewards.js"></script>
 <script src="js/memory.js"></script>
-<script src="js/shoe-editor.js"></script>
+<!-- I57 START usun-skrypt-2d -->
+<!-- I57 END usun-skrypt-2d -->
 <script src="js/diploma.js"></script>
 <script src="js/finale.js"></script>
 <script src="js/app.js"></script>
+<!-- I52 START skrypty-z2 -->
+<script src="js/module3d-common.js"></script>
+<script src="js/shoe3d-host.js"></script>
+<script src="js/cleaning-host.js"></script>
+<!-- I52 END skrypty-z2 -->
 </body>
 </html>

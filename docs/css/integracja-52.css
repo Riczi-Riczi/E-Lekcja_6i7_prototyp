@@ -1,0 +1,101 @@
+/* Integracja 52 (polecenie 55): style nowych elementów wyłącznie pod ich własnymi identyfikatorami.
+   Etap I: dodatki 3D w Z2 (#shoe3d-*, #clean3d-*). Bez globalnego resetu i bez zmian stylów innych rozdziałów. */
+
+#shoe3d-module { margin: 0 0 24px; padding: 18px 20px; border: 1px solid #cdd8c4; border-radius: 16px; background: #f6f8f1; }
+#shoe3d-intro { display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; justify-content: space-between; }
+#shoe3d-intro p { margin: 0; max-width: 62ch; }
+#shoe3d-bar, #clean3d-bar { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; justify-content: space-between; margin: 0 0 10px; }
+#shoe3d-title, #clean3d-title { margin: 0; }
+#shoe3d-title:focus-visible, #clean3d-title:focus-visible { outline: 3px solid #b95516; outline-offset: 4px; }
+#shoe3d-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+#shoe3d-module button, #clean3d-module button { min-height: 48px; min-width: 48px; }
+#shoe3d-status, #clean3d-status { min-height: 1.5em; margin: 0 0 10px; font-size: 15px; }
+#shoe3d-frame iframe, #clean3d-frame iframe { display: block; width: 100%; height: 640px; border: 0; border-radius: 14px; background: #e9eee3; }
+#shoe3d-fail, #clean3d-fail { margin-top: 12px; padding: 14px 16px; border: 1px solid #d8c7a8; border-radius: 12px; background: #fbf6ec; }
+#shoe3d-fail p, #clean3d-fail p { margin: 0 0 10px; }
+#shoe3d-file, #clean3d-file { margin: 0; flex-basis: 100%; font-size: 15px; }
+
+#clean3d-module { margin: 32px 0 0; padding: 20px 22px; border: 1px solid #cdd8c4; border-radius: 16px; background: #f6f8f1; }
+#clean3d-heading { margin: 0 0 8px; }
+#clean3d-lead { margin: 0 0 8px; max-width: 70ch; font-weight: 600; }
+#clean3d-note, #clean3d-locked { margin: 0 0 12px; max-width: 70ch; font-size: 15px; }
+#clean3d-work { margin-top: 16px; }
+#clean3d-fail ol { margin: 0 0 10px; padding-left: 22px; }
+
+@media (max-width: 600px) {
+  #shoe3d-module, #clean3d-module { padding: 14px 12px; }
+  #shoe3d-actions, #shoe3d-actions button, #shoe3d-open, #clean3d-open, #clean3d-close { width: 100%; }
+}
+
+/* Etap II: mapa Z3 (#z3-board), ilustracje i gesty Z4 (#z4-board, #z4-entry, #z4-example, .z4-drag-*). */
+
+/* Z3 — jedna przeszłość, punkt „Dzisiaj”, dwie odnogi z „LUB”. Rozmiar pól nie koduje emisji. */
+#z3-board .z3-map-zones { display: block; }
+#z3-board .z3-map-zones > .zone-past { max-width: 760px; margin: 0 auto; }
+#z3-board .z3-map-today { position: relative; display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 28px 0 30px; text-align: center; pointer-events: none; }
+#z3-board .z3-map-today::before { content: ""; position: absolute; top: 0; left: calc(50% - 1px); width: 2px; height: 28px; background: #7C8877; }
+#z3-board .z3-map-today::after { content: ""; position: absolute; bottom: 0; left: calc(50% - 1px); width: 2px; height: 30px; background: #7C8877; }
+#z3-board .z3-map-today-label { display: inline-block; padding: 8px 26px; border-radius: 40px; background: #163B31; color: #fff; font-weight: 650; font-size: 18px; }
+#z3-board .z3-map-today-note { font-size: 15px; color: #3F5247; }
+#z3-board .z3-map-branches { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 0 18px; align-items: start; padding-top: 34px; }
+#z3-board .z3-map-branches::before { content: ""; position: absolute; top: 0; left: calc(25% - 22px); right: calc(25% - 22px); height: 2px; background: #7C8877; pointer-events: none; }
+#z3-board .z3-map-branch { position: relative; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+#z3-board .z3-map-link { position: absolute; top: -34px; left: calc(50% - 1px); width: 2px; height: 34px; background: #7C8877; pointer-events: none; }
+#z3-board .z3-map-tag { align-self: flex-start; padding: 3px 10px; border-radius: 20px; border: 1px solid #7C8877; background: #fff; font-size: 14px; font-weight: 650; letter-spacing: .04em; text-transform: uppercase; color: #163B31; pointer-events: none; }
+#z3-board .z3-map-branch-new .z3-map-tag { border-style: dashed; }
+#z3-board .z3-map-or { align-self: center; padding: 6px 10px; border-radius: 20px; background: #F8C945; color: #163B31; font-weight: 750; font-size: 15px; letter-spacing: .06em; pointer-events: none; }
+#z3-board .z3-map-branch-repair > .zone { background: #EDF3E6; }
+#z3-board .z3-map-branch-new > .zone { background: #F6EFDF; border-style: dashed; }
+
+@media (max-width: 800px) {
+  /* Telefon: obie odnogi wychodzą z tej samej pionowej linii po lewej; „LUB” na tej linii między nimi. */
+  #z3-board .z3-map-today { align-items: flex-start; padding-left: 0; }
+  #z3-board .z3-map-today::before, #z3-board .z3-map-today::after { left: 26px; }
+  #z3-board .z3-map-branches { display: flex; flex-direction: column; gap: 18px; padding: 0 0 0 52px; }
+  #z3-board .z3-map-branches::before { top: 0; bottom: 0; left: 26px; right: auto; width: 2px; height: auto; }
+  #z3-board .z3-map-link { top: 22px; left: -26px; width: 26px; height: 2px; }
+  #z3-board .z3-map-or { position: relative; z-index: 1; align-self: flex-start; width: 52px; text-align: center; margin-left: -52px; padding: 6px 0; }
+}
+
+/* Z4 — wejście i przykład z ilustracjami rejestru. Pełne obiekty (object-fit: contain), stałe proporcje. */
+#z4-entry .z4-entry-bin { display: block; width: auto; max-width: 100%; height: clamp(220px, 32vw, 360px); aspect-ratio: 540 / 1015; margin: 0 auto; object-fit: contain; }
+#z4-example .z4-example-row { display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
+#z4-example .z4-example-item { display: block; width: min(260px, 60%); }
+#z4-example .z4-example-single { width: min(420px, 100%); }
+#z4-example .z4-img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: contain; }
+#z4-example .z4-example-bin { display: block; width: min(120px, 26%); }
+#z4-example .z4-img-bin { aspect-ratio: 540 / 1015; }
+#z4-example .z4-example-arrow { font-size: 40px; line-height: 1; color: #163B31; }
+#z4-example .z4-example-apart { display: flex; justify-content: flex-start; margin-top: 18px; padding-top: 14px; border-top: 2px dashed #9AA99C; }
+#z4-example .z4-example-apart .z4-example-item { width: min(200px, 46%); }
+
+/* Z4 — karty z ilustracjami, pojemnik w polu BIO, przeciąganie. */
+#z4-board .item-pick { touch-action: manipulation; }
+#z4-board .item-art { flex: 0 0 96px; width: 96px; }
+#z4-board .item-art .z4-img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: contain; }
+#z4-board .zone-bio .zone-title::before { display: none; }
+#z4-board .z4-zone-bin { display: block; width: 58px; pointer-events: none; }
+#z4-board .z4-zone-bin .z4-img { display: block; width: 100%; height: auto; aspect-ratio: 540 / 1015; object-fit: contain; }
+#z4-board .sort-item { position: relative; }
+#z4-board .z4-drag-handle { display: flex; align-items: center; justify-content: center; gap: 6px; min-width: 48px; min-height: 48px; margin: 4px 8px 8px; padding: 0 12px; border: 1px dashed #8B9E80; border-radius: 10px; color: #3F5247; font-size: 14px; touch-action: none; user-select: none; cursor: grab; }
+#z4-board .z4-drag-grip { font-size: 20px; line-height: 1; }
+#z4-board .z4-drag-over { border-color: #163B31; box-shadow: 0 0 0 3px #7FB0E0; }
+#z4-board .z4-drag-source { opacity: .55; }
+.z4-drag-active, .z4-drag-active * { cursor: grabbing; }
+.z4-drag-ghost { position: fixed; z-index: 400; pointer-events: none; display: flex; align-items: center; gap: 8px; max-width: 220px; padding: 6px 12px 6px 6px; border-radius: 14px; background: #163B31; color: #fff; font-weight: 650; font-size: 15px; box-shadow: 0 8px 24px rgba(0, 0, 0, .25); }
+.z4-drag-ghost-img { width: 64px; height: auto; aspect-ratio: 3 / 2; object-fit: contain; background: #fff; border-radius: 8px; }
+#z4-board .split-button { min-height: 48px; }
+/* I57 START uklad-57 */
+/* Pakiet 57: pracownia wyłącznie 3D i ćwiczenie czyszczenia w przykładzie „But ubrudzony błotem”. */
+#z2-knowledge .example-card #clean3d-module { margin: 18px 0 0; padding: 16px 14px; }
+#z2-knowledge .example-card:has(#clean3d-work:not([hidden])) { grid-column: 1 / -1; }
+#clean3d-heading { margin: 0 0 8px; font-size: 18px; }
+#clean3d-caption { margin: 0 0 8px; }
+#clean3d-note { margin: 0 0 12px; }
+#shoe3d-fail-saved { margin: 0 0 10px; }
+@media (max-width: 600px) {
+  /* Telefon: przy otwartym ćwiczeniu ramka dostaje szerokość karty (narzędzia co najmniej 48 px). */
+  #z2-knowledge .example-card:has(#clean3d-work:not([hidden])) { padding: 12px; }
+  #z2-knowledge .example-card #clean3d-module { padding: 12px 0 0; border: 0; background: transparent; }
+}
+/* I57 END uklad-57 */

@@ -25,11 +25,16 @@
       startMessage: 'Dopasuj działania. Poprawne odpowiedzi zostaną po sprawdzeniu.',
       completeText: 'Wszystkie cztery sytuacje rozwiązane.',
       guidePrefix: function (c, i) { return 'Sytuacja ' + (i + 1); },
+      // Zatwierdzone obiekty Z1: H1 i H2 ten sam obraz `normal`, H3 `repair`, H4 `retired`
+      // — tak samo przed odpowiedzią i po niej. Alty są puste, bo stan opisują teksty kart.
+      // Pod obrazem zostaje osobny wiersz etykiety, ukryty przed czytnikiem jak dotąd.
       imageFor: function (c) {
+        var A = window.GOZ1Assets;
+        var obraz = A && A.has(c.image) ? A.markup(c.image, { sizes: '(min-width: 900px) 360px, 45vw', alt: '' }) : '';
         var tag = '';
-        if (c.image === 'repair') tag = '<span class="case-mark mark-wheel" aria-hidden="true"></span><span class="case-tag" aria-hidden="true">Zużyty bieżnik koła</span>';
-        if (c.image === 'retired') tag = '<span class="case-mark mark-frame" aria-hidden="true"></span><span class="case-tag tag-warn" aria-hidden="true">Ocena serwisu</span>';
-        return '<div class="case-art"><img src="assets/images/hulajnoga-bez-tla-mala.webp" width="600" height="434" loading="lazy" alt="">' + tag + '</div>';
+        if (c.image === 'repair') tag = '<span class="case-tag" aria-hidden="true">Przebita opona</span>';
+        if (c.image === 'retired') tag = '<span class="case-tag tag-warn" aria-hidden="true">Ocena serwisu</span>';
+        return '<div class="case-art case-art-z1">' + obraz + tag + '</div>';
       }
     });
     tasks.Z2 = window.GOZMatchTask.create({
@@ -66,7 +71,7 @@
         hot.style.left = (pt.x / 1671 * 100) + '%';
         hot.style.top = (pt.y / 941 * 100) + '%';
         hot.setAttribute('aria-pressed', 'false');
-        hot.setAttribute('aria-label', 'Punkt ' + (i + 1) + ': ' + pt.place + ' — przypadek ' + c.id);
+        hot.setAttribute('aria-label', 'Punkt ' + (i + 1) + ': ' + pt.place + ' - przypadek ' + c.id);
         hot.dataset.point = pt.id;
         stage.appendChild(hot);
         var li = el('li', 'observation');
@@ -196,6 +201,10 @@
       prefix: 'z3', anchor: 'z3-task', layoutClass: 'layout-z3',
       poolTitle: 'Karty etapów',
       zones: D.zones, caption: D.mapCaption,
+      // I52 START z3-mapa
+      // Integracja 52: mapa czasu i alternatyw (js/z3-layout.js) — opakowanie idempotentne, bez zmiany stanu i oceny.
+      afterRender: function () { window.GOZZ3Layout.apply($('z3-board')); },
+      // I52 END z3-mapa
       startMessage: 'Umieść pięć kart. Poprawne odpowiedzi zostaną po sprawdzeniu.',
       items: function () { return K.Z3.items; },
       item: function (id) { return byId(D.items, id); },
@@ -272,7 +281,7 @@
         box.textContent = 'Karta „' + byId(D.items, id).label + '”: ' + (id === 'C1' ? D.messages.futureInPast : D.messages.scope) + ' Wybierz kartę, umieść ją w polu i wybierz „Sprawdź”.';
       } else if (!t().conclusionConfirmed) {
         tasks.Z3conc.guide();
-        box.textContent = D.conclusionHelp + ' Porównaj każdą kartę z tym akapitem, przenieś wybraną w pole wniosku i wybierz „Sprawdź”.';
+        box.textContent = D.conclusionHelp + ' Porównaj każdą kartę z tą częścią, przenieś wybraną w pole wniosku i wybierz „Sprawdź”.';
       }
     });
   }
@@ -283,6 +292,10 @@
     var D = window.GOZ_Z4;
     var t = function () { return P.get().tasks.Z4; };
     var splitGuided = false;
+    // I52 START z4-kontroler
+    // Integracja 52: kontroler przeciągania (js/z4-drag.js) przechowywany tutaj i rejestr ilustracji (js/z4-assets.js).
+    var z4Drag = null, A4 = window.GOZZ4Assets;
+    // I52 END z4-kontroler
     tasks.Z4clearSplitGuide = function () { splitGuided = false; };
     Array.prototype.forEach.call(document.querySelectorAll('[data-source-link]'), function (a) { a.href = S[a.dataset.sourceLink].url; });
 
@@ -297,7 +310,9 @@
       poolTitle: 'Odpady do przygotowania', poolEmpty: 'Wszystkie odpady są już w polach.',
       zones: D.zones,
       startMessage: 'Przygotuj odpady. Poprawne odpowiedzi zostaną po sprawdzeniu.',
-      art: function (name) { return window.GOZArt2.z4Item(name); },
+      // I52 START z4-rejestr
+      art: function (name) { return A4.img(name); },
+      // I52 END z4-rejestr
       items: function () { return t().split ? K.Z4.splitItems : K.Z4.initialItems; },
       item: function (id) { return D.items[id]; },
       placement: function (id) { return t().placements[id] || null; },
@@ -314,6 +329,9 @@
       doneText: 'Wszystkie odpady przygotowane zgodnie z kartą.',
       doneLink: { label: 'Zobacz kartę i wniosek ↓', href: '#z4-result' },
       extraButtons: function (id, li) {
+        // I52 START z4-uchwyt
+        if (z4Drag) z4Drag.decorate(id, li);
+        // I52 END z4-uchwyt
         if (id !== K.Z4.splitSource || t().split) return;
         var b = el('button', 'split-button', 'Oddziel opakowanie');
         b.type = 'button';
@@ -348,6 +366,11 @@
         return out;
       },
       onCheck: function () { $('z4-disposal').hidden = false; },
+      // I52 START z4-gesty
+      // Gesty: adapter dostaje wąskie API silnika (place tej samej ścieżki co kliknięcie); każdy render anuluje gest.
+      dragAdapter: function (api) { z4Drag = window.GOZZ4Drag.create(api); },
+      afterRender: function () { if (z4Drag) z4Drag.refresh(); A4.decorateBoard($('z4-board')); },
+      // I52 END z4-gesty
       countText: function (done) { return 'Dobrze przygotowane: ' + done + ' z ' + K.Z4.splitItems.length; }
     });
 
@@ -392,10 +415,19 @@
       $('z4-example-play').setAttribute('aria-pressed', String(done));
       var fig = $('z4-example-art');
       fig.classList.toggle('is-animating', done && !reduced());
-      fig.innerHTML = window.GOZArt2.render(done ? 'z4-example-done' : 'z4-example-start');
+      // I52 START z4-przyklad-kadr
+      A4.renderExample(fig, done, done ? 'Obierki oddzielono od woreczka. Do BIO trafiają luzem; woreczek pozostaje poza nim.' : 'Obierki są w otwartym woreczku foliowym.');
+      // I52 END z4-przyklad-kadr
       $('z4-example-play').textContent = done ? 'Pokaż stan początkowy' : 'Zobacz pokaz';
-      $('z4-example-status').textContent = done ? 'Obierki są w brązowym pojemniku. Woreczek foliowy pozostaje poza nim.' : 'Na stole: miseczka z obierkami i woreczek foliowy, w którym zostały przyniesione.';
+      // I52 START z4-przyklad-opis
+      $('z4-example-status').textContent = done ? 'Obierki oddzielono od woreczka. Do BIO trafiają luzem; woreczek pozostaje poza nim.' : 'Obierki są w otwartym woreczku foliowym.';
+      // I52 END z4-przyklad-opis
     });
+    // I52 START z4-init-grafiki
+    // Ilustracje wejścia i stanu początkowego przykładu z rejestru (zamiast dawnego renderera tych dwóch miejsc).
+    A4.renderEntry(document.querySelector('#z4-entry .entry-figure'));
+    A4.renderExample($('z4-example-art'), false, 'Obierki są w otwartym woreczku foliowym.');
+    // I52 END z4-init-grafiki
   }
 
   // --- Z5 ----------------------------------------------------------------------------------
@@ -452,23 +484,44 @@
       links.appendChild(a);
     });
 
-    // Suwak wilgoci: trzy pozycje, zmiana opisu wstrzymuje nagranie poprzedniego opisu.
+    // Suwak wilgoci (pakiet 26): trzy pozycje; suwak, przyciski i klawiatura ustawiają tę samą wartość.
+    // Synchronizacja: ilustracja z opisem dostępności, nazwa stanu, podpis, aria-valuetext i aria-pressed.
+    // Bez obszaru live, bez automatycznego dźwięku i bez zapisu wartości; zmiana wstrzymuje nagranie ukrywanego podpisu.
     var range = $('z5-moisture-range');
     var names = D.moisture.map(function (m) { return m.name; });
+    var moistureValue = -1;
     function setMoisture(v) {
+      v = Number(v);
       range.value = v;
       range.setAttribute('aria-valuetext', names[v]);
-      $('z5-moisture-art').innerHTML = window.GOZArt2.render('moisture-' + D.moisture[v].id);
+      $('z5-moisture-state').textContent = names[v];
+      if (v !== moistureValue) {
+        var art = $('z5-moisture-art');
+        art.innerHTML = window.GOZArt2.render('moisture-' + D.moisture[v].id);
+        // Krótkie przenikanie 200 ms tylko przy zmianie stanu i pełnym ruchu; przy ograniczonym ruchu natychmiastowa podmiana.
+        art.classList.remove('is-changing');
+        if (moistureValue !== -1 && !reduced()) { void art.offsetWidth; art.classList.add('is-changing'); }
+      }
+      moistureValue = v;
       Array.prototype.forEach.call(document.querySelectorAll('.moisture-caption'), function (cap) {
-        var show = Number(cap.dataset.state) === Number(v);
+        var show = Number(cap.dataset.state) === v;
         if (!show && !cap.hidden) window.GOZMedia.pauseInside(cap);
         cap.hidden = !show;
       });
-      Array.prototype.forEach.call(document.querySelectorAll('[data-moisture]'), function (b) { b.setAttribute('aria-pressed', String(Number(b.dataset.moisture) === Number(v))); });
+      Array.prototype.forEach.call(document.querySelectorAll('[data-moisture]'), function (b) { b.setAttribute('aria-pressed', String(Number(b.dataset.moisture) === v)); });
     }
     range.addEventListener('input', function () { setMoisture(Number(range.value)); });
     Array.prototype.forEach.call(document.querySelectorAll('[data-moisture]'), function (b) { b.addEventListener('click', function () { setMoisture(Number(b.dataset.moisture)); }); });
     setMoisture(1);
+    // „Przejdź do zadania”: zwykłe przejście kotwicą do obecnego #z5-task (nagranie sceny zatrzymuje wspólna obsługa odnośników w app.js);
+    // po przewinięciu fokus trafia na istniejący nagłówek zadania, bez zmian w jego układzie i danych.
+    $('z5-to-task').addEventListener('click', function () {
+      setTimeout(function () {
+        var h = $('z5-task-title');
+        if (!h.hasAttribute('tabindex')) h.setAttribute('tabindex', '-1');
+        h.focus({ preventScroll: true });
+      }, 0);
+    });
 
     function guideText(id, fragment) { var p = $(id); markText(p, p.textContent, fragment); }
     function clearGuideText(id) { var p = $(id); p.textContent = p.textContent; }

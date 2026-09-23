@@ -1,6 +1,6 @@
 // Plik wygenerowany przez tools/build-data.cjs z pakiet_wykonawczy_v1. Nie edytować ręcznie.
 window.GOZ_FINALE_CARDS = {
- "revision": "final-cards-1",
+ "revision": "final-cards-2-typografia34",
  "contentVersion": "3.2-handoff1",
  "texts": {
   "mission_t1": "Przed Tobą sześć zadań. Najpierw poznasz informacje i przykład, potem wykorzystasz je w działaniu. Za każde ukończone zadanie otrzymasz kartę sprawy. Na końcu odsłonisz karty i poznasz hasło do ostatniej wiadomości. Możesz korzystać z pomocy i wracać do treści. Zacznij od historii hulajnogi.",
@@ -8,10 +8,10 @@ window.GOZ_FINALE_CARDS = {
   "heading": "Odkryj wiadomość z przyszłości",
   "missing": "Zdobądź sześć kart, kończąc zadania. Brakujące rozdziały znajdziesz poniżej.",
   "earned": "Zdobywasz kartę {number}: „{title}”.",
-  "earnedReturn": "Karta {number}: „{title}” — zdobyta.",
+  "earnedReturn": "Karta {number}: „{title}” - zdobyta.",
   "progress": "Zdobyte karty: {count} z 6.",
-  "covered": "Karta {number}: „{title}” — zdobyta, jeszcze nieodsłonięta.",
-  "missingCard": "Karta {number}: „{title}” — dokończ rozdział.",
+  "covered": "Karta {number}: „{title}” - zdobyta, jeszcze nieodsłonięta.",
+  "missingCard": "Karta {number}: „{title}” - dokończ rozdział.",
   "finishChapter": "Dokończ rozdział {number}: {chapterTitle}",
   "reveal": "Odsłoń kartę {number}: {title}",
   "revealLast": "Odsłoń ostatnią kartę i uruchom film",

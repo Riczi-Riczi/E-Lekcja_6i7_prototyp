@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f4f5ef"><title>Twój but · SELEKT</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="layout.css">
+  <script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script>
+</head>
+<body>
+  <header><a href="./" class="brand" aria-label="SELEKT - początek">SELEKT<span> / </span>pracownia</a><span class="edition">Próba przestrzenna · 01</span></header>
+  <main>
+    <div class="intro"><p class="eyebrow">JEDEN BUT. TWOJE KOLORY.</p><h1>Spójrz z innej strony.</h1><p>Obróć but, wybierz część i nadaj jej kolor.</p></div>
+    <div class="workbench">
+      <section class="preview" aria-label="Podgląd buta">
+        <div id="viewport"><canvas id="shoe" tabindex="0" aria-label="But 3D. Przeciągnij w bok, aby obrócić. Strzałki obracają widok; Home przywraca widok początkowy." aria-describedby="gesture-hint"></canvas><p id="loading" role="status">Przygotowuję Twój but…</p><span id="chosen" class="chosen" aria-hidden="true">Wybrano: Nosek</span></div>
+        <p id="gesture-hint" class="hint">Przeciągnij w bok, aby obrócić. Kliknij część, aby ją wybrać.</p>
+        <div class="view-tools" aria-label="Sterowanie widokiem">
+          <button id="left" type="button" aria-label="Obróć w lewo">←<span class="desktop-label"> W lewo</span></button><button id="right" type="button" aria-label="Obróć w prawo"><span class="desktop-label">W prawo </span>→</button><button id="home" type="button">Start</button><button id="top-view" type="button">Z góry</button><button id="motion" type="button" aria-pressed="false">Ruch: wyłączony</button>
+        </div>
+      </section>
+      <aside class="controls" aria-label="Kolorowanie buta">
+        <div class="mobile-tabs" role="tablist" aria-label="Narzędzia projektowania"><button id="tab-parts" type="button" role="tab" aria-controls="parts" data-panel="parts">1. Część</button><button id="tab-colors" type="button" role="tab" aria-controls="colors" data-panel="colors">2. Kolor</button><button id="tab-patterns" type="button" role="tab" aria-controls="patterns" data-panel="patterns">3. Wzór</button></div>
+        <fieldset id="parts"><legend><span>01</span> Wybierz część</legend><div class="part-grid"></div></fieldset>
+        <fieldset id="colors"><legend><span>02</span> Nadaj kolor</legend><p class="selection" id="selection">Nosek · Biały</p><div class="paint-target" role="group" aria-label="Co kolorujesz"><button type="button" data-paint="base" aria-pressed="true">Materiał</button><button type="button" data-paint="ink" aria-pressed="false">Wzór</button></div><div id="base-tools"><div id="base-picker"></div><details class="preset-colors"><summary>Gotowe kolory</summary><div class="color-grid"></div></details></div><div id="ink-tools" hidden><p id="ink-help" class="picker-help"></p><div id="ink-picker"></div><details class="preset-colors"><summary>Gotowe kolory wzoru</summary><label for="pattern-color">Wybierz gotowy kolor</label><select id="pattern-color"></select></details></div></fieldset>
+        <fieldset id="patterns"><legend><span>03</span> Dodaj wzór</legend><p class="selection">Na wybranej części buta</p><div class="pattern-grid"></div>
+          <div class="pattern-options" hidden><label for="pattern-size">Wielkość wzoru <output id="size-value">3 / 5</output></label><input id="pattern-size" type="range" min="1" max="5" step="1" value="3" aria-label="Wielkość wzoru"><button id="edit-ink" type="button">Kolor wzoru</button><button id="remove-pattern" type="button">Usuń wzór</button></div>
+        </fieldset>
+        <div class="project-actions">
+        <button id="reset" type="button" class="reset">Przywróć kolory</button>
+        <button id="show-pair" type="button" class="primary-button">Pokaż gotowe buty →</button>
+        </div>
+        <p id="status" role="status" aria-live="polite" class="sr-only"></p>
+      </aside>
+    </div>
+    <div class="presentation-bar" hidden><p>Twój projekt. Gotowy do pokazania.</p><button id="back-edit" type="button" class="primary-button">← Wróć do edycji</button></div>
+  </main>
+  <footer>Eksperci GOZ <span>Odkrywaj · projektuj · używaj dłużej</span></footer>
+  <script type="module" src="app.js"></script>
+</body></html>

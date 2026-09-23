@@ -45,9 +45,9 @@
   // --- Mapa i karty rozdziałów -------------------------------------------------
 
   function chapterStatus(ch) {
-    if (ch.stop) return ch.built ? 'Przystanek bez zadania' : 'W przygotowaniu — wersja robocza';
+    if (ch.stop) return ch.built ? 'Przystanek bez zadania' : 'W przygotowaniu - wersja robocza';
     if (P.isComplete(ch.id)) return 'Ukończone';
-    if (!ch.built) return 'W przygotowaniu — wersja robocza';
+    if (!ch.built) return 'W przygotowaniu - wersja robocza';
     return 'Do wykonania';
   }
 
@@ -131,7 +131,6 @@
     window.GOZChapter6.reset();
     window.GOZRewards.reset();
     window.GOZMemory.reset();
-    window.GOZShoeEditor.reset();
     window.GOZFinale.reset();
     $('migration-banner').hidden = true;
   }
@@ -177,24 +176,40 @@
     Array.prototype.forEach.call(document.querySelectorAll('[data-anchor]'), function (s) { observer.observe(s); });
   }
 
-  // --- Paralaksa otwarcia rozdziału ------------------------------------------------
+  // --- Wejście Z1: montaż sceny i wybór układu -------------------------------------
+  // Scena nie jest już przesuwana przy przewijaniu (decyzja autora, zakres 37b).
+  // Ogólne zerowanie transformacji [data-parallax] w applyMotion() zostaje bez zmian
+  // dla pozostałych elementów aplikacji.
 
-  function parallax() {
-    var bg = document.querySelector('.z1-entry-bg');
-    var section = $('z1-entry');
-    var frame = 0;
-    window.addEventListener('scroll', function () {
-      if (frame) return;
-      frame = requestAnimationFrame(function () {
-        frame = 0;
-        if (reducedMotion() || window.innerWidth <= 800) { bg.style.transform = ''; return; }
-        var r = section.getBoundingClientRect();
-        if (r.bottom < 0 || r.top > window.innerHeight) return;
-        var y = Math.max(-16, Math.min(16, -r.top * 0.04));
-        bg.style.transform = 'translate3d(0,' + y.toFixed(1) + 'px,0)';
-      });
-    }, { passive: true });
-    bg.setAttribute('data-parallax', '');
+  function entryLayout() {
+    var stage = document.querySelector('.z1-entry-stage');
+    if (!stage) return;
+    var content = stage.querySelector('.z1-entry-content');
+    var media = stage.querySelector('.z1-entry-media');
+    if (!content || !media) return;
+    if (window.innerWidth <= 900) { stage.dataset.layout = 'stacked'; return; }
+    // Nakładkę stosujemy tylko wtedy, gdy tekst mieści się na jasnej lewej części
+    // obrazu. Przy powiększonym tekście lub braku miejsca schodzimy w układ pionowy;
+    // liter nie zmniejszamy, żeby wymusić nakładkę.
+    stage.dataset.layout = 'overlay';
+    var wysokoscObrazu = media.getBoundingClientRect().height;
+    var potrzebna = content.scrollHeight;
+    if (!wysokoscObrazu || potrzebna > wysokoscObrazu) stage.dataset.layout = 'stacked';
+  }
+
+  function entryInit() {
+    if (window.GOZ1Assets) window.GOZ1Assets.mountAll($('z1-entry'));
+    entryLayout();
+    var img = document.querySelector('.z1-entry-media img');
+    if (img && !img.complete) {
+      img.addEventListener('load', entryLayout, { once: true });
+      img.addEventListener('error', entryLayout, { once: true });
+    }
+    var timer = null;
+    window.addEventListener('resize', function () {
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(entryLayout, 120);
+    });
   }
 
   // --- Źródła -----------------------------------------------------------------
@@ -293,6 +308,7 @@
   function init() {
     P.init();
     applyMotion();
+    entryInit();
     window.GOZArt.mountAll(document);
     // Teksty kart i nagrody rozdziałów przed montażem nagrań (tekst strony = tekst manifestu).
     window.GOZRewards.init();
@@ -301,7 +317,6 @@
     window.GOZArt3.mountAll(document);
     window.GOZChapter6.init({ reducedMotion: reducedMotion });
     window.GOZMemory.init();
-    window.GOZShoeEditor.init();
     window.GOZFinale.init({ reducedMotion: reducedMotion });
     // Odtwarzacze montujemy po zbudowaniu bloków tworzonych skryptem (karty zadań, obserwacje, składniki, sytuacje Z6).
     window.GOZMedia.init();
@@ -311,7 +326,6 @@
     renderAll();
     renderMigration();
     trackAnchors();
-    parallax();
 
     P.onChange(function (kind) {
       // Zmiany edytora buta i memory nie zmieniają liter ani mapy.

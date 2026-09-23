@@ -38,15 +38,15 @@ window.GOZ_Z1 = {
       }
     },
     {
-      id: 'H3', audio: 'z1_case_3', title: 'Zużyta część', image: 'repair',
-      text: 'Jedno koło ma zużyty bieżnik. Według serwisu rama i hamulec są sprawne, pasująca część jest dostępna, a po jej zamontowaniu i kontroli sprzęt może wrócić do jazdy. Użytkownik nadal go potrzebuje.',
+      id: 'H3', audio: 'z1_case_3', title: 'Przebita opona', image: 'repair',
+      text: 'Przednia opona jest przebita i nie trzyma powietrza. Według serwisu rama i hamulec są sprawne, pasująca część jest dostępna, a po jej zamontowaniu i kontroli sprzęt może wrócić do jazdy. Użytkownik nadal go potrzebuje.',
       decisive: 'pasująca część jest dostępna',
       explanation: 'Problem dotyczy części. Opinia serwisu uzasadnia naprawę i kontrolę, zamiast zastąpienia całej rzeczy.',
       result: 'Rezultat: wymiana koła w serwisie i kontrola przed dalszą jazdą.',
       guidedQuestion: 'Co serwis potwierdził o części i dalszym używaniu?',
       errors: {
         use: 'Stan koła wymaga działania przed powrotem do jazdy. Skorzystaj z oceny serwisu.',
-        share: 'Zmiana właściciela nie usuwa zużycia koła. Najpierw potrzebne jest działanie opisane przez serwis.',
+        share: 'Zmiana właściciela nie usuwa przebicia opony. Najpierw potrzebne jest działanie opisane przez serwis.',
         collect: 'Serwis potwierdził możliwość dalszego korzystania po wymianie części i kontroli. Czy trzeba już rezygnować z całego produktu?'
       }
     },
@@ -56,7 +56,7 @@ window.GOZ_Z1 = {
       decisive: 'nie można przywrócić bezpiecznego użytkowania',
       explanation: 'Nie przekazujemy komuś niesprawnego sprzętu jako gotowego do jazdy. Po właściwej zbiórce część materiałów może zostać odzyskana. Zbiórka rozpoczyna dalszą drogę, ale nie gwarantuje recyklingu wszystkiego.',
       result: 'Rezultat: po zbiórce materiały trafiają do oceny możliwości odzysku.',
-      link: { label: 'Lokalne zasady zbiórki — SELEKT', source: 'S18' },
+      link: { label: 'Lokalne zasady zbiórki - SELEKT', source: 'S18' },
       guidedQuestion: 'Co ocena serwisu mówi o bezpieczeństwie?',
       errors: {
         use: 'Serwis wykluczył bezpieczne użytkowanie. Nie wracamy do jazdy na tym egzemplarzu.',
@@ -79,7 +79,7 @@ window.GOZ_Z1 = {
     { id: 'z1-stage-4', short: 'Używanie', eyebrow: '04 / Używanie', title: 'Dbanie też jest działaniem',
       body: ['Dbaj o hulajnogę zgodnie z instrukcją. Przed zakupem sprawdź, czy wystarczy to, co masz, pożyczenie albo rzecz używana.'], art: 'use' },
     { id: 'z1-stage-5', short: 'Dalsza droga', eyebrow: '05 / Dalsza droga', title: 'Co możemy zachować?',
-      body: ['Sprawna hulajnoga może służyć dalej — Tobie albo komuś innemu. Uszkodzoną można naprawić, jeśli serwis potwierdzi bezpieczeństwo. Po zakończeniu użytkowania potrzebna jest właściwa zbiórka.'], art: 'paths' }
+      body: ['Sprawna hulajnoga może służyć dalej - Tobie albo komuś innemu. Uszkodzoną można naprawić, jeśli serwis potwierdzi bezpieczeństwo. Po zakończeniu użytkowania potrzebna jest właściwa zbiórka.'], art: 'paths' }
   ],
   // Rozgałęzienia piątej stacji (scenariusz 3.1, Z1: trzy dalsze drogi). Nie są warunkiem karty.
   branches: [
