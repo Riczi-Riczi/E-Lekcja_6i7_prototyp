@@ -12,12 +12,12 @@ window.GOZ_Z2 = {
   // Oględziny Z2-I1: dwa przypadki, po dwa punkty. Współrzędne w układzie ilustracji 1671 × 941.
   inspect: [
     { id: 'X', title: 'X - but po spacerze', state: 'mud', points: [
-      { id: 'x1', audio: 'z2_x_observation_1', place: 'Bok', text: 'Na całym materiale zaschło błoto.', x: 1010, y: 470 },
-      { id: 'x2', audio: 'z2_x_observation_2', place: 'Połączenie podeszwy', text: 'Podeszwa przylega, połączenie jest całe. W tym przykładzie potwierdzono sprawność buta.', x: 760, y: 700 }
+      { id: 'x1', audio: 'z2_x_observation_1', place: 'Bok', text: 'Na bucie widać plamy zaschniętego błota.', x: 700, y: 575, offset: [0, -52] },
+      { id: 'x2', audio: 'z2_x_observation_2', place: 'Połączenie podeszwy', text: 'Podeszwa przylega, połączenie jest całe. W tym przykładzie potwierdzono sprawność buta.', x: 950, y: 592, offset: [36, -52] }
     ] },
     { id: 'Y', title: 'Y - but ze szczeliną', state: 'gap', points: [
-      { id: 'y1', audio: 'z2_y_observation_1', place: 'Bok', text: 'Materiał jest cały i czysty.', x: 1010, y: 470 },
-      { id: 'y2', audio: 'z2_y_observation_2', place: 'Połączenie przy nosku', text: 'Podeszwa miejscowo odchodzi od reszty buta.', x: 520, y: 590 }
+      { id: 'y1', audio: 'z2_y_observation_1', place: 'Bok', text: 'Materiał jest cały, z lekkimi śladami zabrudzenia.', x: 1165, y: 390, offset: [52, 0] },
+      { id: 'y2', audio: 'z2_y_observation_2', place: 'Połączenie przy nosku', text: 'Podeszwa miejscowo odchodzi od reszty buta.', x: 412, y: 645, offset: [0, -52] }
     ] }
   ],
   cases: [
@@ -26,7 +26,7 @@ window.GOZ_Z2 = {
       text: 'Cały i sprawny, z zaschniętym błotem.',
       decisive: 'z zaschniętym błotem',
       explanation: 'Problemem jest zabrudzenie. Czyszczenie odpowiada na ten problem; w opisie nie ma usterki połączenia ani potrzeby wymiany buta.',
-      result: 'Rezultat: but X po czyszczeniu, bez warstwy błota.',
+      result: 'Rezultat: but X po czyszczeniu, bez plam błota.',
       guidedQuestion: 'Co jest całe, co wymaga działania i która karta na to odpowiada?',
       errors: {
         paint: 'Farba zmienia wygląd. W tym zadaniu potrzebne jest usunięcie błota.',
@@ -36,10 +36,10 @@ window.GOZ_Z2 = {
     },
     {
       id: 'Y', audio: null, title: 'Y - but ze szczeliną', image: 'gap', solvedImage: 'repaired',
-      text: 'Czysty, z odchodzącą podeszwą; naprawa potwierdzona przez warsztat.',
+      text: 'Lekko zabrudzony, z odchodzącą podeszwą; naprawa potwierdzona przez warsztat.',
       decisive: 'naprawa potwierdzona przez warsztat',
-      explanation: 'Problemem jest połączenie części. Kolor ani samo czyszczenie nie przywrócą jego sprawności. O możliwości naprawy wiemy z oceny warsztatu.',
-      result: 'Rezultat: połączenie podeszwy naprawione i sprawdzone przed dalszym noszeniem.',
+      explanation: 'Głównym problemem jest odchodząca podeszwa. Samo czyszczenie ani malowanie nie naprawią połączenia. O możliwości naprawy wiemy z oceny warsztatu.',
+      result: 'Rezultat: but oczyszczony, a połączenie podeszwy naprawione i sprawdzone przed dalszym noszeniem.',
       link: { label: 'Zobacz pokaz naprawy', href: '#z2-process' },
       guidedQuestion: 'Co jest całe, co wymaga działania i która karta na to odpowiada?',
       errors: {

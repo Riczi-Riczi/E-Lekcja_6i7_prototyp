@@ -11,49 +11,27 @@
     return '<svg class="art-svg ' + (cls || '') + '" viewBox="' + viewBox + '" aria-hidden="true" focusable="false">' + body + '</svg>';
   }
 
-  // --- Z2: but ---------------------------------------------------------------
-  // Stany: clean (sprawny), mud (błoto — nakładka robocza), gap (odchodząca podeszwa — nakładka robocza), repaired.
+  // I69 START z2-funkcje
+  // --- Z2: statyczne ilustracje (polecenie 71) ---------------------------------------
+  // Rastry z rejestru data/z2-assets.js przez GOZ2Assets; bez roboczych nakładek SVG na nowych obrazach.
+  // Opis domyślny pochodzi z dostawy autora; wejście Z2 jest dekoracyjne (pusty alt).
+  // sizes odpowiada zmierzonej szerokości pól (dowody_pakiet_69), srcset wybiera wariant.
+  var Z2_SIZES = {
+    entry: '(max-width: 900px) 100vw, min(56vw, 820px)',
+    inspect: '(max-width: 800px) calc(100vw - 86px), (max-width: 900px) calc(100vw - 106px), (max-width: 1100px) calc(50vw - 90px), min(calc(50vw - 138px), 582px)',
+    card: '(max-width: 800px) calc(100vw - 86px), (max-width: 1100px) calc(50vw - 84px), min(calc(50vw - 298px), 422px)',
+    frame: '(max-width: 800px) calc(100vw - 88px), (max-width: 900px) calc(100vw - 108px), (max-width: 1100px) calc((100vw - 104px) / 3 - 44px), min(calc((100vw - 200px) / 3 - 44px), 370px)',
+    pad: '(max-width: 800px) calc(100vw - 128px), (max-width: 900px) calc(100vw - 172px), 278px'
+  };
+  function z2Image(key, alt, sizes) {
+    return window.GOZ2Assets ? window.GOZ2Assets.markup(key, { alt: alt, sizes: sizes }) : '';
+  }
   function shoe(state, label, small) {
-    var id = 'shoe' + (++uid);
-    var outline = window.GOZ_SHOE.outline;
-    var src = small ? 'assets/images/but-baza-mala.webp' : 'assets/images/but-baza.webp';
-    var overlay = '';
-    if (state === 'mud') {
-      overlay = '<filter id="' + id + 'f"><feTurbulence type="fractalNoise" baseFrequency="0.025" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="38"/></filter><g clip-path="url(#' + id + ')"><g filter="url(#' + id + 'f)" fill="' + BROWN + '" opacity=".62">' +
-        '<path d="M420 560c60-40 140-20 190 10s40 90-30 100-200 20-220-30 0-50 60-80z"/>' +
-        '<path d="M880 430c80-50 190-30 230 20s-10 110-110 110-180-40-170-80 0-30 50-50z"/>' +
-        '<path d="M1180 520c50-30 130-10 150 30s-30 80-100 70-110-40-100-60 10-30 50-40z"/>' +
-        '<path d="M640 470c40-20 90-10 100 20s-20 50-70 45-70-30-60-45 10-15 30-20z"/>' +
-        '<path d="M380 680c80-10 300 0 520 20l20 60c-200 0-420-10-560-30z" opacity=".8"/>' +
-        '<circle cx="1040" cy="640" r="22"/><circle cx="760" cy="600" r="16"/><circle cx="1260" cy="420" r="14"/></g></g>';
-    } else if (state === 'gap') {
-      overlay = '<path d="M346 640C420 622 530 632 640 668L642 684C540 664 450 676 350 700Z" fill="#2A1D14"/>' +
-        '<path d="M350 700C450 676 540 664 642 684" stroke="#F3E3C8" stroke-width="5" fill="none"/>' +
-        '<path d="M346 640C420 622 530 632 640 668" stroke="#8A6A48" stroke-width="3" fill="none"/>';
-    }
-    return svg('0 0 1671 941', label,
-      '<defs><clipPath id="' + id + '"><path d="' + outline + '"/></clipPath></defs>' +
-      '<image href="' + src + '" width="1671" height="941"/>' + overlay);
+    return z2Image(state, label, small ? Z2_SIZES.card : Z2_SIZES.inspect);
   }
-
-  function processFrame(step) {
-    var body = '<rect width="360" height="240" rx="20" fill="#F2F6EA"/>' +
-      '<path d="M40 170C80 140 170 130 250 150L320 170V190H40Z" fill="#FFFFFF" stroke="' + INK + '" stroke-width="5"/>' +
-      '<path d="M40 190H320" stroke="' + INK + '" stroke-width="10" stroke-linecap="round"/>';
-    if (step === 'prep') body += '<path d="M60 176C90 170 120 172 150 180" stroke="' + RUST + '" stroke-width="6" stroke-dasharray="8 8" fill="none"/><rect x="160" y="60" width="90" height="26" rx="8" fill="' + SAND + '"/><path d="M170 86v30M185 86v30M200 86v30M215 86v30M230 86v30" stroke="' + BROWN + '" stroke-width="4"/>';
-    if (step === 'repair') body += '<path d="M60 176C90 170 120 172 150 180" stroke="#37A46B" stroke-width="6" fill="none"/><circle cx="270" cy="70" r="36" fill="#fff" stroke="' + INK + '" stroke-width="5"/><path d="M270 70V46M270 70l18 12" stroke="' + INK + '" stroke-width="5" stroke-linecap="round"/><path d="M40 120h110" stroke="' + INK + '" stroke-width="8" stroke-linecap="round"/><path d="M60 110v24M130 110v24" stroke="' + INK + '" stroke-width="6"/>';
-    if (step === 'check') body += '<path d="M60 176C90 170 120 172 150 180" stroke="#37A46B" stroke-width="6" fill="none"/><circle cx="270" cy="70" r="38" fill="#DDEFC8"/><path d="M250 70l14 14 26-30" stroke="' + INK + '" stroke-width="8" fill="none" stroke-linecap="round"/><circle cx="110" cy="100" r="30" fill="none" stroke="' + INK + '" stroke-width="5"/><path d="M132 122l24 24" stroke="' + INK + '" stroke-width="7" stroke-linecap="round"/>';
-    return deco('0 0 360 240', body);
-  }
-
-  function pad(kind) {
-    var body = '<rect width="300" height="200" rx="18" fill="#F2F6EA"/>' +
-      '<path d="M60 80C70 50 110 44 150 60C190 44 230 50 240 80L262 140C270 170 236 180 216 158L190 130H110L84 158C64 180 30 170 38 140Z" fill="' + (kind === 'padA' ? INK : '#5E6F64') + '"/>' +
-      '<circle cx="104" cy="92" r="12" fill="' + PAPER + '"/><rect x="92" y="80" width="24" height="24" rx="4" fill="none"/><circle cx="196" cy="84" r="8" fill="' + LIME + '"/><circle cx="214" cy="102" r="8" fill="' + LIME + '"/>';
-    if (kind === 'padA') body += '<rect x="176" y="72" width="54" height="44" rx="8" fill="none" stroke="' + LIME + '" stroke-width="3" stroke-dasharray="6 5"/><rect x="236" y="18" width="48" height="60" rx="6" fill="#fff" stroke="' + INK + '" stroke-width="3"/><path d="M246 36h28M246 48h28M246 60h18" stroke="' + INK + '" stroke-width="3"/>';
-    else body += '<circle cx="258" cy="44" r="24" fill="#fff" stroke="#5E6F64" stroke-width="3"/><text x="258" y="54" text-anchor="middle" font-size="28" font-family="system-ui" fill="#5E6F64">?</text>';
-    return deco('0 0 300 200', body);
-  }
+  function processFrame(step) { return z2Image(step, undefined, Z2_SIZES.frame); }
+  function pad(kind) { return z2Image(kind, undefined, Z2_SIZES.pad); }
+  // I69 END z2-funkcje
 
   // --- Z3 ---------------------------------------------------------------------
   function earlierStages() {
@@ -256,14 +234,16 @@
   }
 
   var registry = {
-    'shoe-clean': function () { return shoe('clean', 'Sprawny but, czysty'); },
-    'shoe-mud': function () { return shoe('mud', 'But X: materiał pokryty zaschniętym błotem (nakładka robocza)'); },
-    'shoe-gap': function () { return shoe('gap', 'But Y: podeszwa miejscowo odchodzi przy nosku (nakładka robocza)'); },
+    // I69 START z2-rejestr
+    'shoe-clean': function () { return z2Image('clean', '', Z2_SIZES.entry); },
+    'shoe-mud': function () { return shoe('mud'); },
+    'shoe-gap': function () { return shoe('gap'); },
     'process-prep': function () { return processFrame('prep'); },
     'process-repair': function () { return processFrame('repair'); },
     'process-check': function () { return processFrame('check'); },
     padA: function () { return pad('padA'); },
     padB: function () { return pad('padB'); },
+    // I69 END z2-rejestr
     'z3-visible': visibleScooter,
     'z3-earlier': earlierStages,
     lamp: lamp,

@@ -44,9 +44,13 @@
       numberLabel: function (c) { return c.id; },
       guidePrefix: function (c) { return 'Przypadek ' + c.id; },
       imageFor: function (c, solved) {
-        var state = solved ? 'clean' : c.image;
-        var label = solved ? (c.id === 'X' ? 'But X po czyszczeniu' : 'But Y po naprawie połączenia i kontroli') : (c.id === 'X' ? 'But X z zaschniętym błotem' : 'But Y z odchodzącą podeszwą przy nosku');
-        return '<div class="case-art shoe-art">' + window.GOZArt2.shoeSmall(state, label) + '</div>';
+        // I69 START z2-imagefor
+        // Przed rozwiązaniem obraz c.image (mud / gap), po nim c.solvedImage (clean; repaired = pochodne clean).
+        // Opis obrazu wyniku osobny dla X i Y; przed rozwiązaniem opis domyślny z dostawy autora.
+        var key = solved ? c.solvedImage : c.image;
+        var alt = solved ? (c.id === 'X' ? 'But X po czyszczeniu, bez plam błota.' : 'But Y po oczyszczeniu, naprawie połączenia i kontroli.') : undefined;
+        return '<div class="case-art shoe-art">' + window.GOZArt2.shoeSmall(key, alt) + '</div>';
+        // I69 END z2-imagefor
       }
     });
   }
@@ -68,8 +72,19 @@
       c.points.forEach(function (pt, i) {
         var hot = el('button', 'hotspot', String(i + 1));
         hot.type = 'button';
-        hot.style.left = (pt.x / 1671 * 100) + '%';
-        hot.style.top = (pt.y / 941 * 100) + '%';
+        // I69 START z2-punkty
+        // Znacznik 6 px w miejscu obserwacji (procent pełnego płótna 1671 × 941) i przycisk 48 px odsunięty o offset [dx, dy] px CSS;
+        // środek przycisku ograniczony do [28 px, wymiar płótna - 28 px]. Znacznik jest dekoracyjny: bez zdarzeń i fokusu.
+        var mx = pt.x / 1671 * 100, my = pt.y / 941 * 100, off = pt.offset || [0, 0];
+        var mark = el('span', 'z2-marker');
+        mark.setAttribute('aria-hidden', 'true');
+        mark.style.left = mx + '%';
+        mark.style.top = my + '%';
+        mark.dataset.point = pt.id;
+        stage.appendChild(mark);
+        hot.style.left = 'clamp(28px, calc(' + mx + '% + ' + off[0] + 'px), calc(100% - 28px))';
+        hot.style.top = 'clamp(28px, calc(' + my + '% + ' + off[1] + 'px), calc(100% - 28px))';
+        // I69 END z2-punkty
         hot.setAttribute('aria-pressed', 'false');
         hot.setAttribute('aria-label', 'Punkt ' + (i + 1) + ': ' + pt.place + ' - przypadek ' + c.id);
         hot.dataset.point = pt.id;
@@ -87,6 +102,37 @@
       fig.appendChild(list);
       grid.appendChild(fig);
     });
+    // I69 START z2-prowadnice
+    // Prowadnica: cienka linia od znacznika do krawędzi przycisku, liczona z rzeczywistych prostokątów (także po ograniczeniu
+    // położenia) i przeliczana po zmianie rozmiaru płótna. Tylko geometria dekoracji: postęp i wybór obserwacji bez zmian.
+    function prowadnice(stage) {
+      var svg = stage.querySelector('.z2-guides');
+      if (!svg) {
+        svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svg.setAttribute('class', 'z2-guides');
+        svg.setAttribute('aria-hidden', 'true');
+        svg.setAttribute('focusable', 'false');
+        stage.insertBefore(svg, stage.querySelector('.z2-marker'));
+      }
+      var r = stage.getBoundingClientRect();
+      if (!r.width || !r.height) return;
+      svg.setAttribute('viewBox', '0 0 ' + r.width + ' ' + r.height);
+      var linie = '';
+      Array.prototype.forEach.call(stage.querySelectorAll('.hotspot'), function (hot) {
+        var a = stage.querySelector('.z2-marker[data-point="' + hot.dataset.point + '"]').getBoundingClientRect(), b = hot.getBoundingClientRect();
+        var x1 = a.left + a.width / 2 - r.left, y1 = a.top + a.height / 2 - r.top, x2 = b.left + b.width / 2 - r.left, y2 = b.top + b.height / 2 - r.top;
+        var d = Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)), k = d > 0 ? Math.max(0, d - b.width / 2) / d : 0;
+        var xy = 'x1="' + x1.toFixed(1) + '" y1="' + y1.toFixed(1) + '" x2="' + (x1 + (x2 - x1) * k).toFixed(1) + '" y2="' + (y1 + (y2 - y1) * k).toFixed(1) + '"';
+        linie += '<line class="z2-guide-halo" ' + xy + '/><line class="z2-guide" data-point="' + hot.dataset.point + '" ' + xy + '/>';
+      });
+      svg.innerHTML = linie;
+    }
+    Array.prototype.forEach.call(grid.querySelectorAll('.inspect-stage'), function (stage) {
+      prowadnice(stage);
+      if ('ResizeObserver' in window) new ResizeObserver(function () { prowadnice(stage); }).observe(stage);
+      else window.addEventListener('resize', function () { prowadnice(stage); });
+    });
+    // I69 END z2-prowadnice
     grid.addEventListener('click', function (e) {
       var hot = e.target.closest('.hotspot');
       if (!hot) return;
@@ -104,7 +150,12 @@
       var art = el('div', 'frame-art');
       art.innerHTML = window.GOZArt2.render('process-' + f.id);
       li.appendChild(art);
-      li.appendChild(el('h3', null, (i + 1) + '. ' + f.title));
+      // I69 START z2-zegar
+      // Scena naprawy: mały dekoracyjny zegar przy nagłówku, poza fotografią; textContent nagłówka bez zmian.
+      var h = el('h3', null, (i + 1) + '. ' + f.title);
+      if (f.id === 'repair') { var clock = el('span', 'z2-clock'); clock.setAttribute('aria-hidden', 'true'); h.appendChild(clock); }
+      li.appendChild(h);
+      // I69 END z2-zegar
       li.appendChild(el('p', null, f.text));
       frames.appendChild(li);
     });

@@ -1,6 +1,6 @@
 // Plik wygenerowany przez tools/build-data.cjs z pakiet_wykonawczy_v1/audio_manifest.json. Nie edytować ręcznie.
 window.GOZ_AUDIO_MANIFEST = {
- "version": "1.5",
+ "version": "1.6",
  "contentVersion": "3.2-handoff1",
  "recordingStatus": "texts_prepared_audio_not_generated",
  "clips": [
@@ -525,12 +525,12 @@ window.GOZ_AUDIO_MANIFEST = {
    "domId": "audio-z2_x_observation_1",
    "screen": "z2-inspect",
    "scope": "observation",
-   "text": "Na całym materiale zaschło błoto.",
-   "source": "Z2-I1 / X / punkt 1",
+   "text": "Na bucie widać plamy zaschniętego błota.",
+   "source": "70_DECYZJE_PO_RECENZJI_69.md / redakcja_69/propozycja.json / z2_x_observation_1",
    "expectedFile": "assets/audio/z2_x_observation_1.mp3",
    "src": null,
    "status": "awaiting_recording",
-   "textSha256": "6f502ff27e93428156d70698efd48e6709ec89a4a8b1a9664ca13fa431b7fe7c"
+   "textSha256": "bcf18d92bf461ab24bbbeb3e5c7869f7ad17b115606ed8fe048655b63369a473"
   },
   {
    "id": "z2_x_observation_2",
@@ -549,12 +549,12 @@ window.GOZ_AUDIO_MANIFEST = {
    "domId": "audio-z2_y_observation_1",
    "screen": "z2-inspect",
    "scope": "observation",
-   "text": "Materiał jest cały i czysty.",
-   "source": "Z2-I1 / Y / punkt 1",
+   "text": "Materiał jest cały, z lekkimi śladami zabrudzenia.",
+   "source": "70_DECYZJE_PO_RECENZJI_69.md / redakcja_69/propozycja.json / z2_y_observation_1",
    "expectedFile": "assets/audio/z2_y_observation_1.mp3",
    "src": null,
    "status": "awaiting_recording",
-   "textSha256": "044a705401f7bc4142a50df8460c8f58325029edaf2df43de47ebb68852978f8"
+   "textSha256": "a1cf797d1a4dbc983b2f930cce2409a722cad92bc129519f9f137d6711eb6945"
   },
   {
    "id": "z2_y_observation_2",
