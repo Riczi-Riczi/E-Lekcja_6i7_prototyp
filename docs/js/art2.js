@@ -34,30 +34,19 @@
   // I69 END z2-funkcje
 
   // --- Z3 ---------------------------------------------------------------------
+  // I82 START renderery-z3
+  // Rejestr zasobów zawiera jedyną listę ścieżek; teksty podpisów są HTML.
   function earlierStages() {
-    var icon = function (x, body, name) {
-      return '<g transform="translate(' + x + ' 70)"><circle cx="70" cy="70" r="66" fill="#24594A"/>' + body + '<text x="70" y="176" text-anchor="middle" font-family="system-ui" font-size="20" fill="' + PAPER + '">' + name + '</text></g>';
-    };
-    return svg('0 0 680 300', 'Wcześniejsze etapy: surowce, produkcja, transport - ikony tej samej wielkości',
-      '<rect width="680" height="300" rx="22" fill="#163B31"/>' +
-      icon(20, '<path d="M30 100L60 50L80 70L110 100Z" fill="' + SAGE + '"/><circle cx="96" cy="60" r="12" fill="' + LIME + '"/>', 'Surowce') +
-      icon(250, '<path d="M30 110V60L55 45V60L80 45V60L105 45V110Z" fill="' + SAND + '"/><rect x="45" y="80" width="14" height="14" fill="#163B31"/><rect x="75" y="80" width="14" height="14" fill="#163B31"/>', 'Produkcja') +
-      icon(480, '<rect x="22" y="58" width="62" height="40" rx="4" fill="' + LIME + '"/><path d="M84 70h22l14 16v12H84Z" fill="' + LIME + '"/><circle cx="44" cy="104" r="9" fill="' + PAPER + '"/><circle cx="102" cy="104" r="9" fill="' + PAPER + '"/>', 'Transport') +
-      '<path d="M175 140h60m-12-10 12 10-12 10M405 140h60m-12-10 12 10-12 10" stroke="' + LIME + '" stroke-width="4" fill="none" stroke-linecap="round"/>');
+    return window.GOZ3Assets ? window.GOZ3Assets.comparison('earlier') : '<span class="z3-image-note" role="status">Ilustracja Z3 jest niedostępna. Skorzystaj z opisu w lekcji.</span>';
   }
   function visibleScooter() {
-    return svg('0 0 680 300', 'To, co widzisz: hulajnoga bez silnika',
-      '<rect width="680" height="300" rx="22" fill="#E9F0DE"/><image href="assets/images/hulajnoga-bez-tla-mala.webp" x="190" y="20" width="300" height="217"/><text x="340" y="276" text-anchor="middle" font-family="system-ui" font-size="20" fill="' + INK + '">Hulajnoga podczas jazdy</text>');
+    return window.GOZ3Assets ? window.GOZ3Assets.comparison('visible') : '<span class="z3-image-note" role="status">Ilustracja Z3 jest niedostępna. Skorzystaj z opisu w lekcji.</span>';
   }
   function lamp() {
-    return svg('0 0 640 320', 'Lampka: wspólna przeszłość, potem wymiana klosza albo zakup całej nowej lampki',
-      '<rect width="640" height="320" rx="22" fill="#FFFFFF"/>' +
-      '<rect x="170" y="20" width="300" height="70" rx="14" fill="#EEF2E7" stroke="' + SAGE + '" stroke-width="2"/>' +
-      '<text x="320" y="50" text-anchor="middle" font-family="system-ui" font-size="18" fill="' + INK + '">Już się wydarzyło:</text><text x="320" y="74" text-anchor="middle" font-family="system-ui" font-size="18" fill="' + INK + '">produkcja starej lampki</text>' +
-      '<path d="M270 90L160 140M370 90L480 140" stroke="' + INK + '" stroke-width="3" stroke-dasharray="6 6"/>' +
-      '<g transform="translate(70 140)"><rect width="180" height="160" rx="16" fill="#F2F6EA"/><path d="M60 40h60l20 40H40Z" fill="' + LIME + '" stroke="' + INK + '" stroke-width="3"/><path d="M90 80v44M60 124h60" stroke="' + INK + '" stroke-width="6" stroke-linecap="round"/><text x="90" y="150" text-anchor="middle" font-family="system-ui" font-size="16" fill="' + INK + '">Nowy klosz</text></g>' +
-      '<g transform="translate(390 140)"><rect width="180" height="160" rx="16" fill="#F2F6EA"/><path d="M60 40h60l20 40H40Z" fill="' + SAND + '" stroke="' + INK + '" stroke-width="3"/><path d="M90 80v44M60 124h60" stroke="' + INK + '" stroke-width="6" stroke-linecap="round"/><rect x="20" y="16" width="140" height="120" rx="10" fill="none" stroke="' + RUST + '" stroke-width="3" stroke-dasharray="7 6"/><text x="90" y="150" text-anchor="middle" font-family="system-ui" font-size="16" fill="' + INK + '">Cała nowa lampka</text></g>');
+    return window.GOZ3Assets ? window.GOZ3Assets.lamp() : '<span class="z3-image-note" role="status">Ilustracja Z3 jest niedostępna. Skorzystaj z opisu w lekcji.</span>';
   }
+  // I82 END renderery-z3
+
 
   // --- Ocean -----------------------------------------------------------------
   function oceanSurface() {

@@ -963,3 +963,57 @@ dialog::backdrop { background: #0A1C18AA; }
 #z2-frames .z2-clock::before { height: 34%; transform: translateX(-50%); }
 #z2-frames .z2-clock::after { height: 28%; transform: translateX(-50%) rotate(90deg); }
 /* I69 END z2-grafiki */
+
+/* I82 START grafiki-z3: reguły wyłącznie dwóch miejsc Z3. */
+#z3-knowledge .compare-stage.wide {
+  aspect-ratio: auto;
+  height: 0;
+  padding-top: calc(44.1176470588% + 54px);
+  background: #F5F5EF;
+}
+#z3-knowledge .z3-compare-picture { display: block; width: 100%; height: calc(100% - 54px); object-fit: contain; }
+#z3-knowledge .compare-over { background: #F5F5EF; }
+#z3-knowledge .z3-product-lead {
+  position: absolute; top: 17%; left: 5%; width: 40%; margin: 0;
+  font-size: clamp(18px, 2vw, 26px); font-weight: 750; line-height: 1.25;
+  color: var(--color-ink);
+}
+#z3-knowledge .z3-captions {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  height: 54px; align-items: center; text-align: center;
+  background: var(--color-dark); color: var(--color-on-dark);
+  font-size: 15px; line-height: 1.25; font-weight: 600;
+}
+#z3-knowledge .z3-captions span { padding: 2px 2px; }
+#z3-knowledge .z3-captions-single { grid-template-columns: 1fr; background: #EAF0E1; color: var(--color-ink); }
+/* I83 B-1: osobne wiersze podpisów, bez zlepiania słów na granicy klipu. */
+#z3-knowledge .z3-captions-single span { transform: translateY(-12px); }
+#z3-knowledge .z3-captions:not(.z3-captions-single) span { transform: translateY(12px); }
+#z3-knowledge .z3-image-note, #z3-example .z3-image-note {
+  margin: var(--space-xs) 0; padding: var(--space-sm);
+  background: var(--color-error-bg); color: var(--color-error-ink);
+  border-radius: var(--radius-control); font-size: 15px; line-height: 1.5;
+}
+#z3-knowledge img[data-z3-error], #z3-example img[data-z3-error] { visibility: hidden; }
+#z3-example .z3-lamp { color: var(--color-ink); }
+#z3-example .z3-lamp-state { margin: 0; min-width: 0; }
+#z3-example .z3-lamp-state img { display: block; width: 100%; max-width: 180px; height: auto; aspect-ratio: 1; margin: 0 auto; object-fit: contain; }
+#z3-example .z3-lamp-state figcaption { font-size: 17px; line-height: 1.4; font-weight: 650; text-align: center; }
+#z3-example .z3-lamp-past { max-width: 330px; margin: 0 auto; }
+#z3-example .z3-lamp-past img { max-width: 180px; }
+#z3-example .z3-branch { display: block; width: 68%; height: 36px; margin: var(--space-xs) auto 0; color: var(--color-secondary); }
+#z3-example .z3-futures-title { margin: 0 0 var(--space-sm); text-align: center; font-size: 16px; font-weight: 650; }
+#z3-example .z3-lamp-futures { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: var(--space-xs); }
+#z3-example .z3-lamp-futures .z3-lamp-state { background: var(--color-surface); border: 1px solid var(--color-line); border-radius: var(--radius-control); padding: var(--space-xs); align-self: stretch; }
+#z3-example .z3-or { font-size: 16px; font-weight: 750; text-align: center; }
+@media (max-width: 600px) {
+  #z3-knowledge .example-card { padding: var(--space-md); }
+  #z3-knowledge .z3-product-lead { font-size: 18px; }
+  #z3-knowledge .z3-captions { font-size: 14px; }
+  #z3-example .z3-lamp-futures { grid-template-columns: minmax(0, 1fr); }
+  #z3-example .z3-lamp-futures .z3-lamp-state { display: grid; grid-template-columns: 104px minmax(0, 1fr); align-items: center; gap: var(--space-xs); }
+  #z3-example .z3-lamp-futures .z3-lamp-state figcaption { text-align: left; font-size: 16px; }
+  #z3-example .z3-lamp-futures .z3-lamp-state .z3-image-note { grid-column: 1 / -1; }
+  #z3-example .z3-lamp-past img { max-width: 160px; }
+}
+/* I82 END grafiki-z3 */
