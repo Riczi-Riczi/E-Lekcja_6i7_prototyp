@@ -58,6 +58,7 @@
     return window.GOZOceanAssets ? window.GOZOceanAssets.markup('zoom') : '<span class="ocean-renderer-missing" role="status">Ilustracja jest niedostępna. Skorzystaj z opisu w lekcji.</span>';
   }
   function depthColumn() {
+    if (window.GOZVisualRefresh) return window.GOZVisualRefresh.depth();
     var marks = '';
     [0, 2000, 4000, 6000, 8000, 10890].forEach(function (m) {
       var y = 30 + (m / 10890) * 560;
@@ -157,6 +158,7 @@
       'C' + (cx + rx * 1.1) + ' ' + (cy + ry * 0.8) + ' ' + (cx - rx * 0.2) + ' ' + (cy + ry * 1.2) + ' ' + (cx - rx) + ' ' + cy + 'Z';
   }
   function moistureState(state) {
+    if (window.GOZVisualRefresh) return window.GOZVisualRefresh.moisture(state);
     var flooded = state === 'wet' ? 6 : 0;
     var air = '', water = '', films = '', parts = '';
     MIX_GAPS.forEach(function (g, i) {
@@ -243,6 +245,16 @@
     'kitchen-bio': kitchenBio,
     'ocean-entry': oceanEntry
   };
+
+  // I92: jedna integracja wszystkich pozostałych ilustracji Z5.
+  var remainingKeys = { 'garden-compost': 'z5-01', 'compost-stage-0': 'z5-etap-1', 'compost-stage-1': 'z5-etap-2', 'compost-stage-2': 'z5-etap-3', 'compost-stage-3': 'z5-etap-4', 'wet-before': 'z5-mokry-przed', 'wet-after': 'z5-mokry-po' };
+  function remainingMissing() { return '<span class="remaining-missing" role="status">Ilustracja jest niedostępna. Skorzystaj z opisu w lekcji.</span>'; }
+  Object.keys(remainingKeys).forEach(function (key) {
+    registry[key] = function () { return window.GOZRemainingAssets ? window.GOZRemainingAssets.markup(remainingKeys[key]) : remainingMissing(); };
+  });
+  registry['compost-section'] = function () { return window.GOZRemainingAssets ? window.GOZRemainingAssets.compost() : remainingMissing(); };
+  registry['worm-bin'] = function () { return window.GOZRemainingAssets ? window.GOZRemainingAssets.worms(false) : remainingMissing(); };
+  registry['worm-bin-active'] = function () { return window.GOZRemainingAssets ? window.GOZRemainingAssets.worms(true) : remainingMissing(); };
 
   window.GOZArt2 = {
     render: function (name) { return registry[name] ? registry[name]() : ''; },

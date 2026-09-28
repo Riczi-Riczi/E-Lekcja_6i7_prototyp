@@ -1,4 +1,4 @@
-// Referencyjny wynik dla generatora; projekt 82 do recenzji.
+// Ilustracje Z3 przyjęte w odbiorze 83; nagłówek i LF uporządkowane w integracji 92.
 window.GOZ_Z3_ASSETS = {
  "revision": "z3-grafiki-82-review1",
  "assets": {

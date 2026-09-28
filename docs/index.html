@@ -66,15 +66,9 @@
       <p class="entry-time">Około 60–70 minut. Możesz przerwać i wrócić.</p>
       <p class="small-note">Postęp zapisuje się w tej przeglądarce. Na wspólnym komputerze po skończeniu wybierz „Zacznij od nowa”.</p>
     </div>
-    <figure class="entry-scene">
-      <div class="entry-scene-stage">
-        <div class="entry-ring" aria-hidden="true"></div>
-        <div class="entry-wave" data-art="wave"></div>
-        <img class="entry-scooter" src="assets/images/hulajnoga-bez-tla.webp" width="1200" height="868" alt="Hulajnoga bez silnika - zapowiedź pierwszego rozdziału">
-        <div class="entry-sneaker" data-art="sneaker"></div>
-        <div class="entry-leaf" data-art="leaf"></div>
-      </div>
-      <figcaption>Hulajnoga, but i liść zapowiadają tematy lekcji. Kompozycja robocza z istniejących elementów.</figcaption>
+    <figure class="entry-scene entry-adventure">
+      <div class="entry-scene-stage" data-visual="hero"></div>
+      <figcaption>Sprawdź, napraw, podziel się. Twoja misja zaczyna się tutaj.</figcaption>
     </figure>
   </div>
 </section>
@@ -288,7 +282,6 @@
     <p class="chapter-question"><strong>Pytanie rozdziału:</strong> co trzeba zrobić, żeby but nadawał się do dalszego noszenia?</p>
     <a class="button primary" href="#z2-knowledge">Dowiedz się <span aria-hidden="true">↓</span></a>
   </div>
-  <p class="chapter-entry-caption wrap">Ilustracje robocze: przykładowy model buta bez znaków znanych marek.</p>
 </section>
 
 <nav class="chapter-parts wrap" aria-label="Części rozdziału 2">
@@ -724,7 +717,7 @@
     </div>
     <div class="depth-visual">
       <div class="depth-column" data-art2="ocean-depth"></div>
-      <div class="depth-marker" id="ocean-depth-marker" aria-hidden="true"><span>▶</span></div>
+      <div class="depth-marker depth-probe" id="ocean-depth-marker" aria-hidden="true"><span class="probe-value">0 m</span><svg viewBox="0 0 90 48" focusable="false"><path d="M21 10v-6h42v6M18 36v7h48v-7" fill="none" stroke="#F0CC72" stroke-width="4"/><rect x="12" y="10" width="58" height="27" rx="12" fill="#EDD08A" stroke="#163e34" stroke-width="3"/><circle cx="38" cy="23" r="9" fill="#70D1D3" stroke="#163e34" stroke-width="3"/><path d="M70 19h10v10H70" fill="#A8BBAD"/><path d="M6 16v14M2 23h9" stroke="#F0CC72" stroke-width="3"/></svg></div>
     </div>
   </div>
 
@@ -774,7 +767,7 @@
         <p data-row="outside"><strong>Poza BIO w naszych przykładach:</strong> kości, ości, mięso, ugotowane ziemniaki z sosem, resztki sałatki z oliwą i opakowania.</p>
       </div>
       <div class="text-block" id="audio-z4_rule_note"><p>Jeśli nie znasz zasady dla danego odpadu, sprawdź katalog zamiast zgadywać.</p></div>
-      <p class="small-note">To wybór przykładów, nie pełna lista.<span class="fn" hidden> [S9]</span> Data sprawdzenia katalogu: 13.09.2026. Katalog jest podlinkowany w oficjalnym dziale „Jak segregować?”<span class="fn" hidden> [S18]</span>.</p>
+      <span class="fn" hidden>[S9]</span><span class="fn" hidden>[S18]</span>
       <p class="rules-links">
         <a class="button" data-source-link="S9" target="_blank" rel="noopener">Otwórz katalog SELEKT ↗</a>
         <a class="text-link" data-source-link="S18" target="_blank" rel="noopener">Jak segregować? - SELEKT ↗</a>
@@ -824,7 +817,6 @@
             <p class="eyebrow">Karta zasad SELEKT</p>
             <p data-row="bio"><strong>Do BIO w naszych przykładach:</strong> resztki surowych warzyw i owoców, obierki, ogryzki, skorupki jaj, fusy po kawie i herbacie bez opakowań, liście.</p>
             <p data-row="outside"><strong>Poza BIO w naszych przykładach:</strong> kości, ości, mięso, ugotowane ziemniaki z sosem, resztki sałatki z oliwą i opakowania.</p>
-            <p class="small-note">Wybór przykładów, nie pełna lista. Katalog sprawdzono 13.09.2026.</p>
           </div>
         </details>
         <div class="help-box">
@@ -908,7 +900,7 @@
     <h3 class="subhead">Przekrój: z czego zaczynamy?</h3>
     <div class="two-col compost-layout">
       <figure class="figure-card compost-figure" id="z5-section-art" data-art2="compost-section">
-        <figcaption class="small-note">Przykładowy kompostownik. Warstwy porządkują start; później materiał mieszamy. <span class="fn" hidden>[<a href="#sources-list" data-source="S10">S10</a>, <a href="#sources-list" data-source="S11">S11</a>, <a href="#sources-list" data-source="S16">S16</a>]</span></figcaption>
+        <figcaption class="small-note">Przykładowy przekrój kompostownika. Wybierz nazwę składnika, aby wyróżnić jego przykłady w mieszaninie. Mała porcja dojrzałego kompostu obok pojemnika to opcjonalny dodatek. <span class="fn" hidden>[<a href="#sources-list" data-source="S10">S10</a>, <a href="#sources-list" data-source="S11">S11</a>, <a href="#sources-list" data-source="S16">S16</a>]</span></figcaption>
       </figure>
       <ul class="component-list" id="z5-components"></ul>
     </div>
@@ -956,7 +948,7 @@
         <button type="button" data-moisture="2" aria-pressed="false">Zalane</button>
       </div>
     </div>
-    <p class="small-note moisture-legend" id="z5-moisture-legend"><span class="legend-item"><span class="legend-swatch legend-parts" aria-hidden="true"></span>Składniki</span> • <span class="legend-item"><span class="legend-swatch legend-water" aria-hidden="true"></span>Woda</span> • <span class="legend-item"><span class="legend-swatch legend-air" aria-hidden="true"></span>Przestrzenie z powietrzem</span></p>
+    <p class="small-note moisture-legend" id="z5-moisture-legend"><span class="legend-item">Składniki</span> • <span class="legend-item">Woda</span> • <span class="legend-item">Przestrzenie z powietrzem</span></p>
     <p class="small-note moisture-model-note" id="z5-moisture-note">Schemat: zmieniamy ilość wody, nie skład mieszanki. To nie jest pomiar wilgotności ani tempa rozkładu.</p>
     <h3 id="z5-help-title">Jak pomóc, gdy warunki są niewłaściwe?</h3>
     <div class="text-block moisture-help" id="audio-z5_t3">
@@ -1087,7 +1079,6 @@
     <div>
       <h3 id="z6-dictionary-title">Słownik lekcji</h3>
       <ul class="dictionary" id="z6-dictionary" aria-labelledby="z6-dictionary-title"></ul>
-      <p class="small-note">Ilustracje słownika są roboczymi schematami.</p>
     </div>
   </div>
 </section>
@@ -1455,6 +1446,10 @@
 <script src="data/z1-assets.js"></script>
 <script src="js/progress.js"></script>
 <script src="js/z1-assets.js"></script>
+<script src="data/visual-refresh.js"></script>
+<script src="js/visual-refresh.js"></script>
+<script src="data/remaining-assets.js"></script>
+<script src="js/remaining-assets.js"></script>
 <script src="js/art.js"></script>
 <!-- I69 START z2-skrypty -->
 <script src="data/z2-assets.js"></script>

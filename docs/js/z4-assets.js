@@ -62,6 +62,13 @@
       var title = bio.querySelector('.zone-title');
       if (title && title.nextSibling) bio.insertBefore(span, title.nextSibling); else bio.appendChild(span);
     }
+    var outside = host.querySelector('.zone-outside');
+    if (outside && !outside.querySelector('.z4-zone-not-bio')) {
+      var crossed = document.createElement('span'); crossed.className = 'z4-zone-bin z4-zone-not-bio'; crossed.setAttribute('aria-hidden','true');
+      crossed.innerHTML = img('bin', 'z4-img z4-img-bin') + '<svg viewBox="0 0 100 100" focusable="false"><path d="M12 12L88 88M88 12L12 88" fill="none" stroke="#fff" stroke-width="16" stroke-linecap="round"/><path d="M12 12L88 88M88 12L12 88" fill="none" stroke="#C7352A" stroke-width="10" stroke-linecap="round"/></svg>';
+      var heading = outside.querySelector('.zone-title');
+      if (heading && heading.nextSibling) outside.insertBefore(crossed, heading.nextSibling); else outside.appendChild(crossed);
+    }
   }
 
   window.GOZZ4Assets = { url: url, img: img, renderEntry: renderEntry, renderExample: renderExample, decorateBoard: decorateBoard, ids: Object.keys(PLIKI) };

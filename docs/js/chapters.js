@@ -709,6 +709,8 @@
       range.value = v;
       var txt = v.toLocaleString('pl-PL') + ' m';
       $('ocean-depth-value').textContent = txt;
+      var probeValue = document.querySelector('#ocean-depth-marker .probe-value');
+      if (probeValue) probeValue.textContent = txt;
       range.setAttribute('aria-valuetext', v.toLocaleString('pl-PL') + ' metrów');
       // Znacznik na skali: 30…590 z 620 jednostek wysokości rysunku.
       $('ocean-depth-marker').style.top = ((30 + (v / 10890) * 560) / 620 * 100) + '%';

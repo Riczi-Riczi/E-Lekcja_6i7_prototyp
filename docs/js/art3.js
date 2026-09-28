@@ -61,14 +61,17 @@
     return '';
   }
 
+  function remaining(key, decorative) {
+    return window.GOZRemainingAssets ? window.GOZRemainingAssets.markup(key, { decorative: decorative, sizes: decorative ? '160px' : '(max-width: 900px) 90vw, 600px' }) : '<span class="remaining-missing">Ilustracja jest niedostępna.</span>';
+  }
   window.GOZArt3 = {
-    dictionary: function (name) { return deco('0 0 120 90', dictionary[name] || ''); },
-    memory: function (name) { return deco('0 0 120 90', memory[name] || ''); },
+    dictionary: function (name) { return remaining('z6-' + name, true); },
+    memory: function (name) { return remaining('m1-' + name, true); },
     ornament: ornament,
     ornamentIcon: function (shape) { return deco('0 0 60 60', ornament(shape, 30, 30, 20, '#123E34')); },
     mountAll: function (root) {
       Array.prototype.forEach.call((root || document).querySelectorAll('[data-art3]'), function (node) {
-        if (!node.dataset.artMounted && node.dataset.art3 === 'z6-entry') { node.innerHTML = entry(); node.dataset.artMounted = '1'; }
+        if (!node.dataset.artMounted && node.dataset.art3 === 'z6-entry') { node.innerHTML = remaining('z6-00', false); node.dataset.artMounted = '1'; }
       });
     }
   };

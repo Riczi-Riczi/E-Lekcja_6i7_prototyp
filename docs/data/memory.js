@@ -15,9 +15,9 @@ window.GOZ_MEMORY = {
     start: 'Odkryj pierwszą kartę.',
     oneOpen: 'Odkryto: {c}. Odkryj drugą kartę.',
     match: 'Para! {s} - {a}',
-    miss: 'To nie jest para. Zapamiętaj obie karty i wybierz „Zapamiętaj i zakryj”.',
-    missOpen: 'To nie jest para. Wybierz „Odznacz karty” i spróbuj innej pary.',
-    waitClose: 'Najpierw zakryj nietrafioną parę przyciskiem „Zapamiętaj i zakryj”.',
+    miss: 'To nie jest para. Zapamiętaj karty - za chwilę same się zakryją.',
+    missOpen: 'To nie jest para. Zaznaczenie zniknie za chwilę. Spróbuj innej pary.',
+    waitClose: 'Poczekaj chwilę, aż nietrafiona para się zakryje.',
     done: 'Wszystkie osiem par odnalezione. To był dodatek - możesz wrócić do finału.',
     revealedOn: 'Karty są odkryte. Łącz sytuację z działaniem, wybierając dwie karty.',
     revealedOff: 'Karty są znów zakryte. Znalezione pary pozostają odkryte.'

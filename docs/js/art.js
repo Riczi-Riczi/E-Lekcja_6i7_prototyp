@@ -75,6 +75,10 @@
     }
   };
 
+  // I92: zatwierdzone ilustracje otwarcia, fala pozostaje rysunkiem SVG.
+  ['sneaker', 'leaf'].forEach(function (key, i) {
+    arts[key] = function () { return window.GOZRemainingAssets ? window.GOZRemainingAssets.markup(i ? 'e00-02' : 'e00-01', { decorative: true, sizes: i ? '180px' : '360px' }) : ''; };
+  });
   window.GOZArt = {
     render: function (name) { return arts[name] ? arts[name]() : ''; },
     mountAll: function (root) {

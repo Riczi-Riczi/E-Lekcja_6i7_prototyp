@@ -1,10 +1,11 @@
 // Dodatek M1 — memory 16 kart / 8 par. Specyfikacja: scenariusz 3.2 §9 (M1), pakiet 02 §2 (memory) i §3 (optional.memoryState).
-// Dwie odkryte karty → ocena pary. Nietrafiona para zostaje odkryta do „Zapamiętaj i zakryj”. Bez zegara, prób, rankingów i litery.
+// Dwie odkryte karty → ocena pary. Nietrafiona para zakrywa się po 1800 ms; przycisk może przyspieszyć zakrycie. Bez zegara, prób, rankingów i litery.
 (function () {
   'use strict';
   var P = window.GOZProgress, K = window.GOZ_KEYS, M = window.GOZ_MEMORY;
   var $ = function (id) { return document.getElementById(id); };
-  var open = [], waiting = false, sessionOrder = null;
+  var open = [], waiting = false, sessionOrder = null, closeTimer = null;
+  function cancelClose() { if (closeTimer !== null) { clearTimeout(closeTimer); closeTimer = null; } }
 
   function el(tag, cls, text) { var n = document.createElement(tag); if (cls) n.className = cls; if (text !== undefined && text !== null) n.textContent = text; return n; }
   function fill(template, values) { return template.replace(/\{(\w)\}/g, function (m, k) { return values[k] !== undefined ? values[k] : m; }); }
@@ -72,8 +73,7 @@
         }
         if (isMatched) b.appendChild(el('span', 'memory-badge', '✓ Para'));
       } else {
-        b.appendChild(el('span', 'memory-back', '?'));
-        b.appendChild(el('span', 'memory-number', 'Karta ' + (i + 1)));
+        var back = el('span', 'memory-back', '♻'); back.setAttribute('aria-hidden', 'true'); b.appendChild(back);
       }
       li.appendChild(b);
       grid.appendChild(li);
@@ -106,22 +106,24 @@
       status(fill(M.messages.match, { s: p.situation, a: p.action }) + (all ? ' ' + M.messages.done : ''));
     } else {
       waiting = true;
-      var focusWasCard = document.activeElement && document.activeElement.classList.contains('memory-card');
       render();
       status(revealed() ? M.messages.missOpen : M.messages.miss);
-      if (focusWasCard) $('memory-close').focus({ preventScroll: true });
+      cancelClose();
+      closeTimer = setTimeout(function () { closeTimer = null; closePair(true); }, 1800);
     }
   }
 
-  function closePair() {
+  function closePair(automatic) {
+    cancelClose();
     if (!waiting) return;
+    var restore = automatic !== true && document.activeElement === $('memory-close');
     var last = open[1];
     open = [];
     waiting = false;
     render();
     status(M.messages.start);
     var again = last && document.querySelector('#memory-grid [data-card="' + last + '"]');
-    if (again) again.focus({ preventScroll: true });
+    if (restore && again) again.focus({ preventScroll: true });
   }
 
   window.GOZMemory = {
@@ -132,6 +134,7 @@
       });
       $('memory-close').addEventListener('click', closePair);
       $('memory-reveal').addEventListener('click', function () {
+        cancelClose(); open = []; waiting = false;
         var next = !revealed();
         ensureSaved(function (st) { st.revealed = next; });
         render();
@@ -141,7 +144,7 @@
       if (matched().length === K.memory.pairs.length) status(M.messages.done);
     },
     render: render,
-    reset: function () { open = []; waiting = false; sessionOrder = null; render(); status(M.messages.start); },
+    reset: function () { cancelClose(); open = []; waiting = false; sessionOrder = null; render(); status(M.messages.start); },
     // Do testów: karty w kolejności na planszy.
     order: function () { return order().slice(); }
   };

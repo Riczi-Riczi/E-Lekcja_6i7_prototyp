@@ -1,6 +1,6 @@
 # Eksperci GOZ — podgląd do konsultacji
 
-Interaktywna lekcja dla klas 6–7. Wersja robocza po integracji oceanu i mikroplastików (88), z grafikami Z3 (83) i poprawką etykiety czyszczenia (78). Zakres publikacji 90 z 28.09.2026.
+Interaktywna lekcja dla klas 6–7. Wersja robocza po zbiorczym odbiorze grafik i poprawek 92, wydanie 2, z wcześniejszymi integracjami oceanu (88), Z3 (83) i poprawką etykiety czyszczenia (78). Zakres publikacji 94 z 28.09.2026.
 
 - Adres podglądu: https://lightskyblue-pony-763237.hostingersite.com/
 - Adres zapasowy (GitHub Pages): https://riczi-riczi.github.io/E-Lekcja_6i7_prototyp/
@@ -9,13 +9,16 @@ To podgląd roboczy do oceny, nie finalny materiał do wdrożenia w szkołach. D
 
 ## Co zawiera ta wersja
 
-- Zadania, zapis postępu w przeglądarce, memory i dyplom.
+- Zadania, zapis postępu w przeglądarce i dyplom. Nowe otwarcie przedstawia wspólną naprawę: wymontowane koło obok hulajnogi.
+- Memory: ilustracje i podpisy wyśrodkowane, jednakowy znak recyklingu na rewersach, nietrafiona para zakrywa się po 1,8 sekundy. Trafione pary pozostają odkryte; dostępny także tryb odkrytych kart.
+- Z5: plastikowy kompostownik z dolnym okienkiem, przekrój, składniki, etapy, stany przed/po i dżdżownice. Trzy warianty wilgoci tej samej sceny, w tym stojąca woda przy dnie w stanie zalania.
+- Z6: ilustracje pojęć i powiązane grafiki memory.
 - Z1 z aktualnymi grafikami stacji i przykładów.
-- Ocean i mikroplastiki: ilustracje powierzchni, umownego powiększenia wody i skorupiaka z głębin; lupa przed obrazami oraz dwa doprecyzowane podpisy. Skala głębokości pozostaje schematem SVG. Ilustracje nie są fotografiami z badania ani pomiarem liczby cząstek.
+- Ocean i mikroplastiki: ilustracje powierzchni, umownego powiększenia wody i skorupiaka z głębin; lupa przed obrazami oraz dwa doprecyzowane podpisy. Skala głębokości ma ilustrację krajobrazu podwodnego oraz ruchomą sondę i licznik 0–10 890 m; zachowuje oznaczenie badanego zakresu 7000–10 890 m. Krajobraz jest umowny, a skala nie pokazuje stężenia plastiku. Ilustracje nie są fotografiami z badania ani pomiarem liczby cząstek.
 - Z2 z realistycznymi ilustracjami: oględziny butów X i Y (plamy błota, odchodząca podeszwa) z czterema punktami obsługiwanymi myszą i klawiaturą, obrazy kart przed i po rozwiązaniu zadania, trzy sceny pokazu naprawy w warsztacie oraz pady A/B.
 - Z2: w przykładzie „But ubrudzony błotem” ćwiczenie czyszczenia na modelu 3D (trzy narzędzia). Po ukończeniu Z2 personalizacja buta wyłącznie w 3D: obrót modelu, zmiana kolorów, zapis i odtworzenie projektu.
 - Z3: suwak porównujący hulajnogę z wcześniejszymi etapami (surowce, produkcja, transport) oraz lampka z rozdartym kloszem i alternatywami: wymiana klosza LUB zakup całej nowej lampki. Podpisy suwaka na dwóch poziomach; mapa i zadanie zachowują dotychczasowe działanie.
-- Z4 (BIO) z grafikami, rozdzieleniem opakowania i przeciąganiem albo wyborem kliknięciem.
+- Z4 (BIO) z grafikami, rozdzieleniem opakowania i przeciąganiem albo wyborem kliknięciem. Pole „Poza BIO” pokazuje ten sam brązowy pojemnik przekreślony czerwonym X; nie oznacza pojemnika na odpady zmieszane.
 - W ćwiczeniu czyszczenia etykieta „BUT PO SPACERZE”, bez dawnego „X /” (poprawka 78).
 - Teksty do nagrań w wersji 1.6 (`data/audio-manifest.js`).
 
@@ -24,8 +27,7 @@ Moduły 3D działają po otwarciu strony przez HTTP(S) (nie z pliku na dysku) w 
 ## Znane braki tej wersji
 
 - Brak nagrań MP3 i filmów F01/F02; w lekcji działają wersje tekstowe. Numer wersji 1.6 w `data/audio-manifest.js` oznacza wersję tekstów do nagrań, nie istnienie nagrań.
-- Nowe ilustracje obejmują Z2, dwa widżety Z3 oraz ocean i mikroplastiki. Z5, Z6/memory oraz pozostałe przygotowane ilustracje czekają na odrębne integracje.
-- Oznaczenia „wersja robocza” i placeholder dofinansowania zostają do czasu dostarczenia oryginalnych znaków.
+- Oznaczenia „wersja robocza”, placeholder dofinansowania i roboczy dyplom pozostają do czasu dostarczenia materiałów klienta. Otwarte są również potwierdzenie Z4-D1 i porządkowanie nieużywanych zasobów B-37.
 - Otwarte pozostają realny zoom przeglądarki 200%, fizyczny telefon, Safari (także stan awaryjny ilustracji oceanu), czytnik ekranu (w tym zagnieżdżone ilustracje lampki), sprzętowe GPU oraz próby z uczniem. Emulacja szerokości i DPR nie zastępuje tych prób.
 
 Postęp zapisywany jest lokalnie na urządzeniu. Otwierając stronę w innej przeglądarce lub na innym urządzeniu, rozpoczynasz osobny zapis. Imię dyplomu nie jest zapisywane ani wysyłane przez aplikację.
@@ -49,4 +51,8 @@ Nagłówek `x-hcdn-cache-status` opisuje obsługę cache: HIT oznacza trafienie,
 
 Nie naprawiać starych odpowiedzi przez ponowne Deploy, dodatkowy commit, zmianę DNS lub `.htaccess`. Brak wdrożenia i niespójność CDN to osobne stany; sam odczyt z parametrem zapytania ich nie rozstrzyga. Jeśli Hostinger pozostaje niespójny, zgłosić konkretne pliki, sumy i czasy oraz stan „oczekuje”; adres klienta jest gotowy dopiero po pełnym odbiorze.
 
-Pliki w `docs` są kopią lekcji z folderu roboczego `wdrozenie_v1`. Aktualizacja: `node tools/paczka-hostinger.cjs` (podgląd różnic), potem `--zapisz`, a następnie commit i push w tym repozytorium. Pliki `assets/images/Znaczek-GOZ.png` i `.webp` nie są publikowane: po `--zapisz` usuwa się ich kopie z `docs/`, dlatego podgląd różnic pokazuje je jako „nowe”.
+Aktualizacja 94 korzysta wyłącznie z odebranej paczki `pakiet_wykonawczy_v1/projekt_92/rewizja_2/paczka_publikacyjna/docs/` (298 plików) oraz przypiętego manifestu. Nie uruchamia się starego pakera z publikacji 90. Pliki `assets/images/Znaczek-GOZ.png` i `.webp` są wyłączone z paczki i nie występują w poprzednim commicie `docs/`; nie ma ich kopii do usunięcia.
+
+Znana uwaga zapasowego Pages z odbioru 90: przeglądarka odebrała dodatkowy skrypt poza ścieżką lekcji, którego nie było w Git ani w odczycie HTTP. Źródło różnicy nie zostało ustalone. Przy publikacji 94 ponawia się porównanie w świeżym profilu; wynik i ruch są raportowane jawnie. Nie przypisywać przyczyny dostawcy bez dowodu.
+
+Czyszczenie CDN nie usuwa lokalnego cache przeglądarki. Jeśli po poprawnym odbiorze odbiorca widzi dawny wygląd, należy spróbować wymuszonego odświeżenia lub okna prywatnego; nie jest to powód do kolejnego wdrożenia.

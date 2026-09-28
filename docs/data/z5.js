@@ -3,7 +3,7 @@ window.GOZ_Z5 = {
   id: 'Z5',
   // Podpisy składników i etapów: redakcja A (propozycja.json, z5_component_1…5, z5_stage_1…4); nazwy bez zmian.
   components: [
-    { id: 'twigs', audio: 'z5_component_1', name: 'Drobne gałązki u podstawy', text: 'Pomagają zachować luźną strukturę i dostęp powietrza przy dnie.' },
+    { id: 'twigs', audio: 'z5_component_1', name: 'Drobne gałązki', text: 'Pomagają zachować luźną strukturę i dostęp powietrza przy dnie.' },
     { id: 'brown', audio: 'z5_component_2', name: 'Suche liście i suche części roślin', text: 'To materiał brązowy, bogaty w węgiel. Pomaga równoważyć wilgotne dodatki.' },
     { id: 'green', audio: 'z5_component_3', name: 'Obierki, świeże resztki roślin i niewielkie porcje trawy', text: 'To materiał zielony, zwykle bogatszy w azot i wilgoć. Nazwa nie określa koloru resztek.' },
     { id: 'cardboard', audio: 'z5_component_4', name: 'Rozdrobniony, niepowlekany karton bez taśmy', text: 'Uzupełnia materiał brązowy. W przykładzie jest rozdrobniony i ułożony luźno, z dostępem powietrza.' },
