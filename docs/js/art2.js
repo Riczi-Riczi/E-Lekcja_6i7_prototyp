@@ -49,22 +49,13 @@
 
 
   // --- Ocean -----------------------------------------------------------------
+  // I87 oceanSurface — cały dawny renderer zastąpiony ilustracją.
   function oceanSurface() {
-    return svg('0 0 680 360', 'Powierzchnia oceanu widziana z pokładu - wygląda na czystą',
-      '<defs><linearGradient id="sky" x2="0" y2="1"><stop stop-color="#CFE8F2"/><stop offset="1" stop-color="#EAF5F7"/></linearGradient><linearGradient id="sea" x2="0" y2="1"><stop stop-color="#2E8BA8"/><stop offset="1" stop-color="#0F4D63"/></linearGradient></defs>' +
-      '<rect width="680" height="360" fill="url(#sky)"/><rect y="140" width="680" height="220" fill="url(#sea)"/>' +
-      '<g stroke="#FFFFFF66" stroke-width="3" fill="none"><path d="M40 190q30-10 60 0t60 0"/><path d="M300 230q30-10 60 0t60 0"/><path d="M500 180q30-10 60 0t60 0"/><path d="M140 290q30-10 60 0t60 0"/><path d="M420 310q30-10 60 0t60 0"/></g>');
+    return window.GOZOceanAssets ? window.GOZOceanAssets.markup('surface') : '<span class="ocean-renderer-missing" role="status">Ilustracja jest niedostępna. Skorzystaj z opisu w lekcji.</span>';
   }
+  // I87 oceanZoom — cały dawny renderer zastąpiony ilustracją.
   function oceanZoom() {
-    var dots = '';
-    var pts = [[80, 200, 6], [130, 250, 3], [200, 190, 4], [240, 300, 7], [310, 220, 3], [360, 270, 5], [420, 200, 4], [470, 320, 3], [520, 240, 6], [590, 290, 4], [620, 190, 3], [160, 330, 4], [280, 180, 5], [560, 170, 3]];
-    pts.forEach(function (p, i) {
-      dots += i % 3 === 0 ? '<rect x="' + p[0] + '" y="' + p[1] + '" width="' + p[2] * 2 + '" height="' + p[2] + '" rx="1" fill="' + ['#F8C945', '#F06A55', '#FFFFFF'][i % 3] + '" transform="rotate(' + (i * 23) + ' ' + p[0] + ' ' + p[1] + ')"/>'
-        : '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="' + p[2] + '" fill="' + ['#F8C945', '#F06A55', '#FFFFFF'][i % 3] + '"/>';
-    });
-    return svg('0 0 680 360', 'Umowne powiększenie tej samej wody z drobnymi fragmentami - ilustracja, nie pomiar',
-      '<rect width="680" height="360" fill="#0F4D63"/><rect y="0" width="680" height="140" fill="#1B6781"/>' + dots +
-      '<path d="M60 130q40-12 80 0t80 0" stroke="#FFFFFF55" stroke-width="3" fill="none"/>');
+    return window.GOZOceanAssets ? window.GOZOceanAssets.markup('zoom') : '<span class="ocean-renderer-missing" role="status">Ilustracja jest niedostępna. Skorzystaj z opisu w lekcji.</span>';
   }
   function depthColumn() {
     var marks = '';
@@ -78,16 +69,10 @@
       '<rect x="20" y="20" width="230" height="580" rx="16" fill="url(#deep)"/>' +
       '<rect x="28" y="' + yStart + '" width="36" height="' + (590 - yStart) + '" rx="6" fill="' + LIME + '" opacity=".85"/>' + marks);
   }
+  // I87 amphipod — cały dawny renderer zastąpiony ilustracją.
   function amphipod() {
-    return svg('0 0 320 180', 'Schemat drobnego skorupiaka z głębin - rysunek objaśniający, nie fotografia z badania',
-      '<rect width="320" height="180" rx="18" fill="#0A2C38"/>' +
-      '<path d="M60 110C80 60 170 44 240 70C270 80 280 100 262 112C220 138 120 142 60 110Z" fill="#E8D9C0"/>' +
-      '<path d="M100 72v48M140 62v62M180 60v64M220 66v54" stroke="#C9B89C" stroke-width="3"/>' +
-      '<path d="M250 80c30-30 50-40 60-38M252 90c30-10 44-6 56 2" stroke="#E8D9C0" stroke-width="3" fill="none"/>' +
-      '<path d="M80 124l-14 26M120 132l-8 30M170 134l0 30M210 130l10 28" stroke="#E8D9C0" stroke-width="3"/>' +
-      '<path d="M110 100c30 6 70 6 110-4" stroke="' + RUST + '" stroke-width="3" stroke-dasharray="4 4" fill="none"/>');
+    return window.GOZOceanAssets ? window.GOZOceanAssets.markup('amphipod') : '<span class="ocean-renderer-missing" role="status">Ilustracja jest niedostępna. Skorzystaj z opisu w lekcji.</span>';
   }
-
   // --- Z4 --------------------------------------------------------------------
   // Robocze ikony obiektów treści 3.2 (08 §1). Skorupki bez zawartości, fusy bez opakowań, woreczek foliowy jako osobny obiekt.
   var PEEL = '<path d="M28 58c10-14 26-10 32-2M50 52c14-12 30-6 34 4M40 62c16-4 30 0 40 4" stroke="#D08A3C" stroke-width="7" fill="none" stroke-linecap="round"/><path d="M34 70c8-6 18-6 24 0" stroke="#8FB25A" stroke-width="6" fill="none" stroke-linecap="round"/>';

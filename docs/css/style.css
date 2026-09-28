@@ -1017,3 +1017,15 @@ dialog::backdrop { background: #0A1C18AA; }
   #z3-example .z3-lamp-past img { max-width: 160px; }
 }
 /* I82 END grafiki-z3 */
+
+/* I87 START ocean-ilustracje — wyłącznie przystanek oceaniczny */
+#ocean .compare-stage.wide { aspect-ratio: 1724 / 912; }
+#ocean .lupa { position: static; margin-bottom: var(--space-sm); }
+#ocean .compare-layer .ocean-picture { display: block; width: 100%; height: 100%; object-fit: contain; }
+#ocean .amphipod .ocean-picture { display: block; width: 100%; height: auto; border-radius: var(--radius-control); }
+#ocean .ocean-image-note, #ocean .ocean-renderer-missing { display: block; color: var(--color-ink); background: var(--color-surface); padding: var(--space-sm); font-size: 15px; overflow-wrap: anywhere; }
+/* Brak helpera/rejestru: tekst nie może pozostać pod maską suwaka. */
+#ocean .compare-stage:has(.ocean-renderer-missing) { aspect-ratio: auto; }
+#ocean .compare-stage:has(.ocean-renderer-missing) .compare-layer { position: static; clip-path: none !important; }
+#ocean .compare-stage:has(.ocean-renderer-missing) .compare-handle { display: none; }
+/* I87 END ocean-ilustracje */
